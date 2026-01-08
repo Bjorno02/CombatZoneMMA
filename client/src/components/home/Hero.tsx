@@ -16,7 +16,7 @@ const SLIDES = [
     id: 1,
     image: slide1,
     title: "COMBAT ZONE 91",
-    subtitle: "HEAVYWEIGHT CHAMPIONSHIP",
+    subtitle: "NEW ENGLAND'S LONGEST RUNNING MMA PROMOTION",
     cta: "GET TICKETS",
     secondaryCta: "FIGHT CARD",
     align: "center", // Text alignment
