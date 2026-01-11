@@ -9,9 +9,9 @@ export default function SponsorsPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-20 px-4">
-        <div className="container mx-auto">
-          <span className="text-primary font-bold tracking-[0.2em] uppercase mb-2 block">Partnerships</span>
+      <section className="bg-slate-900 text-white py-24 md:py-32">
+        <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
+          <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">Partnerships</span>
           <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase max-w-4xl">
             Grow Your Brand With <span className="text-primary">Combat Zone</span>
           </h1>
@@ -19,14 +19,15 @@ export default function SponsorsPage() {
       </section>
 
       {/* Why Sponsor */}
-      <section className="py-20 container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-6">Why Partner With Us?</h2>
-                <p className="text-lg text-slate-600 mb-6">
+      <section className="py-24 md:py-32">
+        <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 items-center">
+            <div className="max-w-xl">
+                <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-8">Why Partner With Us?</h2>
+                <p className="text-lg text-slate-600 mb-8 leading-relaxed">
                     Combat Zone offers a unique opportunity to connect with a passionate, loyal, and engaged audience. Whether you're looking for brand awareness, direct engagement, or community impact, we have a package for you.
                 </p>
-                <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-2 gap-6 mb-10">
                     <div className="bg-slate-50 p-6 border border-slate-200 text-center">
                         <span className="block text-3xl font-bold font-[Chakra_Petch] text-primary">5k+</span>
                         <span className="text-sm font-bold uppercase text-slate-500">Live Attendance</span>
@@ -40,14 +41,15 @@ export default function SponsorsPage() {
              <div className="bg-slate-100 min-h-[400px] flex items-center justify-center text-slate-400 font-[Chakra_Petch] text-2xl uppercase font-bold">
                 Crowd/Sponsor Image
             </div>
+            </div>
         </div>
       </section>
 
       {/* Tiers */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-12 text-center">Sponsorship Opportunities</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-24 md:py-32 bg-slate-50">
+        <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
+            <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-16 text-center">Sponsorship Opportunities</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
                 {/* Tier 1 */}
                 <div className="bg-white p-8 border border-slate-200 shadow-sm">
                     <h3 className="text-xl font-bold font-[Chakra_Petch] uppercase mb-4">Event Partner</h3>

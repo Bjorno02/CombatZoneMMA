@@ -8,18 +8,18 @@ export default function FightersPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-20 px-4">
-        <div className="container mx-auto">
-          <span className="text-primary font-bold tracking-[0.2em] uppercase mb-2 block">The Roster</span>
-          <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase">Athletes</h1>
+      <section className="bg-slate-900 text-white py-24 md:py-32">
+        <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
+          <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">The Roster</span>
+          <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase max-w-4xl">Athletes</h1>
         </div>
       </section>
 
       {/* Champions Row */}
-      <section className="py-16 bg-white border-b border-slate-100">
-        <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-10 text-center">Current Champions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-20 md:py-28 bg-white border-b border-slate-100">
+        <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
+            <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-16 text-center">Current Champions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
                 {[1, 2, 3].map((i) => (
                     <div key={i} className="relative group cursor-pointer">
                         <div className="aspect-[3/4] bg-slate-100 overflow-hidden relative">
@@ -35,15 +35,15 @@ export default function FightersPage() {
       </section>
 
       {/* Fighter Resources */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-6">For Fighters</h2>
-                    <p className="text-slate-600 mb-8">
+      <section className="py-24 md:py-32 bg-slate-50">
+        <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div className="max-w-xl">
+                    <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-8">For Fighters</h2>
+                    <p className="text-lg text-slate-600 mb-10 leading-relaxed">
                         Looking to compete in Combat Zone? We are always looking for top tier talent. Review the requirements and submit your application.
                     </p>
-                    <ul className="space-y-4 mb-8">
+                    <ul className="space-y-5 mb-10">
                         <li className="bg-white p-4 border border-slate-200 font-bold text-slate-800 flex justify-between items-center cursor-pointer hover:border-primary">
                             Medical Requirements <span>PDF</span>
                         </li>
@@ -55,9 +55,9 @@ export default function FightersPage() {
                         </li>
                     </ul>
                 </div>
-                <div className="bg-slate-900 text-white p-10 flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold font-[Chakra_Petch] uppercase mb-4">Apply to Fight</h3>
-                    <p className="text-slate-400 mb-8">Ready to step into the cage? Fill out our fighter application form to get on the radar of our matchmakers.</p>
+                <div className="bg-slate-900 text-white p-12 flex flex-col justify-center">
+                    <h3 className="text-2xl font-bold font-[Chakra_Petch] uppercase mb-6">Apply to Fight</h3>
+                    <p className="text-slate-400 mb-10 text-lg leading-relaxed">Ready to step into the cage? Fill out our fighter application form to get on the radar of our matchmakers.</p>
                     <Button className="bg-primary hover:bg-primary/90 text-white font-bold uppercase py-6">Fighter Application</Button>
                 </div>
             </div>

@@ -5,7 +5,8 @@ import { EventSection } from "@/components/home/EventSection";
 import { ChampionsSection } from "@/components/home/ChampionsSection";
 import { MerchSection } from "@/components/home/MerchSection";
 import { AboutSection } from "@/components/home/AboutSection";
-import { WhatIsCombatZoneWithLink } from "@/components/home/WhatIsCombatZoneWithLink";
+import { PPVSection } from "@/components/home/PPVSection";
+import { WhatIsCombatZoneSection } from "@/components/home/WhatIsCombatZoneSection";
 import { Trophy, Star, Users, History } from "lucide-react";
 
 export default function Home() {
@@ -18,9 +19,14 @@ export default function Home() {
         <Hero />
 
         {/* 2. CREDIBILITY STRIP: Quick stats/trust signals - Builds immediate credibility */}
-        <section className="bg-primary py-8 text-white relative z-20">
-            <div className="container mx-auto px-4">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/20">
+        <section className="bg-primary py-10 md:py-12 text-white relative z-20 overflow-hidden">
+            {/* Flowing transition from hero */}
+            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/20 to-transparent"></div>
+            {/* Flowing transition to next section */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/10 via-white/5 to-transparent"></div>
+            
+            <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/20">
                     <div className="flex flex-col items-center">
                         <History className="mb-2 w-8 h-8 opacity-80" />
                         <span className="text-3xl font-bold font-[Chakra_Petch]">24+</span>
@@ -48,30 +54,36 @@ export default function Home() {
         {/* 3. EVENTS: Upcoming & Featured - Primary CTA (tickets), most important content */}
         <EventSection />
 
-        {/* 4. WHAT IS COMBAT ZONE + LINK: Side-by-side explanation and action */}
-        <WhatIsCombatZoneWithLink />
+        {/* 4. PPV: Pay-Per-View section */}
+        <PPVSection />
 
-        {/* 5. CHAMPIONS: Title defenders from last event - Social proof, excitement */}
+        {/* 5. WHAT IS COMBAT ZONE: About section */}
+        <WhatIsCombatZoneSection />
+
+        {/* 6. CHAMPIONS: Title defenders from last event - Social proof, excitement */}
         <ChampionsSection />
 
-        {/* 6. ABOUT: Mission & Story - Builds deeper brand connection */}
+        {/* 7. ABOUT: Mission & Story - Builds deeper brand connection */}
         <AboutSection />
 
-        {/* 7. STORE: Merch - Secondary action, commerce opportunity */}
+        {/* 8. STORE: Merch - Secondary action, commerce opportunity */}
         <MerchSection />
 
-        {/* 8. SPONSOR CTA: Business opportunity - Least urgent for general visitors */}
-        <section className="py-20 bg-slate-900 text-center px-4 relative overflow-hidden">
+        {/* 9. SPONSOR CTA: Business opportunity - Least urgent for general visitors */}
+        <section className="py-24 md:py-32 bg-slate-900 text-center relative overflow-hidden -mt-8">
+             {/* Flowing transition from previous section */}
+             <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#e8f0f5]/20 via-[#e8f0f5]/10 to-transparent"></div>
+             
              <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]"></div>
-             <div className="relative z-10 max-w-3xl mx-auto">
-                <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">Partnership Opportunities</span>
-                <h2 className="text-4xl md:text-6xl font-bold text-white font-[Chakra_Petch] uppercase mb-6">
+             <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-12 lg:px-16">
+                <span className="text-primary font-bold tracking-[0.2em] uppercase mb-6 block scroll-reveal">Partnership Opportunities</span>
+                <h2 className="text-4xl md:text-6xl font-bold text-white font-[Chakra_Petch] uppercase mb-8 scroll-reveal scroll-reveal-delay-1">
                     Align Your Brand With Greatness
                 </h2>
-                <p className="text-slate-400 text-lg mb-8">
+                <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto scroll-reveal scroll-reveal-delay-2">
                     Connect with a passionate, loyal audience that can only be found at Combat Zone.
                 </p>
-                <button className="bg-white text-slate-900 hover:bg-slate-200 font-bold uppercase px-8 py-4 rounded-none transition-colors">
+                <button className="bg-white text-slate-900 hover:bg-slate-200 font-bold uppercase px-8 py-4 rounded-none transition-colors scroll-reveal scroll-reveal-delay-3">
                     Become a Sponsor
                 </button>
              </div>

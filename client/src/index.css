@@ -114,3 +114,32 @@
     @apply uppercase tracking-normal font-bold;
   }
 }
+
+/* Smooth scroll reveal animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.scroll-reveal-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.scroll-reveal-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.scroll-reveal-delay-3 {
+  animation-delay: 0.3s;
+}

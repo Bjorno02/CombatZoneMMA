@@ -11,19 +11,20 @@ export default function ContactPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-20 px-4">
-        <div className="container mx-auto">
-          <span className="text-primary font-bold tracking-[0.2em] uppercase mb-2 block">Get in Touch</span>
-          <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase">Contact Us</h1>
+      <section className="bg-slate-900 text-white py-24 md:py-32">
+        <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
+          <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">Get in Touch</span>
+          <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase max-w-4xl">Contact Us</h1>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-20 container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <section className="py-24 md:py-32">
+        <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20">
             {/* Form */}
-            <div>
-                <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-6">Send us a Message</h2>
+            <div className="max-w-xl">
+                <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-8">Send us a Message</h2>
                 <form className="space-y-6">
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
@@ -57,9 +58,9 @@ export default function ContactPage() {
             </div>
 
             {/* Info */}
-            <div>
-                <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-6">Contact Info</h2>
-                <div className="space-y-8 mb-12">
+            <div className="max-w-xl">
+                <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-8">Contact Info</h2>
+                <div className="space-y-10 mb-12">
                      <div className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-slate-100 flex items-center justify-center text-primary rounded-none">
                             <MapPin size={24} />
@@ -92,6 +93,7 @@ export default function ContactPage() {
                 {/* Map Placeholder */}
                 <div className="w-full h-[300px] bg-slate-200 flex items-center justify-center font-bold text-slate-400 uppercase">
                     Google Maps Embed (SNHU Arena)
+                </div>
                 </div>
             </div>
         </div>

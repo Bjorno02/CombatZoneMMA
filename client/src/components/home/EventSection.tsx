@@ -4,15 +4,28 @@ import eventPoster from "@assets/IMAGES/CombatZone91Poster.png";
 
 export function EventSection() {
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden -mt-12">
+        {/* Flowing transition from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-primary/10 via-primary/5 to-transparent"></div>
+        
         {/* Paper Texture Background */}
         <div className="absolute inset-0 opacity-[0.5] bg-[url('https://www.transparenttextures.com/patterns/paper.png')]"></div>
         
         {/* Subtle Warm Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-transparent to-slate-50/30"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 border-b-2 border-slate-100 pb-6">
+        {/* Flowing transition to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-700/20 via-blue-900/10 to-transparent"></div>
+        
+        {/* Subtle diagonal accent line - flows through sections */}
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+        
+        {/* Shared decorative geometric element */}
+        <div className="absolute top-1/4 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+
+      <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-8 border-b-2 border-slate-100 pb-8 scroll-reveal">
           <div className="text-center md:text-left">
             <h2 className="text-primary font-bold tracking-[0.2em] text-sm mb-1 uppercase">Next Live Event</h2>
             <h3 className="text-4xl md:text-6xl font-bold text-slate-900 font-[Chakra_Petch] uppercase italic">
@@ -25,27 +38,15 @@ export function EventSection() {
         </div>
 
         {/* Featured Event Layout - Separated Boxes */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10">
           
-          {/* Event Poster - Left Side, Larger */}
-          <div className="lg:col-span-7 bg-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-200 overflow-hidden rounded-lg group">
-            <div className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden bg-slate-900 flex items-center justify-center px-2 md:px-3 py-4 md:py-6">
-              {/* Side border accent design */}
-              <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-primary/40 via-primary/30 to-primary/40 opacity-60"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-2 bg-gradient-to-b from-primary/40 via-primary/30 to-primary/40 opacity-60"></div>
-              
-              {/* Subtle corner accents */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/30"></div>
-              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/30"></div>
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/30"></div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/30"></div>
-              
-              <img
-                src={eventPoster}
-                alt="Combat Zone 91 Event Poster"
-                className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-[1.02] relative z-10"
-              />
-            </div>
+          {/* Event Poster - Left Side, Larger, Standalone */}
+          <div className="lg:col-span-7 flex items-center justify-center group">
+            <img
+              src={eventPoster}
+              alt="Combat Zone 91 Event Poster"
+              className="w-full max-w-none h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02] shadow-2xl"
+            />
           </div>
 
           {/* Right Side - Date Box and Info Box */}

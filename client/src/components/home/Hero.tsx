@@ -62,6 +62,9 @@ export function Hero() {
 
   return (
     <section className="relative h-screen min-h-[600px] bg-black overflow-hidden group">
+      {/* Flowing transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary/30 via-primary/15 to-transparent z-10"></div>
+      
       {/* Carousel Viewport */}
       <div className="absolute inset-0 z-0" ref={emblaRef}>
         <div className="flex h-full">
@@ -80,12 +83,12 @@ export function Hero() {
 
               {/* Content Container */}
               <div className={cn(
-                  "absolute inset-0 container mx-auto px-4 flex flex-col justify-center h-full z-10",
+                  "absolute inset-0 max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 flex flex-col justify-center h-full z-10",
                   slide.align === "center" && "items-center text-center",
                   slide.align === "left" && "items-start text-left",
                   slide.align === "right" && "items-end text-right"
               )}>
-                <div className="max-w-4xl space-y-6 animate-in fade-in slide-in-from-bottom-10 duration-1000 fill-mode-both" style={{ animationDelay: '200ms' }}>
+                <div className="max-w-3xl space-y-8 animate-in fade-in slide-in-from-bottom-10 duration-1000 fill-mode-both" style={{ animationDelay: '200ms' }}>
                     <span className="inline-block py-1 px-3 bg-primary text-white text-sm font-bold tracking-widest uppercase mb-2 skew-x-[-10deg]">
                         <span className="skew-x-[10deg]">{slide.subtitle}</span>
                     </span>
