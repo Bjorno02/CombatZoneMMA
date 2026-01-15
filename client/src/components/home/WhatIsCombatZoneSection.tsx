@@ -20,14 +20,14 @@ export function WhatIsCombatZoneSection() {
       </div>
       
       {/* Flowing transition to next section - Champions */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-800/10 via-blue-900/5 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/10 via-black/5 to-transparent"></div>
       
       {/* Subtle diagonal accent line */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
       
       <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
-        {/* Contained blue box with margins */}
-        <div className="relative bg-gradient-to-br from-slate-700 via-blue-900 to-slate-800 text-white rounded-lg overflow-hidden shadow-2xl">
+        {/* Contained dark box with margins */}
+        <div className="relative bg-black text-white rounded-lg overflow-hidden shadow-2xl">
           {/* Professional Texture */}
           <div className="absolute inset-0 opacity-[0.08] bg-[repeating-linear-gradient(45deg,transparent,transparent_20px,rgba(255,255,255,0.1)_20px,rgba(255,255,255,0.1)_21px)]"></div>
           
@@ -35,7 +35,7 @@ export function WhatIsCombatZoneSection() {
           <div className="absolute inset-0 opacity-[0.1] bg-[radial-gradient(circle,#ffffff_1px,transparent_1px)] bg-[size:24px_24px]"></div>
           
           {/* Gradient Mesh for Depth */}
-          <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top_left,rgba(59,130,246,0.4),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(99,102,241,0.3),transparent_50%)]"></div>
+          <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top_left,rgba(0,0,0,0.4),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(0,0,0,0.3),transparent_50%)]"></div>
           
           {/* Content inside the blue box */}
           <div className="relative z-10 p-8 md:p-12 lg:p-16">

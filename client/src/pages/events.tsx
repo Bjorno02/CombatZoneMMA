@@ -9,7 +9,7 @@ export default function EventsPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-24 md:py-32">
+      <section className="bg-black text-white py-24 md:py-32">
         <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
           <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">Schedule</span>
           <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase max-w-4xl">Upcoming Events</h1>
@@ -48,7 +48,7 @@ export default function EventsPage() {
             {[92, 93, 94].map((num) => (
                 <div key={num} className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-primary transition-colors cursor-pointer group">
                     <div className="flex items-center gap-6">
-                        <div className="bg-slate-900 text-white p-4 text-center min-w-[100px]">
+                        <div className="bg-black text-white p-4 text-center min-w-[100px]">
                             <span className="block text-2xl font-bold font-[Chakra_Petch]">{num + 4}</span>
                             <span className="block text-xs uppercase font-bold text-primary">MAY</span>
                         </div>

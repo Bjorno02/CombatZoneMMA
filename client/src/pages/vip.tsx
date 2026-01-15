@@ -53,7 +53,7 @@ export default function VIPPage() {
       </section>
 
       {/* Visual */}
-      <section className="py-24 md:py-32 bg-slate-900 text-white">
+      <section className="py-24 md:py-32 bg-black text-white">
         <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="max-w-xl">
                  <h2 className="text-4xl font-bold font-[Chakra_Petch] uppercase mb-8">The VIP Treatment</h2>

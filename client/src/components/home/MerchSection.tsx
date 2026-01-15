@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
-import merchImg from "@assets/IMAGES/CZMerchExample.jpg";
+import merchImg from "@assets/IMAGES/CZMerchFiller.jpg";
 
 export function MerchSection() {
   return (
@@ -9,7 +9,7 @@ export function MerchSection() {
       <div className="absolute inset-0 opacity-[0.35] bg-[repeating-linear-gradient(45deg,transparent,transparent_8px,rgba(0,0,0,0.08)_8px,rgba(0,0,0,0.08)_9px)]"></div>
       
       {/* Flowing transition to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900/20 via-slate-900/10 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/20 via-black/10 to-transparent"></div>
       
       {/* Subtle diagonal accent line - flows through sections */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>

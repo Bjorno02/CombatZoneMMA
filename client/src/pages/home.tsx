@@ -70,7 +70,7 @@ export default function Home() {
         <MerchSection />
 
         {/* 9. SPONSOR CTA: Business opportunity - Least urgent for general visitors */}
-        <section className="py-24 md:py-32 bg-slate-900 text-center relative overflow-hidden -mt-8">
+        <section className="py-24 md:py-32 bg-black text-center relative overflow-hidden -mt-8">
              {/* Flowing transition from previous section */}
              <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#e8f0f5]/20 via-[#e8f0f5]/10 to-transparent"></div>
              

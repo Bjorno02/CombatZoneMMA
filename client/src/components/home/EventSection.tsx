@@ -15,7 +15,7 @@ export function EventSection() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-transparent to-slate-50/30"></div>
 
         {/* Flowing transition to next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-700/20 via-blue-900/10 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/20 via-black/10 to-transparent"></div>
         
         {/* Subtle diagonal accent line - flows through sections */}
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
@@ -52,7 +52,7 @@ export function EventSection() {
           {/* Right Side - Date Box and Info Box */}
           <div className="lg:col-span-5 flex flex-col gap-4 md:gap-6">
             {/* Date Box - Separated */}
-            <div className="bg-slate-900 text-white p-6 flex flex-col justify-center items-center text-center relative overflow-hidden shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-200 rounded-lg">
+            <div className="bg-black text-white p-6 flex flex-col justify-center items-center text-center relative overflow-hidden shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-200 rounded-lg">
                {/* Background Pattern */}
                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
                

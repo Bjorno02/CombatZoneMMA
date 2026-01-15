@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, User, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logoImg from "/logo.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -27,8 +28,8 @@ export function Navbar() {
 
   const isHome = location === "/";
   const navBackground = isHome 
-    ? (scrolled ? "bg-slate-900/95 backdrop-blur-md border-b border-white/10" : "bg-transparent") 
-    : "bg-slate-900 border-b border-white/10";
+    ? (scrolled ? "bg-black/95 backdrop-blur-md border-b border-white/10" : "bg-transparent") 
+    : "bg-black border-b border-white/10";
 
   return (
     <nav className={cn("fixed top-0 w-full z-50 transition-all duration-300", navBackground)}>
@@ -50,7 +51,15 @@ export function Navbar() {
                             Events
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid gap-3 p-4 w-[400px] bg-slate-900 border border-white/10">
+                            <ul className="grid gap-3 p-4 w-[400px] bg-black border border-white/10">
+                                <li className="mb-2 pb-3 border-b border-white/10">
+                                    <Link href="/">
+                                        <a className="flex items-center gap-2 text-white hover:text-primary transition-colors">
+                                            <img src={logoImg} alt="Combat Zone" className="h-5 w-5" />
+                                            <span className="text-base font-bold font-[Chakra_Petch] uppercase">CombatZone</span>
+                                        </a>
+                                    </Link>
+                                </li>
                                 <ListItem href="/events" title="Upcoming Events">
                                     Next: CZ 91 at SNHU Arena
                                 </ListItem>
@@ -76,7 +85,15 @@ export function Navbar() {
                             About
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid gap-3 p-4 w-[400px] bg-slate-900 border border-white/10">
+                            <ul className="grid gap-3 p-4 w-[400px] bg-black border border-white/10">
+                                <li className="mb-2 pb-3 border-b border-white/10">
+                                    <Link href="/">
+                                        <a className="flex items-center gap-2 text-white hover:text-primary transition-colors">
+                                            <img src={logoImg} alt="Combat Zone" className="h-5 w-5" />
+                                            <span className="text-base font-bold font-[Chakra_Petch] uppercase">CombatZone</span>
+                                        </a>
+                                    </Link>
+                                </li>
                                 <ListItem href="/about" title="About Combat Zone">
                                     Mission Statement & Story
                                 </ListItem>
@@ -93,7 +110,15 @@ export function Navbar() {
                             Sponsors
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid gap-3 p-4 w-[400px] bg-slate-900 border border-white/10">
+                            <ul className="grid gap-3 p-4 w-[400px] bg-black border border-white/10">
+                                <li className="mb-2 pb-3 border-b border-white/10">
+                                    <Link href="/">
+                                        <a className="flex items-center gap-2 text-white hover:text-primary transition-colors">
+                                            <img src={logoImg} alt="Combat Zone" className="h-5 w-5" />
+                                            <span className="text-base font-bold font-[Chakra_Petch] uppercase">CombatZone</span>
+                                        </a>
+                                    </Link>
+                                </li>
                                 <ListItem href="/sponsors" title="Why Sponsor">
                                     Brand identity & Audience Stats
                                 </ListItem>
@@ -116,7 +141,15 @@ export function Navbar() {
                             Media
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid gap-3 p-4 w-[400px] bg-slate-900 border border-white/10">
+                            <ul className="grid gap-3 p-4 w-[400px] bg-black border border-white/10">
+                                <li className="mb-2 pb-3 border-b border-white/10">
+                                    <Link href="/">
+                                        <a className="flex items-center gap-2 text-white hover:text-primary transition-colors">
+                                            <img src={logoImg} alt="Combat Zone" className="h-5 w-5" />
+                                            <span className="text-base font-bold font-[Chakra_Petch] uppercase">CombatZone</span>
+                                        </a>
+                                    </Link>
+                                </li>
                                 <ListItem href="/media" title="Media Hub">
                                     Featured Videos & Photos
                                 </ListItem>
@@ -139,7 +172,15 @@ export function Navbar() {
                             Store
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid gap-3 p-4 w-[400px] bg-slate-900 border border-white/10">
+                            <ul className="grid gap-3 p-4 w-[400px] bg-black border border-white/10">
+                                <li className="mb-2 pb-3 border-b border-white/10">
+                                    <Link href="/">
+                                        <a className="flex items-center gap-2 text-white hover:text-primary transition-colors">
+                                            <img src={logoImg} alt="Combat Zone" className="h-5 w-5" />
+                                            <span className="text-base font-bold font-[Chakra_Petch] uppercase">CombatZone</span>
+                                        </a>
+                                    </Link>
+                                </li>
                                 <ListItem href="/shop" title="All Products">
                                     Shop Official Gear
                                 </ListItem>
@@ -159,7 +200,15 @@ export function Navbar() {
                             Fighters
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid gap-3 p-4 w-[400px] bg-slate-900 border border-white/10">
+                            <ul className="grid gap-3 p-4 w-[400px] bg-black border border-white/10">
+                                <li className="mb-2 pb-3 border-b border-white/10">
+                                    <Link href="/">
+                                        <a className="flex items-center gap-2 text-white hover:text-primary transition-colors">
+                                            <img src={logoImg} alt="Combat Zone" className="h-5 w-5" />
+                                            <span className="text-base font-bold font-[Chakra_Petch] uppercase">CombatZone</span>
+                                        </a>
+                                    </Link>
+                                </li>
                                 <ListItem href="/champions" title="Champions">
                                     Current Title Holders
                                 </ListItem>
@@ -207,7 +256,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 bg-slate-900 z-40 pt-24 px-6 overflow-y-auto">
+        <div className="lg:hidden fixed inset-0 bg-black z-40 pt-24 px-6 overflow-y-auto">
           <div className="flex flex-col gap-6">
             <MobileLink href="/events" onClick={() => setIsOpen(false)}>Events</MobileLink>
             <MobileLink href="/about" onClick={() => setIsOpen(false)}>About</MobileLink>

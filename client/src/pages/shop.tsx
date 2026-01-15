@@ -8,7 +8,7 @@ export default function ShopPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-24 md:py-32">
+      <section className="bg-black text-white py-24 md:py-32">
         <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 text-center">
           <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">Official Gear</span>
           <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase mb-10 max-w-4xl mx-auto">Combat Zone Store</h1>
@@ -41,7 +41,7 @@ export default function ShopPage() {
       </section>
 
       {/* Kattarmania */}
-      <section className="py-24 md:py-32 bg-slate-900 text-white">
+      <section className="py-24 md:py-32 bg-black text-white">
         <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 flex flex-col md:flex-row items-center gap-16">
             <div className="flex-1 max-w-2xl">
                 <h2 className="text-4xl font-bold font-[Chakra_Petch] uppercase mb-6 text-primary">Kattarmania Collection</h2>

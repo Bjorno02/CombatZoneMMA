@@ -26,7 +26,7 @@ const CHAMPIONS = [
 
 export function ChampionsSection() {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-slate-700 via-blue-900 to-slate-800 relative overflow-hidden -mt-8">
+    <section className="py-20 md:py-28 bg-black relative overflow-hidden -mt-8">
       {/* Professional Texture */}
       <div className="absolute inset-0 opacity-[0.08] bg-[repeating-linear-gradient(45deg,transparent,transparent_20px,rgba(255,255,255,0.1)_20px,rgba(255,255,255,0.1)_21px)]"></div>
       
@@ -34,10 +34,10 @@ export function ChampionsSection() {
       <div className="absolute inset-0 opacity-[0.1] bg-[radial-gradient(circle,#ffffff_1px,transparent_1px)] bg-[size:24px_24px]"></div>
       
       {/* Gradient Mesh for Depth */}
-      <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top_left,rgba(59,130,246,0.4),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(99,102,241,0.3),transparent_50%)]"></div>
+      <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top_left,rgba(0,0,0,0.4),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(0,0,0,0.3),transparent_50%)]"></div>
       
       {/* Flowing transition from previous section */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-800/10 via-blue-900/5 to-transparent"></div>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/10 via-black/5 to-transparent"></div>
       
       {/* Flowing transition to next section */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/30 via-white/15 to-transparent"></div>

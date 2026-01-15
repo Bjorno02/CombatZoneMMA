@@ -45,7 +45,7 @@ export function PPVSection() {
           {/* Right side - takes 3 columns, larger visual */}
           <div className="lg:col-span-3 flex justify-center lg:justify-end scroll-reveal scroll-reveal-delay-1">
             <div className="relative w-full max-w-md">
-              <div className="aspect-[4/3] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-lg shadow-2xl flex items-center justify-center relative overflow-hidden group">
+              <div className="aspect-[4/3] bg-gradient-to-br from-black via-black to-black rounded-lg shadow-2xl flex items-center justify-center relative overflow-hidden group">
                 {/* Subtle pattern overlay */}
                 <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
                 

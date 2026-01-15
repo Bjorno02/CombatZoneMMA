@@ -9,7 +9,7 @@ export default function SponsorsPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-24 md:py-32">
+      <section className="bg-black text-white py-24 md:py-32">
         <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
           <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">Partnerships</span>
           <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase max-w-4xl">
@@ -61,7 +61,7 @@ export default function SponsorsPage() {
                     <Button variant="outline" className="w-full font-bold uppercase">Inquire</Button>
                 </div>
                 {/* Tier 2 */}
-                <div className="bg-slate-900 text-white p-8 border border-primary shadow-xl scale-105">
+                <div className="bg-black text-white p-8 border border-primary shadow-xl scale-105">
                      <span className="bg-primary text-white text-xs font-bold px-2 py-1 uppercase mb-4 inline-block">Most Popular</span>
                     <h3 className="text-2xl font-bold font-[Chakra_Petch] uppercase mb-4">Cage Sponsor</h3>
                     <ul className="space-y-3 mb-8">

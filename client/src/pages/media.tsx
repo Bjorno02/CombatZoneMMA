@@ -8,7 +8,7 @@ export default function MediaPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-24 md:py-32">
+      <section className="bg-black text-white py-24 md:py-32">
         <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
           <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">Content</span>
           <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase max-w-4xl">Media Hub</h1>

@@ -8,7 +8,7 @@ export default function AboutPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-24 md:py-32 relative overflow-hidden">
+      <section className="bg-black text-white py-24 md:py-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
           <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">Our Story</span>

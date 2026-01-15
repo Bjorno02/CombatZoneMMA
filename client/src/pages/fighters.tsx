@@ -8,7 +8,7 @@ export default function FightersPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="bg-slate-900 text-white py-24 md:py-32">
+      <section className="bg-black text-white py-24 md:py-32">
         <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
           <span className="text-primary font-bold tracking-[0.2em] uppercase mb-4 block">The Roster</span>
           <h1 className="text-5xl md:text-7xl font-bold font-[Chakra_Petch] uppercase max-w-4xl">Athletes</h1>
@@ -55,7 +55,7 @@ export default function FightersPage() {
                         </li>
                     </ul>
                 </div>
-                <div className="bg-slate-900 text-white p-12 flex flex-col justify-center">
+                <div className="bg-black text-white p-12 flex flex-col justify-center">
                     <h3 className="text-2xl font-bold font-[Chakra_Petch] uppercase mb-6">Apply to Fight</h3>
                     <p className="text-slate-400 mb-10 text-lg leading-relaxed">Ready to step into the cage? Fill out our fighter application form to get on the radar of our matchmakers.</p>
                     <Button className="bg-primary hover:bg-primary/90 text-white font-bold uppercase py-6">Fighter Application</Button>

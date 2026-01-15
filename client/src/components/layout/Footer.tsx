@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 border-t border-white/10 pt-24 pb-12 text-white">
+    <footer className="bg-black border-t border-white/10 pt-24 pb-12 text-white">
       <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
         
         {/* Top Section: CTA & Newsletter */}
