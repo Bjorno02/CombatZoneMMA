@@ -4,12 +4,28 @@ Official website for Combat Zone MMA, New England's longest-running MMA promotio
 
 ## Tech Stack
 
-- **Frontend:** React 19, TypeScript, Tailwind CSS 4
-- **Backend:** Express.js, Node.js
-- **Database:** PostgreSQL with Drizzle ORM
-- **Build:** Vite 7
+### Frontend
+
+- **Framework:** React 19, TypeScript
+- **Styling:** Tailwind CSS 4
+- **UI Components:** Radix UI, Lucide Icons
 - **Routing:** Wouter
+- **Forms:** React Hook Form + Zod validation
 - **State:** TanStack Query
+- **Animations:** Framer Motion
+
+### Backend
+
+- **Server:** Express.js, Node.js
+- **Security:** Helmet (CSP, HSTS, etc.), CORS, Rate Limiting
+- **Validation:** Zod schemas
+- **Build:** Vite 7, esbuild
+
+### Code Quality
+
+- **Type Checking:** TypeScript strict mode
+- **Formatting:** Prettier
+- **Git Hooks:** Husky + lint-staged
 
 ## Getting Started
 
@@ -17,7 +33,6 @@ Official website for Combat Zone MMA, New England's longest-running MMA promotio
 
 - Node.js 20+
 - npm 10+
-- PostgreSQL (optional, for database features)
 
 ### Installation
 
@@ -36,17 +51,16 @@ cp .env.example .env
 npm run dev
 ```
 
-The site will be available at `http://localhost:5000`
-
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run check` | Run TypeScript type checking |
-| `npm run db:push` | Push database schema changes |
+| Command           | Description                              |
+| ----------------- | ---------------------------------------- |
+| `npm run dev`     | Start development server with hot reload |
+| `npm run build`   | Build for production                     |
+| `npm run start`   | Start production server                  |
+| `npm run check`   | Run TypeScript type checking             |
+| `npm run db:push` | Push database schema changes (Drizzle)   |
+| `npm run prepare` | Set up Husky git hooks (runs on install) |
 
 ## Project Structure
 
@@ -54,23 +68,26 @@ The site will be available at `http://localhost:5000`
 ├── client/                 # Frontend React application
 │   ├── src/
 │   │   ├── components/     # Reusable UI components
-│   │   │   ├── layout/     # Page layout components (Navbar, Footer, etc.)
+│   │   │   ├── layout/     # Page layout (Navbar, Footer, PageLayout, etc.)
 │   │   │   ├── ui/         # Base UI components (Button, Card, etc.)
-│   │   │   ├── home/       # Homepage-specific components
-│   │   │   ├── events/     # Event-related components
-│   │   │   └── media/      # Media components (YouTube feed, etc.)
-│   │   ├── data/           # Static data and constants
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── lib/            # Utilities and helpers
+│   │   │   ├── home/       # Homepage sections (Hero, About, Merch, etc.)
+│   │   │   ├── events/     # Event components (CountdownTimer, etc.)
+│   │   │   └── media/      # Media components (YouTubeFeed)
+│   │   ├── data/           # Static data (events, sponsors)
+│   │   ├── hooks/          # Custom hooks (useSEO, use-toast, etc.)
+│   │   ├── lib/            # Utilities (constants, queryClient, utils)
 │   │   ├── pages/          # Page components (route-level)
 │   │   └── types/          # TypeScript type definitions
+│   ├── public/             # Static files (favicon, robots.txt, sitemap.xml)
 │   └── index.html          # HTML entry point
 ├── server/                 # Backend Express server
-│   ├── index.ts            # Server entry point
-│   ├── routes.ts           # API routes
-│   └── vite.ts             # Vite middleware for dev
-├── shared/                 # Shared types/utilities
-└── attached_assets/        # Static assets (images, etc.)
+│   ├── index.ts            # Server entry point with security middleware
+│   ├── routes.ts           # API routes (contact, YouTube)
+│   ├── static.ts           # Static file serving (production)
+│   └── vite.ts             # Vite dev server middleware
+├── attached_assets/        # Images and static assets
+├── .husky/                 # Git hooks (pre-commit)
+└── SECURITY.md             # Security documentation
 ```
 
 ## Architecture
@@ -85,7 +102,7 @@ App
     └── PageLayout          # Common layout wrapper
         ├── SkipToContent   # Accessibility skip link
         ├── Navbar          # Navigation header
-        ├── main            # Page content
+        ├── main            # Page content (id="main-content")
         └── Footer          # Site footer
 ```
 
@@ -95,12 +112,14 @@ App
 - **`PageHero`** - Generic hero component for standalone pages
 - **`LazyImage`** - Image component with lazy loading and placeholders
 - **`ErrorBoundary`** - Catches errors and shows recovery UI
+- **`YouTubeFeed`** - Fetches and displays latest videos from Combat Zone channel
 
 ### Data Flow
 
-- Static data lives in `client/src/data/` (events, sponsors, packages)
+- Static data lives in `client/src/data/` (events, sponsors)
 - SEO configuration in `client/src/hooks/useSEO.ts`
 - External URLs centralized in `client/src/lib/constants.ts`
+- API endpoints defined in `server/routes.ts`
 
 ## Development Guidelines
 
@@ -124,12 +143,8 @@ import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 
 export default function NewPage() {
   useSEO(SEO_CONFIG.newPage);
-  
-  return (
-    <PageLayout>
-      {/* Page content */}
-    </PageLayout>
-  );
+
+  return <PageLayout>{/* Page content */}</PageLayout>;
 }
 ```
 
@@ -145,11 +160,8 @@ import { SectionHero } from "@/components/layout/SectionHero";
   title="PAGE\nTITLE"
   highlightWord="TITLE"
   description="Page description here"
-  breadcrumbs={[
-    { label: "Parent", href: "/parent" },
-    { label: "Current Page" },
-  ]}
-/>
+  breadcrumbs={[{ label: "Parent", href: "/parent" }, { label: "Current Page" }]}
+/>;
 ```
 
 ### Image Usage
@@ -164,8 +176,18 @@ import { LazyImage } from "@/components/ui/lazy-image";
   alt="Descriptive alt text"
   aspectRatio="16/9"
   placeholder="skeleton"
-/>
+/>;
 ```
+
+## Security
+
+See [SECURITY.md](./SECURITY.md) for full details. Key measures:
+
+- **HTTP Headers:** Helmet with CSP, HSTS, X-Frame-Options
+- **Rate Limiting:** Per-endpoint rate limiting to prevent abuse
+- **Input Validation:** Zod schemas on both client and server
+- **XSS Prevention:** HTML sanitization on all user inputs
+- **Error Handling:** Generic error messages in production (no stack traces)
 
 ## Accessibility
 
@@ -179,15 +201,21 @@ This site follows WCAG 2.1 Level AA guidelines:
 
 ## Environment Variables
 
-Create a `.env` file based on `.env.example`:
+Create a `.env` file in the project root:
 
 ```env
-# Database
-DATABASE_URL=postgresql://user:pass@localhost:5432/combatzone
+# YouTube API (required for video feed)
+YOUTUBE_API_KEY=your_google_api_key
 
-# External Services (optional)
-YOUTUBE_API_KEY=your_api_key
+# Optional: Override channel lookup
+# YOUTUBE_CHANNEL_ID=UCxxxxxxxxxxxxxx
+
+# Server
+NODE_ENV=development
+PORT=5000
 ```
+
+**Important:** Never commit your `.env` file. It's already in `.gitignore`.
 
 ## Deployment
 
@@ -198,6 +226,7 @@ npm run build
 ```
 
 This creates an optimized build in `dist/`:
+
 - `dist/public/` - Static frontend assets
 - `dist/index.cjs` - Node.js server bundle
 

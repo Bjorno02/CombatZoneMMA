@@ -16,9 +16,9 @@
 
 #### Rate Limiting
 
-- **General API**: 100 requests per 15 minutes per IP
-- **YouTube API**: 10 requests per minute per IP (preserves quota)
-- **Contact Form**: 5 submissions per hour per IP (prevents spam)
+- **General API**: Rate limited per IP
+- **YouTube API**: Stricter limits to preserve quota
+- **Contact Form**: Limited submissions to prevent spam
 
 #### Input Validation & Sanitization
 
@@ -26,7 +26,7 @@
 - String inputs sanitized to prevent XSS attacks
 - HTML tags stripped from user-provided content
 - Email addresses normalized (lowercase, trimmed)
-- Request body size limited to 10KB
+- Request body size limited
 
 #### CORS Configuration
 
@@ -50,7 +50,7 @@
 
 #### Content Security
 
-- No inline scripts (where possible)
+- CSP configured with trusted script sources
 - External resources loaded over HTTPS only
 - YouTube embeds restricted to trusted domains
 
