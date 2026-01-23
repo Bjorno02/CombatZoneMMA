@@ -7,8 +7,45 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Mail, Phone, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
+
+// Team photos
+// @ts-ignore
+import calvinImg from "@assets/IMAGES/KattarContact.avif";
+// @ts-ignore
+import jamisonImg from "@assets/IMAGES/JKattarContact.avif";
+// @ts-ignore
+import jeromeImg from "@assets/IMAGES/JeromeContact.avif";
+// @ts-ignore
+import kurtImg from "@assets/IMAGES/KurtDanielsContact.avif";
+
+const TEAM = [
+  {
+    name: "Calvin Kattar",
+    role: "CEO/President",
+    email: null,
+    image: calvinImg,
+  },
+  {
+    name: "Jamison Kattar",
+    role: "Combat Zone Administrator",
+    email: "jmsnkattar@czmma.com",
+    image: jamisonImg,
+  },
+  {
+    name: "Jerome Brashears",
+    role: "Combat Zone Matchmaker",
+    email: "jerome@czmma.com",
+    image: jeromeImg,
+  },
+  {
+    name: "Kurt Daniels",
+    role: "Combat Zone Medicals",
+    email: "kurtdaniels@czmma.com",
+    image: kurtImg,
+  },
+];
 
 // Form validation schema
 const contactSchema = z.object({
@@ -271,74 +308,45 @@ export default function ContactPage() {
               </form>
             </div>
 
-            {/* Info */}
+            {/* Team */}
             <div className="max-w-xl">
-              <h2 className="text-3xl font-bold font-heading uppercase mb-8">Contact Info</h2>
-              <div className="space-y-10 mb-12">
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-12 h-12 bg-neutral-100 flex items-center justify-center text-primary rounded-none"
-                    aria-hidden="true"
-                  >
-                    <MapPin size={24} />
+              <h2 className="text-3xl font-bold font-heading uppercase mb-8">Our Team</h2>
+              <div className="grid grid-cols-2 gap-6 mb-12">
+                {TEAM.map((member, i) => (
+                  <div key={i} className="flex items-center gap-4">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-24 h-32 object-cover object-top rounded-full bg-neutral-200 flex-shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <div className="font-bold text-lg text-neutral-900">{member.name}</div>
+                      <div className="text-sm text-neutral-500">{member.role}</div>
+                      {member.email && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="text-sm text-primary hover:underline block"
+                        >
+                          {member.email}
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold font-heading uppercase text-lg">Mailing Address</h3>
-                    <p className="text-neutral-600">
-                      555 Elm Street
-                      <br />
-                      Manchester, NH 03101
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-12 h-12 bg-neutral-100 flex items-center justify-center text-primary rounded-none"
-                    aria-hidden="true"
-                  >
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold font-heading uppercase text-lg">Email</h3>
-                    <p className="text-neutral-600">
-                      <a
-                        href="mailto:info@combatzonemma.com"
-                        className="hover:text-primary transition-colors"
-                      >
-                        info@combatzonemma.com
-                      </a>
-                      <br />
-                      <a
-                        href="mailto:media@combatzonemma.com"
-                        className="hover:text-primary transition-colors"
-                      >
-                        media@combatzonemma.com
-                      </a>
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-12 h-12 bg-neutral-100 flex items-center justify-center text-primary rounded-none"
-                    aria-hidden="true"
-                  >
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold font-heading uppercase text-lg">Phone</h3>
-                    <p className="text-neutral-600">
-                      <a href="tel:+15551234567" className="hover:text-primary transition-colors">
-                        (555) 123-4567
-                      </a>
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              {/* Map Placeholder */}
-              <div className="w-full h-[300px] bg-neutral-200 flex items-center justify-center font-bold text-neutral-400 uppercase">
-                Google Maps Embed (SNHU Arena)
-              </div>
+              {/* Map */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2920.0!2d-71.4641622!3d42.9863889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e24ed6538e6e8d%3A0x5765d9c8f9a7c8e5!2sSNHU%20Arena!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="SNHU Arena Location"
+                className="w-full"
+              />
             </div>
           </div>
         </Container>

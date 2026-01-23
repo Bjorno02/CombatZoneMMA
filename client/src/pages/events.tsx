@@ -119,8 +119,8 @@ export default function EventsPage() {
                     <Clock className="text-primary" size={22} />
                   </div>
                   <div>
-                    <div className="font-bold text-neutral-900">10:00 PM EST</div>
-                    <div className="text-sm text-neutral-500">Main Card</div>
+                    <div className="font-bold text-neutral-900">5:00 PM EST</div>
+                    <div className="text-sm text-neutral-500">Start Time</div>
                   </div>
                 </div>
 
@@ -239,32 +239,6 @@ export default function EventsPage() {
                   <div>
                     <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900">
                       CZ93
-                    </div>
-                  </div>
-                  <div className="hidden md:block w-px h-12 bg-neutral-200" />
-                  <div>
-                    <div className="font-bold text-neutral-400">TBD</div>
-                    <div className="text-sm text-neutral-400">Date to be announced</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 text-neutral-600">
-                  <MapPin size={18} className="text-neutral-400" />
-                  <div>
-                    <div className="font-medium">SNHU Arena</div>
-                    <div className="text-sm text-neutral-500">Manchester, NH</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CZ 94 - TBD */}
-            <div className="relative bg-white border border-neutral-200 overflow-hidden">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-neutral-200" />
-              <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
-                <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
-                  <div>
-                    <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900">
-                      CZ94
                     </div>
                   </div>
                   <div className="hidden md:block w-px h-12 bg-neutral-200" />

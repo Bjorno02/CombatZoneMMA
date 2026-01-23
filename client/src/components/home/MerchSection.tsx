@@ -30,11 +30,10 @@ export function MerchSection() {
             </span>
           </div>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold font-[Chakra_Petch] text-white uppercase leading-[0.9] mb-6">
-            Wear the <span className="text-primary">Battle</span>
+            Shop <span className="text-primary">Combat Zone</span>
           </h2>
           <p className="text-neutral-500 text-lg max-w-2xl mx-auto">
-            Rep the promotion that built New England's top fighters. Premium apparel that hits as
-            hard as our athletes.
+            Premium apparel for real fight fans.
           </p>
         </div>
 
@@ -64,69 +63,25 @@ export function MerchSection() {
             </div>
           </div>
 
-          {/* Right - Product Info & Categories */}
-          <div className="text-white">
-            {/* Product categories */}
-            <div className="grid grid-cols-2 gap-4 mb-10">
-              <div className="bg-white/[0.03] border border-white/10 p-6 hover:border-primary/50 hover:bg-white/[0.06] transition-all cursor-pointer group">
-                <div className="text-3xl font-bold font-[Chakra_Petch] text-primary mb-1">01</div>
-                <div className="font-bold uppercase tracking-wider mb-1">Hoodies</div>
-                <div className="text-sm text-neutral-500">Premium heavyweight</div>
-              </div>
+          {/* Right - CTA */}
+          <div className="text-white flex flex-col justify-center">
+            <h3 className="text-2xl md:text-3xl font-bold font-[Chakra_Petch] uppercase mb-4">
+              Official Merchandise
+            </h3>
 
-              <div className="bg-white/[0.03] border border-white/10 p-6 hover:border-primary/50 hover:bg-white/[0.06] transition-all cursor-pointer group">
-                <div className="text-3xl font-bold font-[Chakra_Petch] text-primary mb-1">02</div>
-                <div className="font-bold uppercase tracking-wider mb-1">T-Shirts</div>
-                <div className="text-sm text-neutral-500">Event & signature tees</div>
-              </div>
-
-              <div className="bg-white/[0.03] border border-white/10 p-6 hover:border-primary/50 hover:bg-white/[0.06] transition-all cursor-pointer group">
-                <div className="text-3xl font-bold font-[Chakra_Petch] text-primary mb-1">03</div>
-                <div className="font-bold uppercase tracking-wider mb-1">Fight Kits</div>
-                <div className="text-sm text-neutral-500">Official training gear</div>
-              </div>
-
-              <div className="bg-white/[0.03] border border-white/10 p-6 hover:border-primary/50 hover:bg-white/[0.06] transition-all cursor-pointer group">
-                <div className="text-3xl font-bold font-[Chakra_Petch] text-primary mb-1">04</div>
-                <div className="font-bold uppercase tracking-wider mb-1">Accessories</div>
-                <div className="text-sm text-neutral-500">Hats, bags & more</div>
-              </div>
-            </div>
-
-            {/* CTA */}
             <Link href="/shop">
               <Button
                 size="lg"
                 className="w-full bg-primary text-white hover:bg-primary/90 font-bold uppercase tracking-wider h-16 text-lg group"
               >
                 <ShoppingBag className="mr-3" size={22} />
-                Shop the Collection
+                Shop Now
                 <ArrowRight
-                  className="ml-3 group-hover:tranneutral-x-1 transition-transform"
+                  className="ml-3 group-hover:translate-x-1 transition-transform"
                   size={22}
                 />
               </Button>
             </Link>
-
-            {/* Trust badges */}
-            <div className="flex items-center justify-center gap-8 mt-8 pt-8 border-t border-white/10">
-              <div className="text-center">
-                <div className="text-sm text-neutral-600 uppercase tracking-wider">
-                  Free Shipping
-                </div>
-                <div className="text-white font-bold">Orders $75+</div>
-              </div>
-              <div className="w-px h-10 bg-white/10" />
-              <div className="text-center">
-                <div className="text-sm text-neutral-600 uppercase tracking-wider">Quality</div>
-                <div className="text-white font-bold">Premium Materials</div>
-              </div>
-              <div className="w-px h-10 bg-white/10" />
-              <div className="text-center">
-                <div className="text-sm text-neutral-600 uppercase tracking-wider">Support</div>
-                <div className="text-white font-bold">Fighter-Owned</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

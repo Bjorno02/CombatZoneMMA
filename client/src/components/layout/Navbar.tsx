@@ -135,8 +135,8 @@ export function Navbar() {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[350px] bg-black border border-white/10">
-                    <ListItem href="/champions" title="Champions">
-                      Current Title Holders
+                    <ListItem href="/champions" title="Latest Champions">
+                      Results from CZ 90
                     </ListItem>
                     <ListItem href="/fighters/forms" title="Fighter Forms">
                       Fighter Documentation
@@ -153,7 +153,7 @@ export function Navbar() {
 
         {/* Center Logo - Desktop */}
         <Link href="/">
-          <a className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[51] hover:scale-105 transition-transform">
+          <a className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[52] hover:scale-105 transition-transform">
             <img
               src={logoImg}
               alt="Combat Zone"
@@ -398,7 +398,7 @@ export function Navbar() {
                 {expandedMenu === "fighters" && (
                   <div className="pl-4 pt-2 pb-2 space-y-2">
                     <MobileLink href="/champions" onClick={() => setIsOpen(false)} isSubItem>
-                      Champions
+                      Latest Champions
                     </MobileLink>
                     <MobileLink href="/fighters/forms" onClick={() => setIsOpen(false)} isSubItem>
                       Fighter Forms

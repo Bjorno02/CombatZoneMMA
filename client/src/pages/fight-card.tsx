@@ -2,11 +2,87 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
+import { Calendar, MapPin, Ticket, Clock, Trophy } from "lucide-react";
 import { Link } from "wouter";
 import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
+
+// Fight card data - Combat Zone 91 (in order)
+const FIGHTS = [
+  {
+    fighter1: { name: "Joe Poirier", record: "7-2", nickname: "" },
+    fighter2: { name: "Oscar Jurado Sánchez", record: "4-2", nickname: "" },
+    weightClass: "125 lbs",
+    rounds: "5 x 5",
+    type: "Pro MMA",
+    title: "CZ Flyweight Championship",
+    isMainEvent: true,
+  },
+  {
+    fighter1: { name: "Lucas Moreira", record: "1-0", nickname: "" },
+    fighter2: { name: "Gates Cook", record: "0-0", nickname: "" },
+    weightClass: "170 lbs",
+    rounds: "3 x 5",
+    type: "Pro MMA",
+    title: null,
+    isMainEvent: false,
+  },
+  {
+    fighter1: { name: "Isaiah Longs", record: "2-2", nickname: "" },
+    fighter2: { name: "Jon Rivera", record: "4-2", nickname: "" },
+    weightClass: "155 lbs",
+    rounds: "5 x 3",
+    type: "Amateur MMA",
+    title: "CZ Lightweight Championship",
+    isMainEvent: false,
+  },
+  {
+    fighter1: { name: "Connor Morrill", record: "2-6", nickname: "" },
+    fighter2: { name: "Austin Smith", record: "0-0", nickname: "" },
+    weightClass: "135 lbs",
+    rounds: "5 x 2",
+    type: "Amateur MMA",
+    title: "CZ Bantamweight Championship",
+    isMainEvent: false,
+  },
+  {
+    fighter1: { name: "Bruce Pacy", record: "3-5", nickname: "" },
+    fighter2: { name: "Nico Mangano", record: "2-0", nickname: "" },
+    weightClass: "265 lbs",
+    rounds: "3 x 2",
+    type: "Amateur Kickboxing",
+    title: null,
+    isMainEvent: false,
+  },
+  {
+    fighter1: { name: "Angel Reyes", record: "1-2", nickname: "" },
+    fighter2: { name: "Justin Santiago", record: "0-1", nickname: "" },
+    weightClass: "135 lbs",
+    rounds: "3 x 3",
+    type: "Amateur MMA",
+    title: null,
+    isMainEvent: false,
+  },
+  {
+    fighter1: { name: "Andre Carbonneau", record: "3-1", nickname: "" },
+    fighter2: { name: "Lukman Obisesan", record: "3-1", nickname: "" },
+    weightClass: "155 lbs",
+    rounds: "3 x 3",
+    type: "Amateur MMA",
+    title: null,
+    isMainEvent: false,
+  },
+  {
+    fighter1: { name: "Sean Tobin", record: "3-1", nickname: "" },
+    fighter2: { name: "Hussin Al-Saadi", record: "4-2", nickname: "" },
+    weightClass: "125 lbs",
+    rounds: "5 x 3",
+    type: "Amateur MMA",
+    title: "CZ Vacant Flyweight Championship",
+    isMainEvent: false,
+  },
+];
 
 export default function FightCardPage() {
   useSEO(SEO_CONFIG.fightCard);
@@ -15,8 +91,8 @@ export default function FightCardPage() {
       {/* Structured Data */}
       <EventSchema
         name="Combat Zone 91 - Fight Card"
-        description="The complete fight card for Combat Zone 91 featuring MMA and kickboxing matchups at SNHU Arena."
-        startDate="2026-02-21T19:00:00-05:00"
+        description="The complete fight card for Combat Zone 91 featuring 7 MMA bouts and 1 kickboxing bout at SNHU Arena."
+        startDate="2026-02-21T17:00:00-05:00"
         venue={{
           name: "SNHU Arena",
           address: "555 Elm Street",
@@ -28,12 +104,12 @@ export default function FightCardPage() {
 
       <SectionHero
         label="Official Lineup"
-        title="FIGHT\nCARD"
+        title="FIGHT CARD"
         highlightWord="CARD"
-        description="The complete matchup lineup for Combat Zone 91"
+        description="8 bouts • 7 MMA • 1 Kickboxing"
       />
 
-      {/* Event Info Bar - Sleek */}
+      {/* Event Info Bar */}
       <section className="bg-white border-b border-neutral-200">
         <Container>
           <div className="flex flex-col md:flex-row items-center justify-between py-6 gap-6">
@@ -53,8 +129,10 @@ export default function FightCardPage() {
                   <Clock className="text-primary" size={20} />
                 </div>
                 <div>
-                  <div className="font-bold text-neutral-900">10:00 PM EST</div>
-                  <div className="text-xs text-neutral-500 uppercase tracking-wider">Main Card</div>
+                  <div className="font-bold text-neutral-900">5:00 PM ET</div>
+                  <div className="text-xs text-neutral-500 uppercase tracking-wider">
+                    Doors Open
+                  </div>
                 </div>
               </div>
 
@@ -81,34 +159,55 @@ export default function FightCardPage() {
         </Container>
       </section>
 
-      {/* Main Card Section */}
+      {/* Fight Card Section */}
       <section className="py-16 md:py-24 bg-neutral-50">
         <Container>
           <div className="flex items-center gap-4 mb-12">
             <div className="bg-primary text-white px-4 py-2 font-bold font-[Chakra_Petch] uppercase tracking-wider text-sm">
-              Main Card
+              Fight Card
             </div>
+            <div className="text-sm text-neutral-500 font-medium ml-2">8 Bouts</div>
             <div className="h-px flex-1 bg-neutral-300" />
           </div>
 
-          {/* Fight Card Placeholder - Stylized */}
           <div className="space-y-4">
-            {[1, 2, 3, 4, 5].map((bout) => (
+            {FIGHTS.map((bout, index) => (
               <div
-                key={bout}
-                className="bg-white border border-neutral-200 hover:border-primary/30 transition-all group"
+                key={index}
+                className={`bg-white border hover:border-primary/30 transition-all group ${
+                  bout.isMainEvent
+                    ? "border-primary/50 ring-1 ring-primary/20"
+                    : "border-neutral-200"
+                }`}
               >
+                {/* Title banner if championship */}
+                {bout.title && (
+                  <div
+                    className={`px-4 py-2 flex items-center justify-center gap-2 ${
+                      bout.isMainEvent ? "bg-primary text-white" : "bg-amber-500 text-white"
+                    }`}
+                  >
+                    <Trophy size={14} />
+                    <span className="text-xs font-bold uppercase tracking-wider">{bout.title}</span>
+                    {bout.isMainEvent && <span className="text-xs opacity-75">• Main Event</span>}
+                  </div>
+                )}
+
                 <div className="grid grid-cols-[1fr_auto_1fr] items-center">
                   {/* Fighter 1 */}
                   <div className="p-6 md:p-8 text-right">
                     <div className="inline-block">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-neutral-100 rounded-full ml-auto mb-3 flex items-center justify-center">
-                        <span className="text-neutral-400 text-xs uppercase">Photo</span>
-                      </div>
                       <div className="font-bold font-[Chakra_Petch] text-lg md:text-xl text-neutral-900 uppercase">
-                        TBA
+                        {bout.fighter1.name}
                       </div>
-                      <div className="text-sm text-neutral-500">Record TBD</div>
+                      {bout.fighter1.nickname && (
+                        <div className="text-xs text-primary font-medium italic">
+                          "{bout.fighter1.nickname}"
+                        </div>
+                      )}
+                      <div className="text-sm text-neutral-500">
+                        {bout.fighter1.record || "Debut"}
+                      </div>
                     </div>
                   </div>
 
@@ -116,13 +215,18 @@ export default function FightCardPage() {
                   <div className="px-4 md:px-8 py-8 relative">
                     <div className="absolute inset-0 bg-gradient-to-b from-neutral-50 via-white to-neutral-50" />
                     <div className="relative">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-neutral-900 group-hover:bg-primary transition-colors rounded-full flex items-center justify-center mx-auto">
+                      <div
+                        className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto transition-colors ${
+                          bout.isMainEvent ? "bg-primary" : "bg-neutral-900 group-hover:bg-primary"
+                        }`}
+                      >
                         <span className="text-white font-bold font-[Chakra_Petch] text-xl">VS</span>
                       </div>
-                      <div className="text-center mt-3">
-                        <span className="text-xs text-neutral-400 uppercase tracking-widest">
-                          Bout {bout}
-                        </span>
+                      <div className="text-center mt-3 space-y-1">
+                        <div className="text-xs text-neutral-600 font-bold">{bout.weightClass}</div>
+                        <div className="text-xs text-neutral-400">
+                          {bout.rounds} • {bout.type}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -130,13 +234,17 @@ export default function FightCardPage() {
                   {/* Fighter 2 */}
                   <div className="p-6 md:p-8 text-left">
                     <div className="inline-block">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-neutral-100 rounded-full mr-auto mb-3 flex items-center justify-center">
-                        <span className="text-neutral-400 text-xs uppercase">Photo</span>
-                      </div>
                       <div className="font-bold font-[Chakra_Petch] text-lg md:text-xl text-neutral-900 uppercase">
-                        TBA
+                        {bout.fighter2.name}
                       </div>
-                      <div className="text-sm text-neutral-500">Record TBD</div>
+                      {bout.fighter2.nickname && (
+                        <div className="text-xs text-primary font-medium italic">
+                          "{bout.fighter2.nickname}"
+                        </div>
+                      )}
+                      <div className="text-sm text-neutral-500">
+                        {bout.fighter2.record || "Debut"}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -146,70 +254,16 @@ export default function FightCardPage() {
         </Container>
       </section>
 
-      {/* Prelims Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <Container>
-          <div className="flex items-center gap-4 mb-12">
-            <div className="bg-neutral-900 text-white px-4 py-2 font-bold font-[Chakra_Petch] uppercase tracking-wider text-sm">
-              Preliminary Card
-            </div>
-            <div className="h-px flex-1 bg-neutral-200" />
-          </div>
-
-          {/* Prelim Fights Placeholder */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[1, 2, 3, 4].map((bout) => (
-              <div
-                key={bout}
-                className="bg-neutral-50 border border-neutral-200 p-6 hover:border-neutral-300 transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-neutral-200 rounded-full flex items-center justify-center">
-                      <span className="text-neutral-400 text-[10px] uppercase">TBA</span>
-                    </div>
-                    <div>
-                      <div className="font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
-                        TBA
-                      </div>
-                      <div className="text-xs text-neutral-500">Record TBD</div>
-                    </div>
-                  </div>
-
-                  <div className="text-sm font-bold text-neutral-400">VS</div>
-
-                  <div className="flex items-center gap-4 flex-row-reverse">
-                    <div className="w-12 h-12 bg-neutral-200 rounded-full flex items-center justify-center">
-                      <span className="text-neutral-400 text-[10px] uppercase">TBA</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
-                        TBA
-                      </div>
-                      <div className="text-xs text-neutral-500">Record TBD</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Coming Soon Notice */}
+      {/* CTA Section */}
       <section className="py-16 bg-neutral-900">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              Lineup Updating
-            </div>
             <h2 className="text-2xl md:text-3xl font-bold font-[Chakra_Petch] text-white mb-4">
-              FULL CARD COMING SOON
+              DON'T MISS THE ACTION
             </h2>
             <p className="text-neutral-400 leading-relaxed mb-8">
-              We're finalizing the complete lineup for Combat Zone 91. Fighter announcements and
-              bout details will be updated here as they're confirmed.
+              8 explosive bouts featuring championship fights and top regional talent. Get your
+              tickets now for Combat Zone 91 at SNHU Arena.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">

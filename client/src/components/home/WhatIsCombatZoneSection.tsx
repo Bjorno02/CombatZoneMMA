@@ -41,7 +41,7 @@ export function WhatIsCombatZoneSection() {
           <div className="relative z-10 p-8 md:p-12 lg:p-16">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               {/* Left side - takes 7 columns, main content */}
-              <div className="lg:col-span-7 scroll-reveal">
+              <div className="lg:col-span-12 scroll-reveal">
                 <span className="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block">
                   Welcome to
                 </span>
@@ -69,7 +69,7 @@ export function WhatIsCombatZoneSection() {
                 </div>
               </div>
 
-              {/* Right side - takes 5 columns, feature cards - positioned at 25% from top */}
+              {/* Right side - takes 5 columns, feature cards - positioned at 25% from top 
               <div className="lg:col-span-5 space-y-4 scroll-reveal scroll-reveal-delay-1 lg:mt-[25%] mt-8 lg:mt-[25%]">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 rounded-lg hover:bg-white/15 transition-all">
                   <h3 className="text-lg font-bold font-[Chakra_Petch] uppercase text-white mb-2">
@@ -89,7 +89,7 @@ export function WhatIsCombatZoneSection() {
                   </h3>
                   <p className="text-sm text-neutral-300">SNHU Arena</p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

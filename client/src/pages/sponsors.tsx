@@ -65,86 +65,86 @@ export default function SponsorsPage() {
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
             <div>
-              <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] mb-2">5,000+</div>
-              <div className="text-neutral-400 text-sm">Live attendance per event</div>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] mb-2">50K+</div>
-              <div className="text-neutral-400 text-sm">Combined social reach</div>
+              <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] mb-2">24</div>
+              <div className="text-neutral-400 text-sm">Years in operation</div>
             </div>
             <div>
               <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] mb-2">90+</div>
               <div className="text-neutral-400 text-sm">Professional events hosted</div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] mb-2">24</div>
-              <div className="text-neutral-400 text-sm">Years in operation</div>
+              <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] mb-2">SNHU</div>
+              <div className="text-neutral-400 text-sm">Arena - Manchester, NH</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] mb-2">UFC</div>
+              <div className="text-neutral-400 text-sm">Veteran owned & operated</div>
             </div>
           </div>
         </Container>
       </section>
 
       {/* Value Proposition */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-20 md:py-28 bg-white">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            {/* Left - Section intro */}
-            <div className="lg:col-span-4">
-              <p className="text-sm font-medium text-primary tracking-wide mb-4">
-                Why Partner With Us
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 leading-tight">
-                A platform built for brand visibility
-              </h2>
-            </div>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 text-center mb-16">
+              WHAT YOU GET
+            </h2>
 
-            {/* Right - Content */}
-            <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                  <div className="w-10 h-10 bg-neutral-900 text-white flex items-center justify-center font-bold text-sm mb-5">
-                    01
-                  </div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-3">UFC Veteran Ownership</h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    Owned and operated by Calvin Kattar, active UFC featherweight contender. Direct
-                    connection to the highest level of the sport ensures professional standards at
+            <div className="space-y-0 border-t border-neutral-200">
+              <div className="flex flex-col md:flex-row md:items-center py-8 border-b border-neutral-200 gap-4">
+                <div className="md:w-1/3">
+                  <h3 className="text-xl font-bold font-[Chakra_Petch] text-neutral-900">
+                    UFC-Level Standards
+                  </h3>
+                </div>
+                <div className="md:w-2/3">
+                  <p className="text-neutral-600">
+                    Owned by Calvin Kattar, active UFC featherweight. Professional production at
                     every event.
                   </p>
                 </div>
+              </div>
 
-                <div>
-                  <div className="w-10 h-10 bg-neutral-900 text-white flex items-center justify-center font-bold text-sm mb-5">
-                    02
-                  </div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-3">Engaged Demographics</h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    Our audience skews 21-45, predominantly male, with strong purchasing power.
-                    They're loyal followers who engage with sponsors both at events and online.
-                  </p>
-                </div>
-
-                <div>
-                  <div className="w-10 h-10 bg-neutral-900 text-white flex items-center justify-center font-bold text-sm mb-5">
-                    03
-                  </div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-3">
-                    Regional Market Leader
+              <div className="flex flex-col md:flex-row md:items-center py-8 border-b border-neutral-200 gap-4">
+                <div className="md:w-1/3">
+                  <h3 className="text-xl font-bold font-[Chakra_Petch] text-neutral-900">
+                    Loyal Fan Base
                   </h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    24 consecutive years as New England's premier MMA promotion. Deep roots in the
-                    community with a reputation for quality and integrity.
+                </div>
+                <div className="md:w-2/3">
+                  <p className="text-neutral-600">
+                    Fighters, coaches, gyms, and fans from across New England who show up event
+                    after event.
                   </p>
                 </div>
+              </div>
 
-                <div>
-                  <div className="w-10 h-10 bg-neutral-900 text-white flex items-center justify-center font-bold text-sm mb-5">
-                    04
-                  </div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-3">Measurable ROI</h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    Multiple touchpoints per partnership: in-venue signage, social media features,
-                    email marketing, and live event exposure. Track your brand's impact.
+              <div className="flex flex-col md:flex-row md:items-center py-8 border-b border-neutral-200 gap-4">
+                <div className="md:w-1/3">
+                  <h3 className="text-xl font-bold font-[Chakra_Petch] text-neutral-900">
+                    24-Year Track Record
+                  </h3>
+                </div>
+                <div className="md:w-2/3">
+                  <p className="text-neutral-600">
+                    New England's longest-running MMA promotion. Deep community roots and a
+                    reputation for quality.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row md:items-center py-8 border-b border-neutral-200 gap-4">
+                <div className="md:w-1/3">
+                  <h3 className="text-xl font-bold font-[Chakra_Petch] text-neutral-900">
+                    Brand Exposure
+                  </h3>
+                </div>
+                <div className="md:w-2/3">
+                  <p className="text-neutral-600">
+                    In-venue signage, social media features, and live event visibility for your
+                    brand.
                   </p>
                 </div>
               </div>
@@ -175,21 +175,19 @@ export default function SponsorsPage() {
           </div>
 
           {/* Clean Logo Grid */}
-          <div className="grid grid-cols-3 md:grid-cols-3 border border-neutral-200">
+          <div className="grid grid-cols-2 md:grid-cols-3 border border-neutral-200">
             {SPONSORS.map((sponsor, index) => (
               <a
                 key={sponsor.id}
                 href={sponsor.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group bg-white p-8 md:p-12 flex items-center justify-center aspect-[3/2] hover:bg-neutral-50 transition-all relative ${
-                  index % 3 !== 2 ? "border-r border-neutral-200" : ""
-                } ${index < 6 ? "border-b border-neutral-200" : ""}`}
+                className={`group bg-white p-6 md:p-8 flex items-center justify-center aspect-square hover:bg-neutral-50 transition-all relative border-b border-r border-neutral-200`}
               >
                 <img
                   src={sponsor.image}
                   alt={sponsor.name}
-                  className="max-w-[80%] max-h-[80%] object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-200"
+                  className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-200"
                   loading="lazy"
                 />
                 <ExternalLink

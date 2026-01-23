@@ -93,8 +93,8 @@ export function EventSection() {
               <div className="flex items-center gap-4 p-4 bg-neutral-50 border-l-4 border-neutral-200">
                 <Clock className="text-neutral-400 shrink-0" size={20} />
                 <div>
-                  <div className="font-bold text-neutral-900 text-lg">10:00 PM EST</div>
-                  <div className="text-sm text-neutral-500">Main Card Start</div>
+                  <div className="font-bold text-neutral-900 text-lg">5:00 PM EST</div>
+                  <div className="text-sm text-neutral-500">Start Time</div>
                 </div>
               </div>
             </div>
@@ -102,19 +102,13 @@ export function EventSection() {
             {/* Stats */}
             <div className="flex gap-8 mb-10 py-6 border-y border-neutral-200">
               <div>
-                <div className="text-4xl font-bold font-[Chakra_Petch] text-primary">15</div>
+                <div className="text-4xl font-bold font-[Chakra_Petch] text-primary">8</div>
                 <div className="text-xs text-neutral-500 uppercase tracking-wider mt-1">Bouts</div>
               </div>
               <div>
-                <div className="text-4xl font-bold font-[Chakra_Petch] text-neutral-900">2</div>
+                <div className="text-4xl font-bold font-[Chakra_Petch] text-neutral-900">4</div>
                 <div className="text-xs text-neutral-500 uppercase tracking-wider mt-1">
                   Title Fights
-                </div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold font-[Chakra_Petch] text-neutral-900">5</div>
-                <div className="text-xs text-neutral-500 uppercase tracking-wider mt-1">
-                  Main Card
                 </div>
               </div>
             </div>
