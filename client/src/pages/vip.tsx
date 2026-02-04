@@ -319,11 +319,14 @@ export default function VIPPage() {
 
               <div className="relative bg-black rounded-lg overflow-hidden border border-neutral-700">
                 <video
-                  className="w-full aspect-video object-cover"
+                  className="w-full aspect-video"
                   controls
+                  controlsList="nodownload"
                   playsInline
+                  webkit-playsinline="true"
                   poster="/images/VIP1.jpg"
-                  preload="metadata"
+                  preload="auto"
+                  style={{ maxWidth: "100%", display: "block" }}
                 >
                   <source src="/images/vip-experience.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
