@@ -8,18 +8,18 @@ Official website for Combat Zone MMA, New England's longest-running MMA promotio
 
 - **Framework:** React 19, TypeScript
 - **Styling:** Tailwind CSS 4
-- **UI Components:** Radix UI, Lucide Icons
+- **UI Components:** Radix UI, shadcn/ui, Lucide Icons
 - **Routing:** Wouter
 - **Forms:** React Hook Form + Zod validation
 - **State:** TanStack Query
 - **Animations:** Framer Motion
+- **Build:** Vite 7
 
-### Backend
+### Backend (Vercel Serverless)
 
-- **Server:** Express.js, Node.js
-- **Security:** Helmet (CSP, HSTS, etc.), CORS, Rate Limiting
+- **Runtime:** Vercel Serverless Functions
 - **Validation:** Zod schemas
-- **Build:** Vite 7, esbuild
+- **Rate Limiting:** In-memory rate limiting
 
 ### Code Quality
 
@@ -38,14 +38,15 @@ Official website for Combat Zone MMA, New England's longest-running MMA promotio
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/combatzone-mma.git
-cd combatzone-mma
+git clone https://github.com/Bjorno02/CombatZoneMMA.git
+cd CombatZoneMMA
 
 # Install dependencies
 npm install
 
 # Copy environment variables
 cp .env.example .env
+# Edit .env and add your YouTube API key
 
 # Start development server
 npm run dev
@@ -53,151 +54,75 @@ npm run dev
 
 ### Available Scripts
 
-| Command           | Description                              |
-| ----------------- | ---------------------------------------- |
-| `npm run dev`     | Start development server with hot reload |
-| `npm run build`   | Build for production                     |
-| `npm run start`   | Start production server                  |
-| `npm run check`   | Run TypeScript type checking             |
-| `npm run db:push` | Push database schema changes (Drizzle)   |
-| `npm run prepare` | Set up Husky git hooks (runs on install) |
+| Command                | Description                           |
+| ---------------------- | ------------------------------------- |
+| `npm run dev`          | Start local Express dev server        |
+| `npm run dev:client`   | Start Vite dev server (frontend only) |
+| `npm run build`        | Build full app (server + client)      |
+| `npm run build:client` | Build frontend only (for Vercel)      |
+| `npm run start`        | Start production Express server       |
+| `npm run check`        | Run TypeScript type checking          |
 
 ## Project Structure
 
 ```
+├── api/                    # Vercel serverless functions
+│   ├── contact.ts          # Contact form handler
+│   └── youtube/
+│       └── videos.ts       # YouTube feed handler
 ├── client/                 # Frontend React application
 │   ├── src/
 │   │   ├── components/     # Reusable UI components
-│   │   │   ├── layout/     # Page layout (Navbar, Footer, PageLayout, etc.)
+│   │   │   ├── layout/     # Page layout (Navbar, Footer, etc.)
 │   │   │   ├── ui/         # Base UI components (Button, Card, etc.)
-│   │   │   ├── home/       # Homepage sections (Hero, About, Merch, etc.)
-│   │   │   ├── events/     # Event components (CountdownTimer, etc.)
-│   │   │   └── media/      # Media components (YouTubeFeed)
+│   │   │   └── home/       # Homepage sections
 │   │   ├── data/           # Static data (events, sponsors)
-│   │   ├── hooks/          # Custom hooks (useSEO, use-toast, etc.)
-│   │   ├── lib/            # Utilities (constants, queryClient, utils)
+│   │   ├── hooks/          # Custom hooks (useSEO, use-toast)
+│   │   ├── lib/            # Utilities (constants, queryClient)
 │   │   ├── pages/          # Page components (route-level)
 │   │   └── types/          # TypeScript type definitions
-│   ├── public/             # Static files (favicon, robots.txt, sitemap.xml)
+│   ├── public/             # Static files (images, favicon, etc.)
 │   └── index.html          # HTML entry point
-├── server/                 # Backend Express server
-│   ├── index.ts            # Server entry point with security middleware
-│   ├── routes.ts           # API routes (contact, YouTube)
-│   ├── static.ts           # Static file serving (production)
-│   └── vite.ts             # Vite dev server middleware
-├── attached_assets/        # Images and static assets
-├── .husky/                 # Git hooks (pre-commit)
+├── server/                 # Express server (for local development)
+│   ├── index.ts            # Server entry point
+│   ├── routes.ts           # API routes
+│   └── static.ts           # Static file serving
+├── vercel.json             # Vercel deployment configuration
 └── SECURITY.md             # Security documentation
 ```
 
-## Architecture
+## Deployment
 
-### Component Hierarchy
+This site is deployed on **Vercel**.
 
-```
-App
-├── ErrorBoundary           # Catches and displays errors gracefully
-├── QueryClientProvider     # TanStack Query for data fetching
-└── Router
-    └── PageLayout          # Common layout wrapper
-        ├── SkipToContent   # Accessibility skip link
-        ├── Navbar          # Navigation header
-        ├── main            # Page content (id="main-content")
-        └── Footer          # Site footer
-```
+### How It Works
 
-### Key Components
+- Frontend is built with Vite and served as static files
+- API routes (`/api/contact`, `/api/youtube/videos`) are Vercel serverless functions
+- The Express server in `/server` is for local development only
 
-- **`SectionHero`** - Consistent hero component for section pages (Events, Sponsors, etc.)
-- **`PageHero`** - Generic hero component for standalone pages
-- **`LazyImage`** - Image component with lazy loading and placeholders
-- **`ErrorBoundary`** - Catches errors and shows recovery UI
-- **`YouTubeFeed`** - Fetches and displays latest videos from Combat Zone channel
+### Deploy to Vercel
 
-### Data Flow
+1. Push to GitHub
+2. Connect repo to Vercel
+3. Add environment variables in Vercel dashboard:
+   - `YOUTUBE_API_KEY` - Your Google API key
 
-- Static data lives in `client/src/data/` (events, sponsors)
-- SEO configuration in `client/src/hooks/useSEO.ts`
-- External URLs centralized in `client/src/lib/constants.ts`
-- API endpoints defined in `server/routes.ts`
+Vercel auto-deploys on every push to `main`.
 
-## Development Guidelines
+### Local Development
 
-### Code Style
+For local development, you can use the Express server which mimics the production setup:
 
-- Use TypeScript strict mode
-- Prefer functional components with hooks
-- Use Tailwind CSS for styling (no CSS modules)
-- Follow component naming: `PascalCase.tsx`
-
-### Adding a New Page
-
-1. Create page component in `client/src/pages/`
-2. Add route in `client/src/App.tsx`
-3. Add SEO config in `client/src/hooks/useSEO.ts`
-4. Use `PageLayout` wrapper for consistent layout
-
-```tsx
-import { PageLayout } from "@/components/layout/PageLayout";
-import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
-
-export default function NewPage() {
-  useSEO(SEO_CONFIG.newPage);
-
-  return <PageLayout>{/* Page content */}</PageLayout>;
-}
+```bash
+npm run dev
 ```
 
-### Adding Section Subpages
+Or run just the frontend with Vite:
 
-For pages within a dropdown section (Events, Sponsors, etc.), use `SectionHero`:
-
-```tsx
-import { SectionHero } from "@/components/layout/SectionHero";
-
-<SectionHero
-  label="Section Label"
-  title="PAGE\nTITLE"
-  highlightWord="TITLE"
-  description="Page description here"
-  breadcrumbs={[{ label: "Parent", href: "/parent" }, { label: "Current Page" }]}
-/>;
+```bash
+npm run dev:client
 ```
-
-### Image Usage
-
-Use `LazyImage` for better performance:
-
-```tsx
-import { LazyImage } from "@/components/ui/lazy-image";
-
-<LazyImage
-  src="/path/to/image.jpg"
-  alt="Descriptive alt text"
-  aspectRatio="16/9"
-  placeholder="skeleton"
-/>;
-```
-
-## Security
-
-See [SECURITY.md](./SECURITY.md) for full details. Key measures:
-
-- **HTTP Headers:** Helmet with CSP, HSTS, X-Frame-Options
-- **Rate Limiting:** Per-endpoint rate limiting to prevent abuse
-- **Input Validation:** Zod schemas on both client and server
-- **XSS Prevention:** HTML sanitization on all user inputs
-- **Error Handling:** Generic error messages in production (no stack traces)
-
-## Accessibility
-
-This site follows WCAG 2.1 Level AA guidelines:
-
-- Skip-to-content link for keyboard navigation
-- Semantic HTML structure with landmarks
-- Focus-visible styles for keyboard users
-- Alt text required on all images
-- Color contrast meets AA standards
 
 ## Environment Variables
 
@@ -210,42 +135,61 @@ YOUTUBE_API_KEY=your_google_api_key
 # Optional: Override channel lookup
 # YOUTUBE_CHANNEL_ID=UCxxxxxxxxxxxxxx
 
-# Server
+# Environment
 NODE_ENV=development
-PORT=5000
 ```
 
 **Important:** Never commit your `.env` file. It's already in `.gitignore`.
 
-## Deployment
+## Development Guidelines
 
-### Build for Production
+### Code Style
 
-```bash
-npm run build
+- Use TypeScript strict mode
+- Prefer functional components with hooks
+- Use Tailwind CSS for styling
+- Follow component naming: `PascalCase.tsx`
+
+### Adding a New Page
+
+1. Create page component in `client/src/pages/`
+2. Add route in `client/src/App.tsx`
+3. Add SEO config in `client/src/hooks/useSEO.ts`
+4. Add to `client/public/sitemap.xml`
+5. Use `PageLayout` wrapper for consistent layout
+
+```tsx
+import { PageLayout } from "@/components/layout/PageLayout";
+import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
+
+export default function NewPage() {
+  useSEO(SEO_CONFIG.newPage);
+
+  return <PageLayout>{/* Page content */}</PageLayout>;
+}
 ```
 
-This creates an optimized build in `dist/`:
+## Security
 
-- `dist/public/` - Static frontend assets
-- `dist/index.cjs` - Node.js server bundle
+See [SECURITY.md](./SECURITY.md) for details. Key measures:
 
-### Run Production Server
+- Input validation with Zod schemas
+- XSS prevention via HTML sanitization
+- Rate limiting on API endpoints
+- Environment variables for secrets
 
-```bash
-npm run start
-```
+## Accessibility
 
-## Contributing
+This site follows WCAG 2.1 Level AA guidelines:
 
-1. Create a feature branch from `main`
-2. Make changes following code style guidelines
-3. Ensure TypeScript checks pass (`npm run check`)
-4. Submit a pull request with clear description
+- Skip-to-content link for keyboard navigation
+- Semantic HTML structure
+- Focus-visible styles for keyboard users
+- Alt text on all images
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License
 
 ---
 
