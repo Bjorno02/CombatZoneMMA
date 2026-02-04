@@ -1,7 +1,6 @@
 {
   "buildCommand": "npm install && npm run build:client",
   "outputDirectory": "dist/public",
-  "framework": "vite",
   "headers": [
     {
       "source": "/(.*)",
