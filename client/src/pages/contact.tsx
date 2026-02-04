@@ -301,21 +301,25 @@ export default function ContactPage() {
             {/* Team */}
             <div className="max-w-xl">
               <h2 className="text-3xl font-bold font-heading uppercase mb-8">Our Team</h2>
-              <div className="grid grid-cols-2 gap-6 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
                 {TEAM.map((member, i) => (
-                  <div key={i} className="flex items-center gap-4">
+                  <div key={i} className="flex items-center gap-4 overflow-hidden">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-24 h-32 object-cover object-top rounded-full bg-neutral-200 flex-shrink-0"
+                      className="w-20 h-24 sm:w-24 sm:h-32 object-cover object-top rounded-full bg-neutral-200 flex-shrink-0"
                     />
-                    <div className="min-w-0">
-                      <div className="font-bold text-lg text-neutral-900">{member.name}</div>
-                      <div className="text-sm text-neutral-500">{member.role}</div>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-bold text-base sm:text-lg text-neutral-900 truncate">
+                        {member.name}
+                      </div>
+                      <div className="text-xs sm:text-sm text-neutral-500 truncate">
+                        {member.role}
+                      </div>
                       {member.email && (
                         <a
                           href={`mailto:${member.email}`}
-                          className="text-sm text-primary hover:underline block"
+                          className="text-xs sm:text-sm text-primary hover:underline block truncate"
                         >
                           {member.email}
                         </a>

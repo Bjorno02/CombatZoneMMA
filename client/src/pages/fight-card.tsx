@@ -193,58 +193,55 @@ export default function FightCardPage() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+                <div className="grid grid-cols-[1fr_80px_1fr] md:grid-cols-[1fr_120px_1fr] items-center">
                   {/* Fighter 1 */}
-                  <div className="p-6 md:p-8 text-right">
-                    <div className="inline-block">
-                      <div className="font-bold font-[Chakra_Petch] text-lg md:text-xl text-neutral-900 uppercase">
-                        {bout.fighter1.name}
+                  <div className="p-4 md:p-8 text-right overflow-hidden">
+                    <div className="font-bold font-[Chakra_Petch] text-sm md:text-xl text-neutral-900 uppercase truncate">
+                      {bout.fighter1.name}
+                    </div>
+                    {bout.fighter1.nickname && (
+                      <div className="text-xs text-primary font-medium italic truncate">
+                        "{bout.fighter1.nickname}"
                       </div>
-                      {bout.fighter1.nickname && (
-                        <div className="text-xs text-primary font-medium italic">
-                          "{bout.fighter1.nickname}"
-                        </div>
-                      )}
-                      <div className="text-sm text-neutral-500">
-                        {bout.fighter1.record || "Debut"}
-                      </div>
+                    )}
+                    <div className="text-xs md:text-sm text-neutral-500">
+                      {bout.fighter1.record || "Debut"}
                     </div>
                   </div>
 
                   {/* VS Center */}
-                  <div className="px-4 md:px-8 py-8 relative">
-                    <div className="absolute inset-0 bg-gradient-to-b from-neutral-50 via-white to-neutral-50" />
-                    <div className="relative">
-                      <div
-                        className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto transition-colors ${
-                          bout.isMainEvent ? "bg-primary" : "bg-neutral-900 group-hover:bg-primary"
-                        }`}
-                      >
-                        <span className="text-white font-bold font-[Chakra_Petch] text-xl">VS</span>
+                  <div className="py-6 md:py-8 relative flex flex-col items-center justify-center">
+                    <div
+                      className={`w-12 h-12 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-colors ${
+                        bout.isMainEvent ? "bg-primary" : "bg-neutral-900 group-hover:bg-primary"
+                      }`}
+                    >
+                      <span className="text-white font-bold font-[Chakra_Petch] text-sm md:text-xl">
+                        VS
+                      </span>
+                    </div>
+                    <div className="text-center mt-2 md:mt-3 space-y-0.5 md:space-y-1">
+                      <div className="text-[10px] md:text-xs text-neutral-600 font-bold">
+                        {bout.weightClass}
                       </div>
-                      <div className="text-center mt-3 space-y-1">
-                        <div className="text-xs text-neutral-600 font-bold">{bout.weightClass}</div>
-                        <div className="text-xs text-neutral-400">
-                          {bout.rounds} • {bout.type}
-                        </div>
+                      <div className="text-[10px] md:text-xs text-neutral-400 whitespace-nowrap">
+                        {bout.rounds} • {bout.type}
                       </div>
                     </div>
                   </div>
 
                   {/* Fighter 2 */}
-                  <div className="p-6 md:p-8 text-left">
-                    <div className="inline-block">
-                      <div className="font-bold font-[Chakra_Petch] text-lg md:text-xl text-neutral-900 uppercase">
-                        {bout.fighter2.name}
+                  <div className="p-4 md:p-8 text-left overflow-hidden">
+                    <div className="font-bold font-[Chakra_Petch] text-sm md:text-xl text-neutral-900 uppercase truncate">
+                      {bout.fighter2.name}
+                    </div>
+                    {bout.fighter2.nickname && (
+                      <div className="text-xs text-primary font-medium italic truncate">
+                        "{bout.fighter2.nickname}"
                       </div>
-                      {bout.fighter2.nickname && (
-                        <div className="text-xs text-primary font-medium italic">
-                          "{bout.fighter2.nickname}"
-                        </div>
-                      )}
-                      <div className="text-sm text-neutral-500">
-                        {bout.fighter2.record || "Debut"}
-                      </div>
+                    )}
+                    <div className="text-xs md:text-sm text-neutral-500">
+                      {bout.fighter2.record || "Debut"}
                     </div>
                   </div>
                 </div>
