@@ -19,7 +19,6 @@ export const YOUTUBE_CHANNEL_HANDLE =
 export const SITE_NAME = "Combat Zone MMA";
 export const SITE_URL = import.meta.env.VITE_SITE_URL || "https://combatzonemma.com";
 
-// Container max-widths
+// Container layout
 export const CONTAINER_MAX_WIDTH = "max-w-[1280px]";
 export const CONTAINER_PADDING = "px-8 md:px-12 lg:px-16";
-export const CONTAINER_CLASSES = `${CONTAINER_MAX_WIDTH} mx-auto ${CONTAINER_PADDING}`;

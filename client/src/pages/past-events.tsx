@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Trophy, Search, Filter, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
-import { PAST_EVENTS, EVENT_STATS } from "@/data/events";
+import { PAST_EVENTS } from "@/data/events";
 
 export default function PastEventsPage() {
   useSEO(SEO_CONFIG.pastEvents);
@@ -64,7 +64,7 @@ export default function PastEventsPage() {
             <div className="flex items-center gap-4">
               <div className="relative">
                 <Search
-                  className="absolute left-3 top-1/2 -tranneutral-y-1/2 text-neutral-400"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
                   size={18}
                 />
                 <input

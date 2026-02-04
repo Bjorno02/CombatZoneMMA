@@ -1,9 +1,3 @@
-/**
- * Data barrel file - re-exports all data modules
- * 
- * Usage:
- * import { SPONSORS, UPCOMING_EVENTS } from "@/data";
- */
-
+// Data exports
 export * from "./events";
 export * from "./sponsors";

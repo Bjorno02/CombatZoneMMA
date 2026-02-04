@@ -1,7 +1,5 @@
 /**
- * Sponsor data - centralized sponsor information
- *
- * In production, this would come from a CMS or API.
+ * Sponsor data
  */
 
 export interface Sponsor {
@@ -108,11 +106,3 @@ export const SPONSOR_PACKAGES: SponsorPackage[] = [
     ],
   },
 ];
-
-// Sponsorship stats
-export const SPONSOR_STATS = {
-  liveAttendees: "5,000+",
-  socialReach: "50k+",
-  yearsRunning: "24+",
-  eventsPerYear: 4,
-} as const;

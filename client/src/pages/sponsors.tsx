@@ -175,19 +175,19 @@ export default function SponsorsPage() {
           </div>
 
           {/* Clean Logo Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 border border-neutral-200">
-            {SPONSORS.map((sponsor, index) => (
+          <div className="flex flex-wrap justify-center border-t border-l border-neutral-200">
+            {SPONSORS.map((sponsor) => (
               <a
                 key={sponsor.id}
                 href={sponsor.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group bg-white p-6 md:p-8 flex items-center justify-center aspect-square hover:bg-neutral-50 transition-all relative border-b border-r border-neutral-200`}
+                className="group bg-white p-6 md:p-8 flex items-center justify-center aspect-square hover:bg-neutral-50 transition-all relative border-b border-r border-neutral-200 w-1/2 md:w-1/3"
               >
                 <img
                   src={sponsor.image}
                   alt={sponsor.name}
-                  className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+                  className="w-full h-full object-contain"
                   loading="lazy"
                 />
                 <ExternalLink

@@ -36,7 +36,7 @@ const SLIDES = [
   },
   {
     id: 3,
-    image: "/images/calvin_kattar_ufc_po_8171904a.jpg",
+    image: "/images/CombatZoneHero3.JPG",
     title: "OFFICIAL MERCH",
     subtitle: "WEAR THE BATTLE",
     cta: "SHOP NOW",

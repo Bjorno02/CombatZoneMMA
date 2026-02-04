@@ -14,9 +14,6 @@ const DEFAULT_DESCRIPTION =
   "New England's premier MMA promotion. Live events at SNHU Arena featuring the region's top fighters. Est. 2000.";
 const DEFAULT_OG_IMAGE = "/og-image.jpg"; // You'll need to add this image
 
-/**
- * SEO metadata hook
- */
 export function useSEO({
   title,
   description = DEFAULT_DESCRIPTION,
@@ -85,10 +82,7 @@ export function useSEO({
   }, [title, description, canonical, ogImage, ogType, noIndex]);
 }
 
-/**
- * SEO configuration for each page
- * Import and spread these in useSEO calls
- */
+// Per-page SEO settings
 export const SEO_CONFIG = {
   home: {
     title: "Home",

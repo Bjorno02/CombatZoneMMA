@@ -319,8 +319,9 @@ export default function VIPPage() {
 
               <div className="relative bg-black rounded-lg overflow-hidden border border-neutral-700">
                 <video
-                  className="w-full aspect-video"
+                  className="w-full aspect-video object-cover"
                   controls
+                  playsInline
                   poster="/images/VIP1.jpg"
                   preload="metadata"
                 >

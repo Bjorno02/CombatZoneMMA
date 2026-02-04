@@ -1,6 +1,4 @@
-/**
- * JSON-LD Structured Data Components
- */
+// JSON-LD structured data for SEO
 
 // Organization schema
 export function OrganizationSchema() {
