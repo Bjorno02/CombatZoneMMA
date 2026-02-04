@@ -311,12 +311,10 @@ export default function VIPPage() {
             </p>
           </div>
 
-          {/* Featured Video */}
+          {/* TODO: Fix video deployment on Vercel
           <div className="max-w-4xl mx-auto mb-12">
             <div className="relative group">
-              {/* Glowing border effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-primary via-primary/50 to-primary rounded-lg opacity-50 group-hover:opacity-75 transition-opacity duration-500 blur-sm" />
-
               <div className="relative bg-black rounded-lg overflow-hidden border border-neutral-700">
                 <video
                   className="w-full aspect-video"
@@ -338,6 +336,7 @@ export default function VIPPage() {
               Watch the VIP Experience
             </p>
           </div>
+          */}
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
             {VIP_IMAGES.map((image, index) => (
