@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Award, Users, Heart, MapPin } from "lucide-react";
 import { Link } from "wouter";
-import calvinKattarImg from "@assets/IMAGES/CZCalvinKattarFiller.jpg";
 
 export function AboutSection() {
   return (
@@ -50,7 +49,7 @@ export function AboutSection() {
               {/* Image Card - same size as text card, pushed up higher */}
               <div className="w-full md:w-[55%] md:ml-auto md:-mt-[7%] aspect-[4/3] relative overflow-hidden shadow-2xl transform -rotate-0 md:rotate-1 mb-6 md:mb-0 group order-1 md:order-none">
                 <img
-                  src={calvinKattarImg}
+                  src="/images/CZCalvinKattarFiller.jpg"
                   alt="Calvin Kattar - Combat Zone Owner"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"

@@ -7,7 +7,6 @@ import { Calendar, MapPin, Ticket, Clock, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
-import eventPoster from "@assets/IMAGES/CombatZone91Poster.png";
 
 export default function EventsPage() {
   useSEO(SEO_CONFIG.events);
@@ -63,7 +62,7 @@ export default function EventsPage() {
         {/* Subtle background elements */}
         <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-primary/5 to-transparent" />
         <div className="absolute bottom-0 left-0 w-1/4 h-1/3 bg-gradient-to-tr from-neutral-200/50 to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -tranneutral-x-1/2 -tranneutral-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
         <Container className="relative z-10">
           {/* Section Header */}
@@ -79,7 +78,7 @@ export default function EventsPage() {
           <div className="flex justify-center mb-12 md:mb-16">
             <div className="relative group max-w-3xl">
               <img
-                src={eventPoster}
+                src="/images/CombatZone91Poster.png"
                 alt="Combat Zone 91 Event Poster"
                 className="w-full h-auto object-contain shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]"
                 loading="eager"
@@ -145,7 +144,7 @@ export default function EventsPage() {
                     <Ticket className="mr-2" size={20} />
                     Get Tickets
                     <ArrowRight
-                      className="ml-2 group-hover:tranneutral-x-1 transition-transform"
+                      className="ml-2 group-hover:translate-x-1 transition-transform"
                       size={20}
                     />
                   </Button>

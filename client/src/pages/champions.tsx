@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Trophy, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
-import elvinJohnsonImg from "@assets/IMAGES/CZ90ChampElvinJohnson.jpg";
-import connorMorrillImg from "@assets/IMAGES/CZ90ChampConnorMorrill.jpg";
 
 const CHAMPIONS = [
   {
@@ -15,7 +13,7 @@ const CHAMPIONS = [
     division: "Kickboxing",
     defenses: 1,
     record: "2-0",
-    image: elvinJohnsonImg,
+    image: "/images/CZ90ChampElvinJohnson.jpg",
     wonAt: "Combat Zone 90",
     hometown: "Boston, MA",
     age: 28,
@@ -35,7 +33,7 @@ const CHAMPIONS = [
     division: "Kickboxing",
     defenses: 1,
     record: "2-6",
-    image: connorMorrillImg,
+    image: "/images/CZ90ChampConnorMorrill.jpg",
     wonAt: "Combat Zone 90",
     hometown: "Manchester, NH",
     age: 25,

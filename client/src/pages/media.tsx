@@ -3,6 +3,15 @@ import { Container } from "@/components/layout/Container";
 import { ExternalLink } from "lucide-react";
 import { YouTubeFeed } from "@/components/media/YouTubeFeed";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
+import { Link } from "wouter";
+
+// Featured gallery images for preview
+const GALLERY_PREVIEW = [
+  "/images/Gal3.jpg",
+  "/images/Gal7.jpg",
+  "/images/Gal11.JPG",
+  "/images/Gal14.JPG",
+];
 
 // Featured video configuration
 const FEATURED_VIDEO_ID = "u4KfsNQrJqw";
@@ -55,22 +64,30 @@ export default function MediaPage() {
         <Container>
           <div className="flex justify-between items-end mb-12">
             <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase">Photo Galleries</h2>
-            <a href="#" className="text-primary font-bold uppercase text-sm hover:underline">
+            <Link
+              href="/media/photos"
+              className="text-primary font-bold uppercase text-sm hover:underline"
+            >
               View Archive
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="aspect-square bg-neutral-100 relative group overflow-hidden cursor-pointer"
-              >
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-white font-bold uppercase border-b-2 border-primary">
-                    View Gallery
-                  </span>
+            {GALLERY_PREVIEW.map((image, i) => (
+              <Link key={i} href="/media/photos">
+                <div className="aspect-square bg-neutral-100 relative group overflow-hidden cursor-pointer">
+                  <img
+                    src={image}
+                    alt={`Gallery Preview ${i + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-white font-bold uppercase border-b-2 border-primary">
+                      View Gallery
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </Container>

@@ -1,8 +1,6 @@
 import { Trophy, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import elvinJohnsonImg from "@assets/IMAGES/CZ90ChampElvinJohnson.jpg";
-import connorMorrillImg from "@assets/IMAGES/CZ90ChampConnorMorrill.jpg";
 
 const CHAMPIONS = [
   {
@@ -10,7 +8,7 @@ const CHAMPIONS = [
     name: "Elvin Johnson",
     weightClass: "Middleweight",
     defenses: 1,
-    image: elvinJohnsonImg,
+    image: "/images/CZ90ChampElvinJohnson.jpg",
     event: "Combat Zone 90",
     discipline: "Kickboxing",
   },
@@ -19,7 +17,7 @@ const CHAMPIONS = [
     name: "Connor Morrill",
     weightClass: "Bantamweight",
     defenses: 1,
-    image: connorMorrillImg,
+    image: "/images/CZ90ChampConnorMorrill.jpg",
     event: "Combat Zone 90",
     discipline: "Kickboxing",
   },

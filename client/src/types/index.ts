@@ -55,25 +55,10 @@ export interface FAQ {
   answer: string;
 }
 
-// Sponsor Types
-export interface Sponsor {
-  id: number;
-  image: string;
-  name: string;
-  url: string;
-}
-
 // Navbar Types
 export interface NavbarLink {
   href: string;
   title: string;
   children?: React.ReactNode;
   className?: string;
-}
-
-export interface MobileLinkProps {
-  href: string;
-  children: React.ReactNode;
-  onClick?: () => void;
-  isSubItem?: boolean;
 }

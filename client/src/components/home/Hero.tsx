@@ -7,15 +7,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "wouter";
 
-// Import Combat Zone MMA images
-import slide1 from "@assets/IMAGES/CombatZoneHero1.png";
-import slide2 from "@assets/IMAGES/CombatZoneHero2.jpg";
-import slide3 from "@assets/IMAGES/calvin_kattar_ufc_po_8171904a.jpg";
-
 const SLIDES = [
   {
     id: 1,
-    image: slide1,
+    image: "/images/CombatZoneHero1.png",
     title: "COMBAT ZONE",
     subtitle: "NEW ENGLAND'S LONGEST RUNNING MMA PROMOTION",
     cta: "GET TICKETS",
@@ -28,7 +23,7 @@ const SLIDES = [
   },
   {
     id: 2,
-    image: slide2,
+    image: "/images/CombatZoneHero2.jpg",
     title: "CHAMPIONS RISING",
     subtitle: "WHERE LEGENDS ARE MADE",
     cta: "VIEW CHAMPIONS",
@@ -41,7 +36,7 @@ const SLIDES = [
   },
   {
     id: 3,
-    image: slide3,
+    image: "/images/calvin_kattar_ufc_po_8171904a.jpg",
     title: "OFFICIAL MERCH",
     subtitle: "WEAR THE BATTLE",
     cta: "SHOP NOW",

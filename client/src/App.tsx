@@ -15,6 +15,7 @@ import ChampionsPage from "@/pages/champions";
 import FighterFormsPage from "@/pages/fighter-forms";
 import FighterApplicationPage from "@/pages/fighter-application";
 import MediaPage from "@/pages/media";
+import PhotoArchivePage from "@/pages/photo-archive";
 import ShopPage from "@/pages/shop";
 import SponsorsPage from "@/pages/sponsors";
 import SponsorPackagesPage from "@/pages/sponsor-packages";
@@ -46,6 +47,7 @@ function Router() {
       <Route path="/apply" component={FighterApplicationPage} />
       <Route path="/champions" component={ChampionsPage} />
       <Route path="/media" component={MediaPage} />
+      <Route path="/media/photos" component={PhotoArchivePage} />
       <Route path="/shop" component={ShopPage} />
       <Route path="/sponsors" component={SponsorsPage} />
       <Route path="/sponsor-packages" component={SponsorPackagesPage} />

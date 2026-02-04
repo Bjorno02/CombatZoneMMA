@@ -9,14 +9,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
-import { Star, Crown, Ticket, MapPin, HelpCircle, Sparkles } from "lucide-react";
+import { Star, Crown, Ticket, MapPin, HelpCircle, Sparkles, Play } from "lucide-react";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
-import vip1Img from "@assets/IMAGES/VIP1.jpg";
-import vip2Img from "@assets/IMAGES/VIP2.jpg";
-import vip3Img from "@assets/IMAGES/VIP3.jpg";
-import vip4Img from "@assets/IMAGES/VIP4.jpg";
-import vip5Img from "@assets/IMAGES/VIP5.jpg";
-import vip6Img from "@assets/IMAGES/VIP6.jpg";
 
 const VIP_PACKAGES = {
   risingStar: {
@@ -41,7 +35,14 @@ const SHARED_FEATURES = [
   "Dedicated VIP Entrance to SNHU Arena",
 ];
 
-const VIP_IMAGES = [vip1Img, vip2Img, vip3Img, vip4Img, vip5Img, vip6Img];
+const VIP_IMAGES = [
+  "/images/VIP1.jpg",
+  "/images/VIP2.jpg",
+  "/images/VIP3.jpg",
+  "/images/VIP4.jpg",
+  "/images/VIP5.jpg",
+  "/images/VIP6.jpg",
+];
 
 const FAQS = [
   {
@@ -307,6 +308,30 @@ export default function VIPPage() {
             </h2>
             <p className="text-neutral-400 max-w-xl mx-auto">
               Exclusive access, premium hospitality, and memories that last a lifetime
+            </p>
+          </div>
+
+          {/* Featured Video */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <div className="relative group">
+              {/* Glowing border effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary via-primary/50 to-primary rounded-lg opacity-50 group-hover:opacity-75 transition-opacity duration-500 blur-sm" />
+
+              <div className="relative bg-black rounded-lg overflow-hidden border border-neutral-700">
+                <video
+                  className="w-full aspect-video"
+                  controls
+                  poster="/images/VIP1.jpg"
+                  preload="metadata"
+                >
+                  <source src="/images/CZ VIP Experience.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <p className="text-center text-neutral-500 text-sm mt-4 uppercase tracking-wider">
+              <Play className="inline-block w-4 h-4 mr-2" />
+              Watch the VIP Experience
             </p>
           </div>
 

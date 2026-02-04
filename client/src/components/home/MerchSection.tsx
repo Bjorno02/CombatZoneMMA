@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowRight, Star } from "lucide-react";
 import { Link } from "wouter";
-// @ts-ignore - JPG extension case sensitivity
-import merchImg from "@assets/IMAGES/CZMERCH.JPG";
 
 export function MerchSection() {
   return (
@@ -55,7 +53,7 @@ export function MerchSection() {
               </div>
 
               <img
-                src={merchImg}
+                src="/images/CZMERCH.JPG"
                 alt="Combat Zone Official Merchandise"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"

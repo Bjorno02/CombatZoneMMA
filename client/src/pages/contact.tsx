@@ -10,40 +10,30 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 
-// Team photos
-// @ts-ignore
-import calvinImg from "@assets/IMAGES/KattarContact.avif";
-// @ts-ignore
-import jamisonImg from "@assets/IMAGES/JKattarContact.avif";
-// @ts-ignore
-import jeromeImg from "@assets/IMAGES/JeromeContact.avif";
-// @ts-ignore
-import kurtImg from "@assets/IMAGES/KurtDanielsContact.avif";
-
 const TEAM = [
   {
     name: "Calvin Kattar",
     role: "CEO/President",
     email: null,
-    image: calvinImg,
+    image: "/images/KattarContact.avif",
   },
   {
     name: "Jamison Kattar",
     role: "Combat Zone Administrator",
     email: "jmsnkattar@czmma.com",
-    image: jamisonImg,
+    image: "/images/JKattarContact.avif",
   },
   {
     name: "Jerome Brashears",
     role: "Combat Zone Matchmaker",
     email: "jerome@czmma.com",
-    image: jeromeImg,
+    image: "/images/JeromeContact.avif",
   },
   {
     name: "Kurt Daniels",
     role: "Combat Zone Medicals",
     email: "kurtdaniels@czmma.com",
-    image: kurtImg,
+    image: "/images/KurtDanielsContact.avif",
   },
 ];
 

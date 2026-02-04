@@ -5,9 +5,6 @@ import { ArrowRight, Target, Users, Trophy, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 
-// @ts-ignore
-import kattarImg from "@assets/IMAGES/KattarContact.avif";
-
 export default function AboutPage() {
   useSEO(SEO_CONFIG.about);
   return (
@@ -91,7 +88,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="relative bg-neutral-900 flex items-center justify-center min-h-[300px] overflow-hidden">
                   <img
-                    src={kattarImg}
+                    src="/images/KattarContact.avif"
                     alt="Calvin Kattar"
                     className="w-full h-full object-cover object-top"
                   />

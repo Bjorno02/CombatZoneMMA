@@ -2,7 +2,6 @@ import { MapPin, Ticket, ChevronRight, Clock, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
-import eventPoster from "@assets/IMAGES/CombatZone91Poster.png";
 
 export function EventSection() {
   return (
@@ -19,7 +18,7 @@ export function EventSection() {
 
       {/* Accent shapes */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-neutral-50 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -tranneutral-x-1/2 tranneutral-y-1/2" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
 
       <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
         {/* Section header */}
@@ -37,7 +36,7 @@ export function EventSection() {
             >
               All Events
               <ChevronRight
-                className="ml-1 group-hover:tranneutral-x-1 transition-transform"
+                className="ml-1 group-hover:translate-x-1 transition-transform"
                 size={16}
               />
             </Button>
@@ -57,7 +56,7 @@ export function EventSection() {
               <div className="absolute -inset-6 border border-neutral-100" />
 
               <img
-                src={eventPoster}
+                src="/images/CombatZone91Poster.png"
                 alt="Combat Zone 91 Event Poster"
                 className="relative w-full max-w-md h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02] shadow-xl"
                 loading="eager"

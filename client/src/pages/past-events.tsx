@@ -2,7 +2,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { Calendar, Trophy, Search, Filter } from "lucide-react";
+import { Calendar, Trophy, Search, Filter, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { PAST_EVENTS, EVENT_STATS } from "@/data/events";
