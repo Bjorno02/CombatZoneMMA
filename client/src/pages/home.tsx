@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
+import { EventCountdown } from "@/components/home/EventCountdown";
 import { EventSection } from "@/components/home/EventSection";
 import { ChampionsSection } from "@/components/home/ChampionsSection";
 import { MerchSection } from "@/components/home/MerchSection";
@@ -26,6 +27,9 @@ export default function Home() {
       <main>
         {/* Hero */}
         <Hero />
+
+        {/* Event Countdown */}
+        <EventCountdown />
 
         {/* Stats Banner */}
         <section className="relative z-20 overflow-hidden">

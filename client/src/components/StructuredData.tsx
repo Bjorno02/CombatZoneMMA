@@ -8,7 +8,7 @@ export function OrganizationSchema() {
     name: "Combat Zone MMA",
     alternateName: "CZMMA",
     url: "https://combatzonemma.com",
-    logo: "https://combatzonemma.com/logo.png",
+    logo: "https://combatzonemma.com/CZ_NEW-Transparent.png",
     image: "https://combatzonemma.com/opengraph.jpg",
     foundingDate: "2000",
     description:

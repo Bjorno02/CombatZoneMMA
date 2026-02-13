@@ -4,7 +4,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
-import logoImg from "/logo.png";
+import logoImg from "/CZ_NEW-Transparent.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -58,9 +58,9 @@ export function Navbar() {
   const isHome = location === "/";
   const navBackground = isHome
     ? scrolled
-      ? "bg-black/95 backdrop-blur-md border-b border-white/10"
+      ? "bg-black/95 backdrop-blur-md"
       : "bg-transparent"
-    : "bg-black border-b border-white/10";
+    : "bg-black";
 
   return (
     <nav
@@ -69,6 +69,9 @@ export function Navbar() {
         navBackground
       )}
     >
+      {/* Bottom border */}
+      <div className="absolute bottom-0 left-0 right-0 h-[5px] bg-primary" />
+
       <div className="container mx-auto px-4 h-20 flex items-center relative">
         {/* Left Navigation - Desktop */}
         <div className="hidden lg:flex items-center flex-1 relative z-[51]">
@@ -207,13 +210,21 @@ export function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-              {/* Contact Link */}
+              {/* Contact Dropdown */}
               <NavigationMenuItem>
-                <Link href="/contact">
-                  <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary focus:outline-none disabled:pointer-events-none disabled:opacity-50 font-[Chakra_Petch]">
-                    Contact
-                  </NavigationMenuLink>
-                </Link>
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-wide text-sm">
+                  Contact
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-4 w-[350px] bg-black border border-white/10">
+                    <ListItem href="/contact" title="Contact Us">
+                      Get in touch with our team
+                    </ListItem>
+                    <ListItem href="/newsletter" title="Email List">
+                      Subscribe for updates & announcements
+                    </ListItem>
+                  </ul>
+                </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -413,9 +424,33 @@ export function Navbar() {
               <MobileLink href="/shop" onClick={() => setIsOpen(false)}>
                 Store
               </MobileLink>
-              <MobileLink href="/contact" onClick={() => setIsOpen(false)}>
-                Contact
-              </MobileLink>
+
+              {/* Contact Dropdown */}
+              <div>
+                <button
+                  onClick={() => setExpandedMenu(expandedMenu === "contact" ? null : "contact")}
+                  className="w-full text-left text-xl sm:text-2xl font-bold text-white hover:text-primary font-[Chakra_Petch] uppercase border-b border-white/10 pb-3 pt-1 touch-manipulation flex items-center justify-between"
+                >
+                  Contact
+                  <ChevronDown
+                    className={cn(
+                      "transition-transform",
+                      expandedMenu === "contact" && "rotate-180"
+                    )}
+                    size={20}
+                  />
+                </button>
+                {expandedMenu === "contact" && (
+                  <div className="pl-4 pt-2 pb-2 space-y-2">
+                    <MobileLink href="/contact" onClick={() => setIsOpen(false)} isSubItem>
+                      Contact Us
+                    </MobileLink>
+                    <MobileLink href="/newsletter" onClick={() => setIsOpen(false)} isSubItem>
+                      Email List
+                    </MobileLink>
+                  </div>
+                )}
+              </div>
               <a
                 href={TICKETMASTER_EVENT_URL}
                 target="_blank"

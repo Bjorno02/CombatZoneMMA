@@ -158,9 +158,11 @@ export default function SponsorsPage() {
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <div>
-              <p className="text-sm font-medium text-primary tracking-wide mb-4">Our Partners</p>
+              <p className="text-sm font-medium text-primary tracking-wide mb-4">
+                Current Partners
+              </p>
               <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900">
-                Brands that trust Combat Zone
+                Our Official Sponsors
               </h2>
             </div>
             <Link href="/contact">
@@ -197,6 +199,47 @@ export default function SponsorsPage() {
               </a>
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* Past Partners */}
+      <section className="py-20 md:py-24 bg-white border-t border-neutral-200">
+        <Container>
+          <div className="text-center mb-12">
+            <p className="text-sm font-medium text-neutral-500 tracking-wide mb-4">Past Partners</p>
+            <h2 className="text-2xl md:text-3xl font-bold font-[Chakra_Petch] text-neutral-900">
+              Brands That Have Championed Combat Zone
+            </h2>
+          </div>
+
+          {/* Past Sponsors Grid */}
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12 max-w-3xl mx-auto">
+            {[
+              { name: "Encore Boston Harbor", url: "https://www.encorebostonharbor.com/" },
+              { name: "Big Night Entertainment", url: "https://www.bignightentertainment.com/" },
+              { name: "Lobos 1707 Tequila", url: "https://www.lobos1707.com/" },
+            ].map((sponsor, index) => (
+              <a
+                key={index}
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center px-8 py-6 bg-neutral-50 border border-neutral-200 hover:border-primary/30 hover:bg-neutral-100 transition-all"
+              >
+                <span className="text-lg md:text-xl font-bold font-[Chakra_Petch] text-neutral-700 group-hover:text-neutral-900 transition-colors">
+                  {sponsor.name}
+                </span>
+                <ExternalLink
+                  className="ml-3 text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                  size={16}
+                />
+              </a>
+            ))}
+          </div>
+
+          <p className="text-center text-neutral-500 text-sm mt-10">
+            Thank you to all our past partners for their support over the years.
+          </p>
         </Container>
       </section>
 

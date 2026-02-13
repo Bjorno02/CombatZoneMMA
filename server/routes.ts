@@ -3,6 +3,7 @@ import { type Server } from "http";
 import type { Request, Response, NextFunction } from "express";
 import rateLimit from "express-rate-limit";
 import { z } from "zod";
+import { Resend } from "resend";
 
 // ===================
 // CONSTANTS
@@ -94,6 +95,22 @@ const contactSchema = z.object({
     .trim(),
 });
 
+// Email routing configuration - maps subject to recipient(s)
+const EMAIL_ROUTING: Record<string, string[]> = {
+  general: ["jmsnkattar@czmma.com"],
+  fighter: ["jerome@czmma.com"],
+  sponsorship: ["kristinmenconi@czmma.com", "skattar@czmma.com"],
+  media: ["conor.hews@gmail.com"],
+};
+
+// Subject labels for email formatting
+const SUBJECT_LABELS: Record<string, string> = {
+  general: "General Inquiry",
+  fighter: "Fighter Inquiry",
+  sponsorship: "Sponsorship Inquiry",
+  media: "Media/Press Inquiry",
+};
+
 export async function registerRoutes(httpServer: Server, app: Express): Promise<Server> {
   // Apply general rate limiter to all API routes
   app.use("/api", apiLimiter);
@@ -126,13 +143,61 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           userAgent: req.get("User-Agent")?.substring(0, 100), // Truncate for safety
         });
 
-        // TODO: Integrate with email service (SendGrid, AWS SES, etc.)
-        // await sendEmail({
-        //   to: "info@combatzonemma.com",
-        //   subject: `[${sanitizedData.subject}] Contact from ${sanitizedData.firstName} ${sanitizedData.lastName}`,
-        //   body: sanitizedData.message,
-        //   replyTo: sanitizedData.email,
-        // });
+        // Get recipient emails based on subject
+        const recipients = EMAIL_ROUTING[sanitizedData.subject] || EMAIL_ROUTING.general;
+        const subjectLabel = SUBJECT_LABELS[sanitizedData.subject] || "Contact Form";
+
+        // Send email via Resend if API key is configured
+        const resendApiKey = process.env.RESEND_API_KEY;
+        if (resendApiKey) {
+          const resend = new Resend(resendApiKey);
+
+          try {
+            await resend.emails.send({
+              from: process.env.RESEND_FROM_EMAIL || "Combat Zone <onboarding@resend.dev>",
+              to: recipients,
+              replyTo: sanitizedData.email,
+              subject: `[${subjectLabel}] ${sanitizedData.firstName} ${sanitizedData.lastName}`,
+              html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                  <div style="background: #dc2626; padding: 20px; text-align: center;">
+                    <h1 style="color: white; margin: 0; font-size: 24px;">Combat Zone MMA</h1>
+                  </div>
+                  <div style="padding: 30px; background: #f9f9f9;">
+                    <h2 style="color: #333; margin-top: 0;">New ${subjectLabel}</h2>
+                    <table style="width: 100%; border-collapse: collapse;">
+                      <tr>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold; width: 120px;">Name:</td>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${sanitizedData.firstName} ${sanitizedData.lastName}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Email:</td>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd;"><a href="mailto:${sanitizedData.email}">${sanitizedData.email}</a></td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Category:</td>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${subjectLabel}</td>
+                      </tr>
+                    </table>
+                    <div style="margin-top: 20px;">
+                      <h3 style="color: #333; margin-bottom: 10px;">Message:</h3>
+                      <div style="background: white; padding: 15px; border-left: 4px solid #dc2626; white-space: pre-wrap;">${sanitizedData.message}</div>
+                    </div>
+                  </div>
+                  <div style="background: #333; padding: 15px; text-align: center;">
+                    <p style="color: #999; margin: 0; font-size: 12px;">This message was sent from the Combat Zone MMA website contact form.</p>
+                  </div>
+                </div>
+              `,
+            });
+            console.log("[CONTACT] Email sent successfully to:", recipients.join(", "));
+          } catch (emailError) {
+            console.error("[CONTACT] Failed to send email:", emailError);
+            // Continue - we still want to acknowledge the submission
+          }
+        } else {
+          console.log("[CONTACT] Resend API key not configured, skipping email");
+        }
 
         res.status(200).json({
           success: true,
@@ -265,6 +330,86 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
       );
 
       res.json({ videos });
+    })
+  );
+
+  // ===================
+  // NEWSLETTER SIGNUP ENDPOINT
+  // ===================
+  const newsletterLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 5, // 5 signups per hour per IP
+    message: { error: "Too many signup attempts. Please try again later." },
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  const newsletterSchema = z.object({
+    email: z.string().email("Invalid email format").max(100).trim().toLowerCase(),
+  });
+
+  app.post(
+    "/api/newsletter",
+    newsletterLimiter,
+    asyncHandler(async (req: Request, res: Response) => {
+      try {
+        const { email } = newsletterSchema.parse(req.body);
+
+        console.log("[NEWSLETTER] Signup attempt:", {
+          email,
+          ip: req.ip,
+          timestamp: new Date().toISOString(),
+        });
+
+        // Check for Beehiiv API key
+        const beehiivApiKey = process.env.BEEHIIV_API_KEY;
+        const beehiivPublicationId = process.env.BEEHIIV_PUBLICATION_ID;
+
+        if (beehiivApiKey && beehiivPublicationId) {
+          // Subscribe to Beehiiv
+          const response = await fetch(
+            `https://api.beehiiv.com/v2/publications/${beehiivPublicationId}/subscriptions`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${beehiivApiKey}`,
+              },
+              body: JSON.stringify({
+                email,
+                reactivate_existing: true,
+                send_welcome_email: true,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error("[NEWSLETTER] Beehiiv API error:", errorData);
+            throw new Error("Failed to subscribe");
+          }
+
+          console.log("[NEWSLETTER] Successfully subscribed to Beehiiv:", email);
+        } else {
+          // Beehiiv not configured - just log for now
+          console.log("[NEWSLETTER] Beehiiv not configured. Email captured:", email);
+        }
+
+        res.status(200).json({
+          success: true,
+          message: "Successfully subscribed to the newsletter!",
+        });
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          res.status(400).json({
+            error: "Invalid email address",
+            details: error.errors,
+          });
+        } else {
+          console.error("[NEWSLETTER] Signup error:", error);
+          res.status(500).json({ error: "Failed to subscribe. Please try again." });
+        }
+      }
     })
   );
 

@@ -1,12 +1,50 @@
-import { Facebook, Instagram, Twitter, Youtube, Mail, MapPin, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Mail,
+  MapPin,
+  ArrowRight,
+  Loader2,
+  CheckCircle,
+} from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <footer className="bg-black border-t border-white/10 pt-24 pb-12 text-white">
       <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16">
-        {/* Top Section: CTA & Social */}
+        {/* Top Section: Newsletter & Social */}
         <div className="relative overflow-hidden mb-12 md:mb-16">
           {/* Clean gradient background */}
           <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900" />
@@ -14,23 +52,49 @@ export function Footer() {
           <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 p-8 md:p-12">
-            {/* Left - CTA */}
-            <div className="text-center md:text-left">
+            {/* Left - Newsletter Signup */}
+            <div className="text-center md:text-left flex-1 max-w-lg">
               <h3 className="text-2xl sm:text-3xl font-bold font-[Chakra_Petch] uppercase mb-3">
                 Join the <span className="text-primary">Fight Club</span>
               </h3>
-              <p className="text-neutral-400 mb-6 max-w-md">
-                Have questions or want to get involved? Reach out to our team.
+              <p className="text-neutral-400 mb-6">
+                Get event announcements, fight cards, and exclusive updates delivered to your inbox.
               </p>
-              <Link href="/contact">
-                <Button className="bg-primary hover:bg-primary/90 text-white font-bold uppercase px-8 py-3 group">
-                  Contact Us
-                  <ArrowRight
-                    className="ml-2 group-hover:translate-x-1 transition-transform"
-                    size={18}
+
+              {status === "success" ? (
+                <div className="flex items-center gap-2 text-green-400">
+                  <CheckCircle size={20} />
+                  <span className="font-medium">You're in! Check your inbox.</span>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="bg-white/10 border-white/20 text-white placeholder:text-neutral-500 h-12 flex-1"
                   />
-                </Button>
-              </Link>
+                  <Button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="bg-primary hover:bg-primary/90 text-white font-bold uppercase px-6 h-12 whitespace-nowrap"
+                  >
+                    {status === "loading" ? (
+                      <Loader2 className="animate-spin" size={18} />
+                    ) : (
+                      <>
+                        Subscribe
+                        <ArrowRight className="ml-2" size={18} />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              )}
+              {status === "error" && (
+                <p className="text-red-400 text-sm mt-2">Something went wrong. Please try again.</p>
+              )}
             </div>
 
             {/* Right - Social Icons with brand colors */}

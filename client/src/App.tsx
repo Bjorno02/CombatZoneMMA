@@ -23,6 +23,7 @@ import ContactPage from "@/pages/contact";
 import VIPPage from "@/pages/vip";
 import FightCardPage from "@/pages/fight-card";
 import SocialPage from "@/pages/social";
+import NewsletterPage from "@/pages/newsletter";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -55,6 +56,7 @@ function Router() {
       <Route path="/vip" component={VIPPage} />
       <Route path="/fight-card" component={FightCardPage} />
       <Route path="/social" component={SocialPage} />
+      <Route path="/newsletter" component={NewsletterPage} />
       <Route component={NotFound} />
     </Switch>
   );

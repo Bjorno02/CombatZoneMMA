@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
@@ -8,8 +9,38 @@ import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
+const EVENT_DATE = "2026-02-21T17:00:00-05:00";
+
+function useCountdown() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const calculateTime = () => {
+      const now = new Date().getTime();
+      const target = new Date(EVENT_DATE).getTime();
+      const diff = target - now;
+
+      if (diff > 0) {
+        setTimeLeft({
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((diff % (1000 * 60)) / 1000),
+        });
+      }
+    };
+
+    calculateTime();
+    const interval = setInterval(calculateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return timeLeft;
+}
+
 export default function EventsPage() {
   useSEO(SEO_CONFIG.events);
+  const { days, hours, minutes, seconds } = useCountdown();
   return (
     <PageLayout>
       {/* Structured Data */}
@@ -37,14 +68,14 @@ export default function EventsPage() {
       <section className="bg-white border-b border-neutral-200">
         <Container>
           <div className="flex flex-col md:flex-row items-center justify-between py-5 gap-4">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
               <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
               <span className="text-sm font-bold uppercase tracking-wider text-neutral-900">
                 Next Event
               </span>
-              <span className="text-neutral-400">|</span>
+              <span className="text-neutral-400 hidden sm:inline">|</span>
               <span className="font-bold font-[Chakra_Petch] text-xl text-primary">CZ91</span>
-              <span className="text-neutral-400">|</span>
+              <span className="text-neutral-400 hidden sm:inline">|</span>
               <span className="text-neutral-600">February 21, 2026</span>
             </div>
             <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
@@ -65,6 +96,50 @@ export default function EventsPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
         <Container className="relative z-10">
+          {/* Countdown */}
+          <div className="flex flex-col items-center mb-8">
+            <span className="text-sm font-bold uppercase tracking-widest text-neutral-500 mb-3">
+              Event Starts In
+            </span>
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="text-center">
+                <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
+                  {days}
+                </div>
+                <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
+                  Days
+                </span>
+              </div>
+              <span className="text-neutral-300 text-2xl font-light">:</span>
+              <div className="text-center">
+                <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
+                  {hours}
+                </div>
+                <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
+                  Hours
+                </span>
+              </div>
+              <span className="text-neutral-300 text-2xl font-light">:</span>
+              <div className="text-center">
+                <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
+                  {minutes}
+                </div>
+                <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
+                  Min
+                </span>
+              </div>
+              <span className="text-neutral-300 text-2xl font-light">:</span>
+              <div className="text-center">
+                <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
+                  {seconds}
+                </div>
+                <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
+                  Sec
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* Section Header */}
           <div className="flex items-center justify-center gap-4 mb-12">
             <div className="h-px flex-1 max-w-24 bg-neutral-300" />
@@ -216,8 +291,8 @@ export default function EventsPage() {
                   </div>
                   <div className="hidden md:block w-px h-12 bg-neutral-200" />
                   <div>
-                    <div className="font-bold text-neutral-400">TBD</div>
-                    <div className="text-sm text-neutral-400">Date to be announced</div>
+                    <div className="font-bold text-neutral-400">May 16, 2026</div>
+                    <div className="text-sm text-neutral-400">Saturday</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 text-neutral-600">
@@ -242,8 +317,8 @@ export default function EventsPage() {
                   </div>
                   <div className="hidden md:block w-px h-12 bg-neutral-200" />
                   <div>
-                    <div className="font-bold text-neutral-400">TBD</div>
-                    <div className="text-sm text-neutral-400">Date to be announced</div>
+                    <div className="font-bold text-neutral-400">August 22, 2026</div>
+                    <div className="text-sm text-neutral-400">Saturday</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 text-neutral-600">
