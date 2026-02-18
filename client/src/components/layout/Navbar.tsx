@@ -155,24 +155,23 @@ export function Navbar() {
         </div>
 
         {/* Center Logo - Desktop */}
-        <Link href="/">
-          <a className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[52] hover:scale-105 transition-transform">
-            <img
-              src={logoImg}
-              alt="Combat Zone"
-              style={{ height: "56px", width: "90px", objectFit: "contain" }}
-            />
-          </a>
+        <Link
+          href="/"
+          className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[52] hover:scale-105 transition-transform"
+        >
+          <img
+            src={logoImg}
+            alt="Combat Zone"
+            style={{ height: "56px", width: "90px", objectFit: "contain" }}
+          />
         </Link>
 
         {/* Mobile Logo - Left aligned */}
-        <Link href="/">
-          <a className="lg:hidden flex items-center gap-2 text-white relative z-[51]">
-            <img src={logoImg} alt="Combat Zone" className="h-10 w-10" />
-            <span className="text-xl font-bold italic tracking-tighter font-[Chakra_Petch]">
-              <span className="text-primary">COMBAT</span>ZONE
-            </span>
-          </a>
+        <Link href="/" className="lg:hidden flex items-center gap-2 text-white relative z-[51]">
+          <img src={logoImg} alt="Combat Zone" className="h-10 w-10" />
+          <span className="text-xl font-bold italic tracking-tighter font-[Chakra_Petch]">
+            <span className="text-primary">COMBAT</span>ZONE
+          </span>
         </Link>
 
         {/* Right Navigation - Desktop */}
@@ -277,13 +276,11 @@ export function Navbar() {
           {/* Logo in the top bar area */}
           <div className="h-20 flex items-center justify-center border-b border-white/10">
             <Link href="/" onClick={() => setIsOpen(false)}>
-              <a>
-                <img
-                  src={logoImg}
-                  alt="Combat Zone"
-                  style={{ height: "48px", width: "76px", objectFit: "contain" }}
-                />
-              </a>
+              <img
+                src={logoImg}
+                alt="Combat Zone"
+                style={{ height: "48px", width: "76px", objectFit: "contain" }}
+              />
             </Link>
           </div>
 
@@ -469,29 +466,27 @@ export function Navbar() {
   );
 }
 
-interface ListItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface ListItemProps {
   className?: string;
   title: string;
   children?: React.ReactNode;
   href: string;
 }
 
-const ListItem = ({ className, title, children, href, ...props }: ListItemProps) => {
+const ListItem = ({ className, title, children, href }: ListItemProps) => {
   return (
     <li>
-      <Link href={href}>
-        <a
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-white/5 hover:text-primary focus:bg-white/5 focus:text-primary",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-bold leading-none text-white font-[Chakra_Petch] uppercase">
-            {title}
-          </div>
-          <p className="line-clamp-2 text-sm leading-snug text-neutral-400">{children}</p>
-        </a>
+      <Link
+        href={href}
+        className={cn(
+          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-white/5 hover:text-primary focus:bg-white/5 focus:text-primary",
+          className
+        )}
+      >
+        <div className="text-sm font-bold leading-none text-white font-[Chakra_Petch] uppercase">
+          {title}
+        </div>
+        <p className="line-clamp-2 text-sm leading-snug text-neutral-400">{children}</p>
       </Link>
     </li>
   );
@@ -505,17 +500,16 @@ interface MobileLinkProps {
 }
 
 const MobileLink = ({ href, children, onClick, isSubItem = false }: MobileLinkProps) => (
-  <Link href={href}>
-    <a
-      onClick={onClick}
-      className={cn(
-        "font-bold text-white hover:text-primary font-[Chakra_Petch] uppercase touch-manipulation block",
-        isSubItem
-          ? "text-base sm:text-lg border-b border-white/5 pb-2 pt-1"
-          : "text-xl sm:text-2xl border-b border-white/10 pb-3 pt-1"
-      )}
-    >
-      {children}
-    </a>
+  <Link
+    href={href}
+    onClick={onClick}
+    className={cn(
+      "font-bold text-white hover:text-primary font-[Chakra_Petch] uppercase touch-manipulation block",
+      isSubItem
+        ? "text-base sm:text-lg border-b border-white/5 pb-2 pt-1"
+        : "text-xl sm:text-2xl border-b border-white/10 pb-3 pt-1"
+    )}
+  >
+    {children}
   </Link>
 );

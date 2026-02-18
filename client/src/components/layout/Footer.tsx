@@ -147,10 +147,11 @@ export function Footer() {
         {/* Main Footer Links */}
         <div className="flex justify-center mb-20">
           <div className="text-center max-w-3xl">
-            <Link href="/">
-              <a className="text-2xl font-bold italic tracking-tighter text-white font-[Chakra_Petch] mb-6 block">
-                COMBAT<span className="text-primary">ZONE</span>
-              </a>
+            <Link
+              href="/"
+              className="text-2xl font-bold italic tracking-tighter text-white font-[Chakra_Petch] mb-6 block"
+            >
+              COMBAT<span className="text-primary">ZONE</span>
             </Link>
             <p className="text-neutral-400 text-sm mb-8 leading-relaxed max-w-2xl mx-auto">
               New England's longest-running MMA promotion. Owned and operated by UFC veteran Calvin

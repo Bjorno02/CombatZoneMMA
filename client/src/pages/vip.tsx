@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
@@ -8,9 +9,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
-import { Star, Crown, Ticket, MapPin, HelpCircle, Sparkles, Play } from "lucide-react";
+import { Star, Crown, Ticket, MapPin, HelpCircle, Sparkles } from "lucide-react";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
+
+declare global {
+  interface Window {
+    ShopifyBuy: any;
+  }
+}
 
 const VIP_PACKAGES = {
   risingStar: {
@@ -87,6 +93,66 @@ const FAQS = [
 
 export default function VIPPage() {
   useSEO(SEO_CONFIG.vip);
+  const shopifyClientRef = useRef<any>(null);
+  const shopifyInitialized = useRef(false);
+
+  useEffect(() => {
+    if (shopifyInitialized.current) return;
+    shopifyInitialized.current = true;
+
+    const scriptURL = "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
+
+    function initShopify() {
+      if (!window.ShopifyBuy) return;
+
+      shopifyClientRef.current = window.ShopifyBuy.buildClient({
+        domain: "p5rwip-64.myshopify.com",
+        storefrontAccessToken: "ccab007e3fe2aac68a4d91b5f4adfbb0",
+      });
+    }
+
+    if (window.ShopifyBuy) {
+      initShopify();
+    } else {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = scriptURL;
+      script.onload = initShopify;
+      const target = document.head || document.body;
+      target.appendChild(script);
+    }
+  }, []);
+
+  const handleShopifyPurchase = async (productId: string) => {
+    if (!shopifyClientRef.current) {
+      console.error("Shopify client not initialized");
+      return;
+    }
+
+    try {
+      const product = await shopifyClientRef.current.product.fetch(productId);
+
+      if (!product || !product.variants || product.variants.length === 0) {
+        console.error("Product or variants not found");
+        return;
+      }
+
+      const variantId = product.variants[0].id;
+      const checkout = await shopifyClientRef.current.checkout.create();
+
+      const updatedCheckout = await shopifyClientRef.current.checkout.addLineItems(checkout.id, [
+        { variantId, quantity: 1 },
+      ]);
+
+      window.location.href = updatedCheckout.webUrl;
+    } catch (error) {
+      console.error("Error creating checkout:", error);
+    }
+  };
+
+  const handleRisingStarPurchase = () =>
+    handleShopifyPurchase("gid://shopify/Product/7814781403178");
+  const handleElitePurchase = () => handleShopifyPurchase("gid://shopify/Product/7814781468714");
 
   return (
     <PageLayout>
@@ -165,15 +231,14 @@ export default function VIPPage() {
                   </div>
                 </div>
 
-                <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
-                  <Button
-                    size="lg"
-                    className="w-full bg-primary text-white hover:bg-primary/90 font-bold uppercase h-14 text-base tracking-wider"
-                  >
-                    <Ticket className="mr-2" size={18} />
-                    Purchase Package
-                  </Button>
-                </a>
+                <Button
+                  size="lg"
+                  className="w-full bg-primary text-white hover:bg-primary/90 font-bold uppercase h-14 text-base tracking-wider"
+                  onClick={handleRisingStarPurchase}
+                >
+                  <Ticket className="mr-2" size={18} />
+                  Purchase Package
+                </Button>
               </div>
             </div>
 
@@ -221,16 +286,15 @@ export default function VIPPage() {
                   <div className="font-bold text-white">{VIP_PACKAGES.elite.section}</div>
                 </div>
 
-                <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="w-full border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold uppercase h-14 text-base tracking-wider"
-                  >
-                    <Ticket className="mr-2" size={18} />
-                    Purchase Package
-                  </Button>
-                </a>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold uppercase h-14 text-base tracking-wider"
+                  onClick={handleElitePurchase}
+                >
+                  <Ticket className="mr-2" size={18} />
+                  Purchase Package
+                </Button>
               </div>
             </div>
           </div>

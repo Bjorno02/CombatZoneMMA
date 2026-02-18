@@ -24,6 +24,7 @@ import VIPPage from "@/pages/vip";
 import FightCardPage from "@/pages/fight-card";
 import SocialPage from "@/pages/social";
 import NewsletterPage from "@/pages/newsletter";
+import KattarmaniaPage from "@/pages/kattarmania";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -49,6 +50,7 @@ function Router() {
       <Route path="/champions" component={ChampionsPage} />
       <Route path="/media" component={MediaPage} />
       <Route path="/media/photos" component={PhotoArchivePage} />
+      <Route path="/shop/kattarmania" component={KattarmaniaPage} />
       <Route path="/shop" component={ShopPage} />
       <Route path="/sponsors" component={SponsorsPage} />
       <Route path="/sponsor-packages" component={SponsorPackagesPage} />

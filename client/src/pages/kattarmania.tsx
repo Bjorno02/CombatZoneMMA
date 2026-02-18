@@ -1,9 +1,7 @@
 import { useEffect, useRef } from "react";
-import { Link } from "wouter";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/button";
-import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
+import { useSEO } from "@/hooks/useSEO";
 
 declare global {
   interface Window {
@@ -11,8 +9,13 @@ declare global {
   }
 }
 
-export default function ShopPage() {
-  useSEO(SEO_CONFIG.shop);
+export default function KattarmaniaPage() {
+  useSEO({
+    title: "Kattarmania Collection | Combat Zone MMA",
+    description:
+      "Shop the exclusive Kattarmania collection from UFC veteran Calvin Kattar. Official Combat Zone MMA merchandise.",
+  });
+
   const shopifyInitialized = useRef(false);
 
   useEffect(() => {
@@ -32,10 +35,10 @@ export default function ShopPage() {
       });
 
       window.ShopifyBuy.UI.onReady(client).then(function (ui: any) {
-        const node = document.getElementById("shopify-collection");
+        const node = document.getElementById("shopify-kattarmania");
 
         ui.createComponent("collection", {
-          id: "306115346474",
+          id: "306115543082",
           node: node,
           moneyFormat: "%24%7B%7Bamount%7D%7D",
           options: {
@@ -244,6 +247,7 @@ export default function ShopPage() {
       target.appendChild(script);
     }
   }, []);
+
   return (
     <PageLayout>
       {/* Hero - Light/White with design elements */}
@@ -270,13 +274,14 @@ export default function ShopPage() {
         <Container className="relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm font-bold text-primary tracking-widest uppercase mb-4">
-              Official Gear
+              Exclusive Collection
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-[Chakra_Petch] text-neutral-900 leading-[1.05] mb-4">
-              COMBAT ZONE <span className="text-primary">STORE</span>
+              KATTAR<span className="text-primary">MANIA</span>
             </h1>
             <p className="text-lg text-neutral-600 leading-relaxed max-w-2xl mx-auto">
-              Shop the official Combat Zone MMA merchandise collection.
+              Official merchandise from UFC featherweight contender and Combat Zone owner Calvin
+              Kattar.
             </p>
           </div>
         </Container>
@@ -287,36 +292,7 @@ export default function ShopPage() {
       {/* Shopify Collection */}
       <section className="py-12 md:py-16 bg-white">
         <Container>
-          <div id="shopify-collection" className="min-h-[400px]" />
-        </Container>
-      </section>
-
-      {/* Kattarmania CTA */}
-      <section className="py-16 md:py-24 bg-neutral-900 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
-
-        <Container>
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-primary text-sm font-bold uppercase tracking-widest mb-4 block">
-              Exclusive Collection
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] uppercase mb-6 text-white">
-              KATTAR<span className="text-primary">MANIA</span>
-            </h2>
-            <p className="text-neutral-400 mb-8 text-lg leading-relaxed">
-              Official merchandise from UFC featherweight contender and Combat Zone owner Calvin
-              Kattar.
-            </p>
-            <Link href="/shop/kattarmania">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold uppercase tracking-wider h-14 px-8"
-              >
-                Shop Kattarmania
-              </Button>
-            </Link>
-          </div>
+          <div id="shopify-kattarmania" className="min-h-[400px]" />
         </Container>
       </section>
     </PageLayout>

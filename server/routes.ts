@@ -361,38 +361,35 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           timestamp: new Date().toISOString(),
         });
 
-        // Check for Beehiiv API key
-        const beehiivApiKey = process.env.BEEHIIV_API_KEY;
-        const beehiivPublicationId = process.env.BEEHIIV_PUBLICATION_ID;
+        // Check for Sender API key
+        const senderApiKey = process.env.SENDER_API_KEY;
+        const senderGroupId = process.env.SENDER_GROUP_ID;
 
-        if (beehiivApiKey && beehiivPublicationId) {
-          // Subscribe to Beehiiv
-          const response = await fetch(
-            `https://api.beehiiv.com/v2/publications/${beehiivPublicationId}/subscriptions`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${beehiivApiKey}`,
-              },
-              body: JSON.stringify({
-                email,
-                reactivate_existing: true,
-                send_welcome_email: true,
-              }),
-            }
-          );
+        if (senderApiKey) {
+          // Subscribe to Sender.net
+          const response = await fetch("https://api.sender.net/v2/subscribers", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${senderApiKey}`,
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              groups: senderGroupId ? [senderGroupId] : [],
+            }),
+          });
 
           if (!response.ok) {
             const errorData = await response.json();
-            console.error("[NEWSLETTER] Beehiiv API error:", errorData);
+            console.error("[NEWSLETTER] Sender API error:", errorData);
             throw new Error("Failed to subscribe");
           }
 
-          console.log("[NEWSLETTER] Successfully subscribed to Beehiiv:", email);
+          console.log("[NEWSLETTER] Successfully subscribed to Sender:", email);
         } else {
-          // Beehiiv not configured - just log for now
-          console.log("[NEWSLETTER] Beehiiv not configured. Email captured:", email);
+          // Sender not configured - just log for now
+          console.log("[NEWSLETTER] Sender not configured. Email captured:", email);
         }
 
         res.status(200).json({

@@ -12,7 +12,7 @@
         { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' blob: data:; frame-src 'self' https://www.youtube.com https://www.google.com; connect-src 'self' https://www.googleapis.com"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.google.com https://sdks.shopifycdn.com https://*.shopify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://sdks.shopifycdn.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' blob: data:; frame-src 'self' https://www.youtube.com https://www.google.com https://*.shopify.com; connect-src 'self' https://www.googleapis.com https://*.myshopify.com https://*.shopify.com"
         },
         {
           "key": "Strict-Transport-Security",
