@@ -97,7 +97,7 @@ const contactSchema = z.object({
 
 // Email routing configuration - maps subject to recipient(s)
 const EMAIL_ROUTING: Record<string, string[]> = {
-  general: ["jmsnkattar@czmma.com"],
+  general: ["czmmaemailing@gmail.com"],
   fighter: ["jerome@czmma.com"],
   sponsorship: ["kristinmenconi@czmma.com", "skattar@czmma.com"],
   media: ["conor.hews@gmail.com"],
@@ -135,7 +135,7 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           message: sanitizeString(validatedData.message),
         };
 
-        // Log sanitized data (never log raw user input)
+        // Log sanitized data
         console.log("[CONTACT] Form submission:", {
           ...sanitizedData,
           ip: req.ip,
@@ -144,7 +144,8 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
         });
 
         // Get recipient emails based on subject
-        const recipients = EMAIL_ROUTING[sanitizedData.subject] || EMAIL_ROUTING.general;
+        const recipients = EMAIL_ROUTING[sanitizedData.subject] ??
+          EMAIL_ROUTING.general ?? ["czmmaemailing@gmail.com"];
         const subjectLabel = SUBJECT_LABELS[sanitizedData.subject] || "Contact Form";
 
         // Send email via Resend if API key is configured
