@@ -1,5 +1,6 @@
-import { Play, Link2, Star } from "lucide-react";
+import { Star, Tv } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PPV_STREAM_URL } from "@/lib/constants";
 
 export function PPVSection() {
   return (
@@ -35,41 +36,75 @@ export function PPVSection() {
               Experience every knockout, submission, and championship moment from the comfort of
               your home. Stream live events in HD quality.
             </p>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white font-bold uppercase px-6 sm:px-8 py-5 sm:py-6 rounded-none cursor-not-allowed opacity-60 w-full sm:w-auto"
-              disabled
-            >
-              Link Coming Soon
-            </Button>
+            <a href={PPV_STREAM_URL} target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white font-bold uppercase px-6 sm:px-8 py-5 sm:py-6 rounded-none w-full sm:w-auto"
+              >
+                <Tv className="mr-2" size={18} />
+                Watch Combat Zone 91
+              </Button>
+            </a>
           </div>
 
-          {/* Right side - takes 3 columns, larger visual */}
+          {/* Right side - takes 3 columns, event promo card */}
           <div className="lg:col-span-3 flex justify-center lg:justify-end scroll-reveal scroll-reveal-delay-1">
-            <div className="relative w-full max-w-md">
-              <div className="aspect-[4/3] bg-gradient-to-br from-black via-black to-black rounded-lg shadow-2xl flex items-center justify-center relative overflow-hidden group">
+            <a
+              href={PPV_STREAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-full max-w-md block"
+            >
+              <div className="bg-neutral-900 shadow-2xl relative overflow-hidden group cursor-pointer">
+                {/* Top accent bar */}
+                <div className="h-1 bg-primary" />
+
                 {/* Subtle pattern overlay */}
-                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+                <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
-                {/* Side border accents */}
-                <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-primary/40 via-primary/30 to-primary/40 opacity-60"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-2 bg-gradient-to-b from-primary/40 via-primary/30 to-primary/40 opacity-60"></div>
-
-                {/* Play icon */}
-                <div className="relative z-10 flex flex-col items-center gap-4">
-                  <div className="w-20 h-20 bg-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-primary/30 group-hover:scale-110 transition-transform">
-                    <Play className="w-10 h-10 text-primary ml-1" fill="currentColor" />
+                {/* Content */}
+                <div className="relative z-10 p-8 md:p-10">
+                  {/* Live badge */}
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                    <span className="text-primary text-xs font-bold uppercase tracking-widest">
+                      Live Stream Available
+                    </span>
                   </div>
-                  <div className="text-center">
-                    <p className="text-white font-bold font-[Chakra_Petch] uppercase text-sm mb-1">
-                      Live Streaming
-                    </p>
-                    <p className="text-neutral-400 text-xs">HD Quality Available</p>
+
+                  {/* Event title */}
+                  <h3 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-white uppercase mb-2">
+                    Combat Zone <span className="text-primary">91</span>
+                  </h3>
+
+                  {/* Date */}
+                  <p className="text-neutral-400 mb-6">February 21, 2026 • SNHU Arena</p>
+
+                  {/* Price options */}
+                  <div className="space-y-3 mb-8">
+                    <div className="flex justify-between items-center py-2 border-b border-white/10">
+                      <span className="text-neutral-300">Live Stream Only</span>
+                      <span className="text-white font-bold">$25</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-white/10">
+                      <span className="text-neutral-300">Stream + Replay</span>
+                      <span className="text-white font-bold">$30</span>
+                    </div>
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-neutral-300">Replay Only</span>
+                      <span className="text-white font-bold">$20</span>
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="flex items-center justify-center gap-2 bg-primary text-white font-bold uppercase tracking-wider py-4 group-hover:bg-primary/90 transition-colors">
+                    <Tv size={18} />
+                    <span>Get Access</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

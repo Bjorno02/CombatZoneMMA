@@ -418,9 +418,29 @@ export function Navbar() {
                 )}
               </div>
 
-              <MobileLink href="/shop" onClick={() => setIsOpen(false)}>
-                Store
-              </MobileLink>
+              {/* Store Dropdown */}
+              <div>
+                <button
+                  onClick={() => setExpandedMenu(expandedMenu === "store" ? null : "store")}
+                  className="w-full text-left text-xl sm:text-2xl font-bold text-white hover:text-primary font-[Chakra_Petch] uppercase border-b border-white/10 pb-3 pt-1 touch-manipulation flex items-center justify-between"
+                >
+                  Store
+                  <ChevronDown
+                    className={cn("transition-transform", expandedMenu === "store" && "rotate-180")}
+                    size={20}
+                  />
+                </button>
+                {expandedMenu === "store" && (
+                  <div className="pl-4 pt-2 pb-2 space-y-2">
+                    <MobileLink href="/shop" onClick={() => setIsOpen(false)} isSubItem>
+                      All Products
+                    </MobileLink>
+                    <MobileLink href="/shop/kattarmania" onClick={() => setIsOpen(false)} isSubItem>
+                      Kattarmania
+                    </MobileLink>
+                  </div>
+                )}
+              </div>
 
               {/* Contact Dropdown */}
               <div>

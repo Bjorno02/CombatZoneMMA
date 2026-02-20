@@ -3,8 +3,8 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
-import { Calendar, MapPin, Ticket, Clock, ArrowRight } from "lucide-react";
+import { TICKETMASTER_EVENT_URL, PPV_STREAM_URL } from "@/lib/constants";
+import { Calendar, MapPin, Ticket, Clock, ArrowRight, Tv } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
@@ -210,18 +210,24 @@ export default function EventsPage() {
               </div>
 
               {/* CTA Buttons */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
                   <Button
                     size="lg"
-                    className="w-full bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-14 text-lg group"
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-14 text-base group"
                   >
-                    <Ticket className="mr-2" size={20} />
+                    <Ticket className="mr-2" size={18} />
                     Get Tickets
-                    <ArrowRight
-                      className="ml-2 group-hover:translate-x-1 transition-transform"
-                      size={20}
-                    />
+                  </Button>
+                </a>
+
+                <a href={PPV_STREAM_URL} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    size="lg"
+                    className="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold uppercase tracking-wider h-14 text-base group"
+                  >
+                    <Tv className="mr-2" size={18} />
+                    Watch PPV
                   </Button>
                 </a>
 
@@ -229,9 +235,9 @@ export default function EventsPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="w-full border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white font-bold uppercase tracking-wider h-14 text-lg"
+                    className="w-full border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white font-bold uppercase tracking-wider h-14 text-base"
                   >
-                    View Fight Card
+                    Fight Card
                   </Button>
                 </Link>
               </div>

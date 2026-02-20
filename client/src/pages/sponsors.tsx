@@ -213,26 +213,39 @@ export default function SponsorsPage() {
           </div>
 
           {/* Past Sponsors Grid */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { name: "Encore Boston Harbor", url: "https://www.encorebostonharbor.com/" },
-              { name: "Big Night Entertainment", url: "https://www.bignightentertainment.com/" },
-              { name: "Lobos 1707 Tequila", url: "https://www.lobos1707.com/" },
+              {
+                name: "Encore Boston Harbor",
+                image: "/images/encore.jpg",
+                url: "https://www.encorebostonharbor.com/",
+              },
+              {
+                name: "Big Night Entertainment",
+                image: "/images/bignight.png",
+                url: "https://www.bignightentertainment.com/",
+              },
+              {
+                name: "Lobos 1707 Tequila",
+                image: "/images/Lobos_1707_Tequila_Logo.jpg",
+                url: "https://www.lobos1707.com/",
+              },
             ].map((sponsor, index) => (
               <a
                 key={index}
                 href={sponsor.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center px-8 py-6 bg-neutral-50 border border-neutral-200 hover:border-primary/30 hover:bg-neutral-100 transition-all"
+                className="group flex flex-col items-center justify-center p-8 bg-neutral-50 border border-neutral-200 hover:border-primary/30 hover:bg-white hover:shadow-lg transition-all"
               >
-                <span className="text-lg md:text-xl font-bold font-[Chakra_Petch] text-neutral-700 group-hover:text-neutral-900 transition-colors">
+                <img
+                  src={sponsor.image}
+                  alt={sponsor.name}
+                  className="h-24 md:h-32 w-auto object-contain grayscale group-hover:grayscale-0 transition-all mb-4"
+                />
+                <span className="text-sm font-bold text-neutral-600 group-hover:text-neutral-900 transition-colors text-center">
                   {sponsor.name}
                 </span>
-                <ExternalLink
-                  className="ml-3 text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity"
-                  size={16}
-                />
               </a>
             ))}
           </div>
