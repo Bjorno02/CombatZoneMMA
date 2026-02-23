@@ -153,7 +153,7 @@ export default function EventsPage() {
           <div className="flex justify-center mb-12 md:mb-16">
             <div className="relative group max-w-3xl">
               <img
-                src="/images/CombatZone92Poster.png"
+                src="/images/CZ92_Poster.jpeg"
                 alt="Combat Zone 92 Event Poster"
                 className="w-full h-auto object-contain shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]"
                 loading="eager"

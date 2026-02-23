@@ -5,21 +5,30 @@ import { Link } from "wouter";
 const CHAMPIONS = [
   {
     id: 1,
-    name: "Elvin Johnson",
-    weightClass: "Middleweight",
-    defenses: 1,
-    image: "/images/CZ90ChampElvinJohnson.jpg",
-    event: "Combat Zone 90",
+    name: "Connor Morrill",
+    weightClass: "Bantamweight",
+    defenses: 2,
+    image: "/images/CZ90ChampConnorMorrill.jpg",
+    event: "Combat Zone 91",
     discipline: "Kickboxing",
   },
   {
     id: 2,
-    name: "Connor Morrill",
-    weightClass: "Bantamweight",
+    name: "John Rivera",
+    weightClass: "Lightweight",
     defenses: 1,
-    image: "/images/CZ90ChampConnorMorrill.jpg",
-    event: "Combat Zone 90",
-    discipline: "Kickboxing",
+    image: "/images/CZ90ChampElvinJohnson.jpg",
+    event: "Combat Zone 91",
+    discipline: "MMA",
+  },
+  {
+    id: 3,
+    name: "Hussin Al Saadi",
+    weightClass: "Flyweight",
+    defenses: 0,
+    image: "/images/CZCalvinKattarFiller.jpg",
+    event: "Combat Zone 91",
+    discipline: "MMA",
   },
 ];
 
@@ -51,15 +60,15 @@ export function ChampionsSection() {
       <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
         <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto scroll-reveal">
           <h2 className="text-4xl md:text-5xl font-bold text-white font-[Chakra_Petch] uppercase tracking-tight leading-none">
-            CZ 90 <span className="text-primary">Champions</span>
+            CZ 91 <span className="text-primary">Champions</span>
           </h2>
           <p className="text-neutral-300 mt-2 text-sm uppercase tracking-wider font-bold">
-            Championship Fight Winners from Combat Zone 90
+            Championship Fight Winners from Combat Zone 91
           </p>
           <div className="w-24 h-1 bg-primary mt-2 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {CHAMPIONS.map((champion) => (
             <div
               key={champion.id}
@@ -81,7 +90,9 @@ export function ChampionsSection() {
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded flex items-center gap-2">
                   <Shield className="w-4 h-4 text-primary" />
                   <span className="text-xs font-bold text-neutral-900">
-                    {champion.defenses} {champion.defenses === 1 ? "Defense" : "Defenses"}
+                    {champion.defenses === 0
+                      ? "New Champ"
+                      : `${champion.defenses} ${champion.defenses === 1 ? "Defense" : "Defenses"}`}
                   </span>
                 </div>
               </div>
@@ -101,7 +112,9 @@ export function ChampionsSection() {
                 </p>
                 <div className="mt-auto pt-4 border-t border-gray-100">
                   <p className="text-neutral-500 text-xs font-bold uppercase tracking-wide">
-                    Successfully defended title
+                    {champion.defenses === 0
+                      ? "Captured title at CZ91"
+                      : "Successfully defended title"}
                   </p>
                 </div>
               </div>

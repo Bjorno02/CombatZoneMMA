@@ -56,7 +56,7 @@ export function EventSection() {
               <div className="absolute -inset-6 border border-neutral-100" />
 
               <img
-                src="/images/CombatZone92Poster.png"
+                src="/images/CZ92_Poster.jpeg"
                 alt="Combat Zone 92 Event Poster"
                 className="relative w-full max-w-md h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02] shadow-xl"
                 loading="eager"
@@ -94,20 +94,6 @@ export function EventSection() {
                 <div>
                   <div className="font-bold text-neutral-900 text-lg">5:00 PM EST</div>
                   <div className="text-sm text-neutral-500">Start Time</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="flex gap-8 mb-10 py-6 border-y border-neutral-200">
-              <div>
-                <div className="text-4xl font-bold font-[Chakra_Petch] text-primary">8</div>
-                <div className="text-xs text-neutral-500 uppercase tracking-wider mt-1">Bouts</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold font-[Chakra_Petch] text-neutral-900">4</div>
-                <div className="text-xs text-neutral-500 uppercase tracking-wider mt-1">
-                  Title Fights
                 </div>
               </div>
             </div>

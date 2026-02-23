@@ -139,7 +139,7 @@ export function Navbar() {
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[350px] bg-black border border-white/10">
                     <ListItem href="/champions" title="Latest Champions">
-                      Results from CZ 90
+                      Results from CZ 91
                     </ListItem>
                     <ListItem href="/fighters/forms" title="Fighter Forms">
                       Fighter Documentation

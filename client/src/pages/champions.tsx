@@ -8,43 +8,63 @@ import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 const CHAMPIONS = [
   {
     id: 1,
-    name: "Elvin Johnson",
-    weightClass: "Middleweight",
-    division: "Kickboxing",
-    defenses: 1,
-    record: "2-0",
-    image: "/images/CZ90ChampElvinJohnson.jpg",
-    wonAt: "Combat Zone 90",
-    hometown: "Boston, MA",
-    age: 28,
-    stance: "Orthodox",
-    bio: "Elvin Johnson retains his belt in spectacular fashion defeating Javanis Ross at CZ90.",
-    stats: {
-      koTko: 5,
-      decisions: 3,
-      finishRate: "63%",
-    },
-    signature: "Leg kicks & Counter right hand",
-  },
-  {
-    id: 2,
     name: "Connor Morrill",
     weightClass: "Bantamweight",
     division: "Kickboxing",
-    defenses: 1,
-    record: "2-6",
+    defenses: 2,
+    record: "5-0",
     image: "/images/CZ90ChampConnorMorrill.jpg",
-    wonAt: "Combat Zone 90",
+    wonAt: "Combat Zone 88",
     hometown: "Manchester, NH",
     age: 25,
     stance: "Southpaw",
-    bio: "KTA's Connor Morrill takes home CZ Gold with a Unanimous Decision. Setting up a much anticipated bout with Team Link's Austin Smith.",
+    bio: "KTA's Connor Morrill successfully defended his CZ Gold against Team Link's Austin Smith in the highly anticipated rematch at CZ91.",
     stats: {
       koTko: 4,
-      decisions: 7,
-      finishRate: "36%",
+      decisions: 8,
+      finishRate: "33%",
     },
     signature: "Footwork & Precision combinations",
+  },
+  {
+    id: 2,
+    name: "John Rivera",
+    weightClass: "Lightweight",
+    division: "MMA",
+    defenses: 1,
+    record: "5-2",
+    image: "/images/CZ90ChampElvinJohnson.jpg",
+    wonAt: "Combat Zone 89",
+    hometown: "New England",
+    age: null,
+    stance: "Orthodox",
+    bio: "John Rivera defended his CZ Lightweight title against Isaiah Longs at CZ91, proving himself as the top 155-pounder in the region.",
+    stats: {
+      koTko: 2,
+      decisions: 3,
+      finishRate: "40%",
+    },
+    signature: "Well-rounded game",
+  },
+  {
+    id: 3,
+    name: "Hussin Al Saadi",
+    weightClass: "Flyweight",
+    division: "MMA",
+    defenses: 0,
+    record: "5-2",
+    image: "/images/CZCalvinKattarFiller.jpg",
+    wonAt: "Combat Zone 91",
+    hometown: "New England",
+    age: null,
+    stance: "Orthodox",
+    bio: "Hussin Al Saadi captured the vacant CZ Flyweight championship in an extremely high-level fight at CZ91, showcasing elite skills at 125 lbs.",
+    stats: {
+      koTko: 2,
+      decisions: 3,
+      finishRate: "40%",
+    },
+    signature: "Technical striking & grappling",
   },
 ];
 
@@ -52,7 +72,7 @@ export default function ChampionsPage() {
   useSEO({
     title: "Current Champions | Combat Zone MMA",
     description:
-      "Meet the current Combat Zone MMA champions. Elvin Johnson and Connor Morrill reign as the Middleweight and Bantamweight Kickboxing champions.",
+      "Meet the current Combat Zone champions. Connor Morrill, John Rivera, and Hussin Al Saadi hold gold in Kickboxing and MMA.",
   });
 
   return (
@@ -95,7 +115,7 @@ export default function ChampionsPage() {
             </h1>
 
             <p className="text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl mx-auto">
-              Fighters who touched gold at Combat Zone 90.
+              Fighters who touched gold at Combat Zone 91.
             </p>
           </div>
         </Container>
@@ -215,10 +235,14 @@ export default function ChampionsPage() {
                         </div>
                         <div className="text-center">
                           <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-amber-500 mb-1">
-                            {champion.defenses}
+                            {champion.defenses === 0 ? "NEW" : champion.defenses}
                           </div>
                           <div className="text-xs uppercase tracking-widest text-neutral-500">
-                            {champion.defenses === 1 ? "Defense" : "Defenses"}
+                            {champion.defenses === 0
+                              ? "Champion"
+                              : champion.defenses === 1
+                                ? "Defense"
+                                : "Defenses"}
                           </div>
                         </div>
                       </div>
