@@ -1,6 +1,6 @@
-import { Star, Tv } from "lucide-react";
+import { Play, Star, Tv } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PPV_STREAM_URL } from "@/lib/constants";
+import { PPV_REPLAY_URL } from "@/lib/constants";
 
 export function PPVSection() {
   return (
@@ -26,24 +26,24 @@ export function PPVSection() {
           {/* Left side - takes 2 columns, offset */}
           <div className="lg:col-span-2 lg:pl-8 scroll-reveal">
             <span className="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block">
-              Watch Live
+              Watch Now
             </span>
             <h2 className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] uppercase italic mb-6 leading-tight">
               Pay-Per-<span className="text-primary">View</span>
             </h2>
             <div className="w-24 h-1 bg-primary mb-8"></div>
             <p className="text-lg text-neutral-700 leading-relaxed mb-8">
-              Experience every knockout, submission, and championship moment from the comfort of
-              your home. Stream live events in HD quality.
+              Missed the action? Watch the full replay of Combat Zone 91 on demand. Every knockout,
+              submission, and championship moment in HD quality.
             </p>
-            <a href={PPV_STREAM_URL} target="_blank" rel="noopener noreferrer">
+            <a href={PPV_REPLAY_URL} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white font-bold uppercase px-6 sm:px-8 py-5 sm:py-6 rounded-none w-full sm:w-auto"
               >
-                <Tv className="mr-2" size={18} />
-                Watch Combat Zone 91
+                <Play className="mr-2" size={18} />
+                Watch CZ91 Replay
               </Button>
             </a>
           </div>
@@ -51,7 +51,7 @@ export function PPVSection() {
           {/* Right side - takes 3 columns, event promo card */}
           <div className="lg:col-span-3 flex justify-center lg:justify-end scroll-reveal scroll-reveal-delay-1">
             <a
-              href={PPV_STREAM_URL}
+              href={PPV_REPLAY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="relative w-full max-w-md block"
@@ -65,11 +65,11 @@ export function PPVSection() {
 
                 {/* Content */}
                 <div className="relative z-10 p-8 md:p-10">
-                  {/* Live badge */}
+                  {/* Replay badge */}
                   <div className="flex items-center gap-2 mb-6">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                    <Play className="w-4 h-4 text-primary" fill="currentColor" />
                     <span className="text-primary text-xs font-bold uppercase tracking-widest">
-                      Live Stream Available
+                      Replay Available Now
                     </span>
                   </div>
 
@@ -81,26 +81,21 @@ export function PPVSection() {
                   {/* Date */}
                   <p className="text-neutral-400 mb-6">February 21, 2026 • SNHU Arena</p>
 
-                  {/* Price options */}
+                  {/* Replay info */}
                   <div className="space-y-3 mb-8">
                     <div className="flex justify-between items-center py-2 border-b border-white/10">
-                      <span className="text-neutral-300">Live Stream Only</span>
-                      <span className="text-white font-bold">$25</span>
-                    </div>
-                    <div className="flex justify-between items-center py-2 border-b border-white/10">
-                      <span className="text-neutral-300">Stream + Replay</span>
-                      <span className="text-white font-bold">$30</span>
-                    </div>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-neutral-300">Replay Only</span>
+                      <span className="text-neutral-300">Full Event Replay</span>
                       <span className="text-white font-bold">$20</span>
+                    </div>
+                    <div className="py-2 text-neutral-400 text-sm">
+                      Watch on demand • HD Quality • Unlimited replays
                     </div>
                   </div>
 
                   {/* CTA */}
                   <div className="flex items-center justify-center gap-2 bg-primary text-white font-bold uppercase tracking-wider py-4 group-hover:bg-primary/90 transition-colors">
-                    <Tv size={18} />
-                    <span>Get Access</span>
+                    <Play size={18} />
+                    <span>Watch Replay</span>
                   </div>
                 </div>
               </div>

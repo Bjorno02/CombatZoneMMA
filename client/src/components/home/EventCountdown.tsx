@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Ticket } from "lucide-react";
 import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
 
-// February 21, 2026 at 5:00 PM EST
-const EVENT_DATE = new Date("2026-02-21T17:00:00-05:00");
+// May 16, 2026 at 5:00 PM EDT
+const EVENT_DATE = new Date("2026-05-16T17:00:00-04:00");
 
 interface TimeLeft {
   days: number;
@@ -75,11 +75,9 @@ export function EventCountdown() {
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-white uppercase">
-            CZ<span className="text-primary">91</span> Countdown
+            CZ<span className="text-primary">92</span> Countdown
           </h2>
-          <p className="text-neutral-500 text-sm mt-2">
-            February 21, 2026 • 5:00 PM EST • SNHU Arena
-          </p>
+          <p className="text-neutral-500 text-sm mt-2">May 16, 2026 • 5:00 PM EDT • SNHU Arena</p>
         </div>
 
         {/* Countdown blocks */}

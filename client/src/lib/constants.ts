@@ -9,8 +9,8 @@
 export const TICKETMASTER_EVENT_URL =
   import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/0100636EB4C5E8BB";
 
-export const PPV_STREAM_URL =
-  import.meta.env.VITE_PPV_STREAM_URL || "https://combatzonemma.ticketspice.com/combat-zone-91";
+export const PPV_REPLAY_URL =
+  import.meta.env.VITE_PPV_REPLAY_URL || "https://combatzonemma.ticketspice.com/combat-zone-91";
 
 export const YOUTUBE_CHANNEL_URL =
   import.meta.env.VITE_YOUTUBE_CHANNEL_URL || "https://www.youtube.com/@CombatZoneMMA";

@@ -85,7 +85,7 @@ export function Navbar() {
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[350px] bg-black border border-white/10">
                     <ListItem href="/events" title="Upcoming Events">
-                      Next: CZ 91 at SNHU Arena
+                      Next: CZ 92 at SNHU Arena
                     </ListItem>
                     <ListItem href="/fight-card" title="Fight Card">
                       View the full lineup

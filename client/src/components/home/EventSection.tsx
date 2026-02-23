@@ -56,8 +56,8 @@ export function EventSection() {
               <div className="absolute -inset-6 border border-neutral-100" />
 
               <img
-                src="/images/CombatZone91Poster.png"
-                alt="Combat Zone 91 Event Poster"
+                src="/images/CombatZone92Poster.png"
+                alt="Combat Zone 92 Event Poster"
                 className="relative w-full max-w-md h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02] shadow-xl"
                 loading="eager"
               />
@@ -70,13 +70,13 @@ export function EventSection() {
             <div className="inline-flex items-center gap-3 bg-neutral-100 border border-neutral-200 px-4 py-2 mb-6">
               <Calendar className="text-primary" size={16} />
               <span className="text-sm font-bold uppercase tracking-wider text-neutral-700">
-                February 21, 2026
+                May 16, 2026
               </span>
             </div>
 
             {/* Title */}
             <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold font-[Chakra_Petch] leading-[0.85] mb-8 text-neutral-900">
-              CZ<span className="text-primary">91</span>
+              CZ<span className="text-primary">92</span>
             </h2>
 
             {/* Event details */}

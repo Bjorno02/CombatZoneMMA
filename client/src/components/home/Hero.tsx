@@ -10,7 +10,7 @@ import { Link } from "wouter";
 const SLIDES = [
   {
     id: 1,
-    image: "/images/CombatZoneHero1.png",
+    image: "/images/CombatZoneHero1.JPG",
     title: "COMBAT ZONE",
     subtitle: "NEW ENGLAND'S LONGEST RUNNING MMA PROMOTION",
     cta: "GET TICKETS",
@@ -88,8 +88,8 @@ export function Hero() {
               />
 
               {/* Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
 
               {/* Content Container */}
               <div className="absolute inset-0 max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 flex flex-col justify-center items-start text-left h-full z-10">

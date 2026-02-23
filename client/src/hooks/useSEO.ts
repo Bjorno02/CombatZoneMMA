@@ -100,9 +100,9 @@ export const SEO_CONFIG = {
       "Browse the complete history of Combat Zone MMA events, fight results, and championship bouts.",
   },
   fightCard: {
-    title: "Fight Card - CZ91",
+    title: "Fight Card - CZ92",
     description:
-      "The official fight card for Combat Zone 91. See all matchups and fighters competing at SNHU Arena.",
+      "The official fight card for Combat Zone 92 coming soon. Championship bouts and top regional talent at SNHU Arena on May 16, 2026.",
   },
   about: {
     title: "About Us",
