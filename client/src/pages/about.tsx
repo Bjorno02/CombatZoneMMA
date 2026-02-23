@@ -86,11 +86,11 @@ export default function AboutPage() {
           <div className="max-w-5xl mx-auto">
             <div className="bg-white shadow-xl overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative bg-neutral-900 flex items-center justify-center min-h-[300px] overflow-hidden">
+                <div className="relative bg-neutral-900 flex items-center justify-center h-[450px] md:h-[520px] overflow-hidden">
                   <img
-                    src="/images/KattarContact.avif"
+                    src="/images/CalvinKattarWorkout-3.jpg"
                     alt="Calvin Kattar"
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-[center_30%]"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
                     <h3 className="text-2xl font-bold font-[Chakra_Petch] text-white">

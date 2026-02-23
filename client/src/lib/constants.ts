@@ -7,7 +7,8 @@
 
 // External URLs - configurable via environment variables
 export const TICKETMASTER_EVENT_URL =
-  import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/0100636EB4C5E8BB";
+  import.meta.env.VITE_TICKETMASTER_URL ||
+  "https://www.ticketmaster.com/combat-zone-92-manchester-new-hampshire-05-16-2026/event/01006453D8DCC4F4";
 
 export const PPV_REPLAY_URL =
   import.meta.env.VITE_PPV_REPLAY_URL || "https://combatzonemma.ticketspice.com/combat-zone-91";
