@@ -5,10 +5,10 @@ const submissions = new Map<string, number[]>();
 const RATE_LIMIT = { windowMs: 60 * 60 * 1000, max: 5 };
 
 const EMAIL_ROUTING: Record<string, string[]> = {
-  general: ["bshurd42@gmail.com"],
-  fighter: ["jerome@czmma.com"],
-  sponsorship: ["kristinmenconi@czmma.com", "skattar@czmma.com"],
-  media: ["conor.hews@gmail.com"],
+  general: ["czmmaemailing@gmail.com"],
+  fighter: ["czmmaemailing@gmail.com"],
+  sponsorship: ["czmmaemailing@gmail.com"],
+  media: ["czmmaemailing@gmail.com"],
 };
 
 const SUBJECT_LABELS: Record<string, string> = {
@@ -107,7 +107,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       timestamp: new Date().toISOString(),
     });
 
-    const recipients = EMAIL_ROUTING[subject] ?? EMAIL_ROUTING.general ?? ["bshurd42@gmail.com"];
+    const recipients = EMAIL_ROUTING[subject] ??
+      EMAIL_ROUTING.general ?? ["czmmaemailing@gmail.com"];
     const subjectLabel = SUBJECT_LABELS[subject] || "Contact Form";
 
     const resendApiKey = process.env.RESEND_API_KEY;
