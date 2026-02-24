@@ -150,12 +150,7 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
 
         // Send email via Resend if API key is configured
         const resendApiKey = process.env.RESEND_API_KEY;
-        console.log(
-          "[CONTACT] RESEND_API_KEY exists:",
-          !!resendApiKey,
-          "length:",
-          resendApiKey?.length || 0
-        );
+        console.log("[CONTACT] API KEY CHECK - exists:", !!resendApiKey);
         if (resendApiKey) {
           const resend = new Resend(resendApiKey);
 
