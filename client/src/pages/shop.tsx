@@ -40,6 +40,12 @@ export default function ShopPage() {
           moneyFormat: "%24%7B%7Bamount%7D%7D",
           options: {
             product: {
+              contents: {
+                img: true,
+                title: true,
+                price: true,
+                compareAt: false,
+              },
               styles: {
                 product: {
                   "@media (min-width: 601px)": {
@@ -74,6 +80,9 @@ export default function ShopPage() {
                   "font-weight": "600",
                   color: "#c73a3a",
                   "font-size": "18px",
+                },
+                compareAt: {
+                  display: "none",
                 },
                 button: {
                   "font-family": "Chakra Petch, sans-serif",
@@ -110,6 +119,7 @@ export default function ShopPage() {
                 imgWithCarousel: true,
                 button: false,
                 buttonWithQuantity: true,
+                compareAt: false,
               },
               styles: {
                 product: {
@@ -129,6 +139,9 @@ export default function ShopPage() {
                   "font-family": "Chakra Petch, sans-serif",
                   "font-weight": "600",
                   color: "#c73a3a",
+                },
+                compareAt: {
+                  display: "none",
                 },
                 button: {
                   "font-family": "Chakra Petch, sans-serif",

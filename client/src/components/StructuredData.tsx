@@ -12,7 +12,7 @@ export function OrganizationSchema() {
     image: "https://combatzonemma.com/opengraph.jpg",
     foundingDate: "2000",
     description:
-      "New England's longest running MMA promotion. Live events at SNHU Arena featuring the region's top fighters since 2000.",
+      "New England's longest running MMA promotion. Live events at SNHU Arena featuring the region's top fighters.",
     slogan: "Where Legends Are Made",
     address: {
       "@type": "PostalAddress",

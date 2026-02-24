@@ -106,7 +106,7 @@ export function AboutSection() {
                       <div className="font-bold text-neutral-900 text-sm uppercase">
                         Family Owned
                       </div>
-                      <div className="text-xs text-neutral-500">Since 2000</div>
+                      <div className="text-xs text-neutral-500">Since 2013</div>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

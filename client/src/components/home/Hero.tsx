@@ -10,7 +10,7 @@ import { Link } from "wouter";
 const SLIDES = [
   {
     id: 1,
-    image: "/images/CombatZoneHero1.JPG",
+    image: "/images/CombatZoneHero1.webp",
     title: "COMBAT ZONE",
     subtitle: "NEW ENGLAND'S LONGEST RUNNING MMA PROMOTION",
     cta: "GET TICKETS",
@@ -23,7 +23,7 @@ const SLIDES = [
   },
   {
     id: 2,
-    image: "/images/CombatZoneHero2.jpg",
+    image: "/images/CombatZoneHero2.webp",
     title: "CHAMPIONS RISING",
     subtitle: "WHERE LEGENDS ARE MADE",
     cta: "VIEW CHAMPIONS",
@@ -36,7 +36,7 @@ const SLIDES = [
   },
   {
     id: 3,
-    image: "/images/CombatZoneHero3.JPG",
+    image: "/images/CombatZoneHero3.webp",
     title: "OFFICIAL MERCH",
     subtitle: "WEAR THE BATTLE",
     cta: "SHOP NOW",
@@ -77,14 +77,16 @@ export function Hero() {
       {/* Carousel Viewport */}
       <div className="absolute inset-0 z-0" ref={emblaRef}>
         <div className="flex h-full">
-          {SLIDES.map((slide) => (
+          {SLIDES.map((slide, index) => (
             <div key={slide.id} className="relative flex-[0_0_100%] h-full min-w-0">
               {/* Background Image */}
               <img
                 src={slide.image}
                 alt={slide.title}
                 className="w-full h-full object-cover"
-                loading="eager"
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding={index === 0 ? "sync" : "async"}
               />
 
               {/* Overlays */}

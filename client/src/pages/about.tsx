@@ -18,7 +18,7 @@ export default function AboutPage() {
         <Container className="relative z-10 pt-32 md:pt-40 pb-20 md:pb-24">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm font-medium text-primary tracking-widest uppercase mb-6">
-              Est. 2000
+              Our Story
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-[Chakra_Petch] text-white leading-[1.05] mb-6">
               NEW ENGLAND'S <span className="text-primary">FIGHT HOME</span>
@@ -71,9 +71,9 @@ export default function AboutPage() {
                 Providing a stage for the area's top local talent is what we do.
               </p>
               <p>
-                In 2020, UFC featherweight Calvin Kattar acquired Combat Zone, bringing firsthand
-                experience from the sport's highest level back to the regional scene where his
-                career began.
+                In 2013, UFC featherweight Calvin Kattar took over Combat Zone after CZ44, promoting
+                his first event at CZ45 in September 2013. He brought firsthand experience from the
+                sport's highest level back to the regional scene where his career began.
               </p>
             </div>
           </div>
@@ -178,9 +178,8 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-6 text-lg text-neutral-600 leading-relaxed">
               <p>
-                Over 90 events and hundreds of fighters have come through Combat Zone since 2000.
-                Alumni have gone on to compete in the UFC, Bellator, PFL, and other major
-                organizations.
+                Over 90 events and hundreds of fighters have come through Combat Zone. Alumni have
+                gone on to compete in the UFC, Bellator, PFL, and other major organizations.
               </p>
               <p>
                 At a Combat Zone event you can expect action packed fights in a fun and exciting
