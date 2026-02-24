@@ -18,6 +18,7 @@ import MediaPage from "@/pages/media";
 import PhotoArchivePage from "@/pages/photo-archive";
 import ShopPage from "@/pages/shop";
 import SponsorsPage from "@/pages/sponsors";
+import CurrentSponsorsPage from "@/pages/current-sponsors";
 import SponsorPackagesPage from "@/pages/sponsor-packages";
 import ContactPage from "@/pages/contact";
 import VIPPage from "@/pages/vip";
@@ -53,6 +54,7 @@ function Router() {
       <Route path="/shop/kattarmania" component={KattarmaniaPage} />
       <Route path="/shop" component={ShopPage} />
       <Route path="/sponsors" component={SponsorsPage} />
+      <Route path="/sponsors/current" component={CurrentSponsorsPage} />
       <Route path="/sponsor-packages" component={SponsorPackagesPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/vip" component={VIPPage} />

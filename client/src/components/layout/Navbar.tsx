@@ -168,8 +168,8 @@ export function Navbar() {
 
         {/* Mobile Logo - Left aligned */}
         <Link href="/" className="lg:hidden flex items-center gap-2 text-white relative z-[51]">
-          <img src={logoImg} alt="Combat Zone" className="h-10 w-10" />
-          <span className="text-xl font-bold italic tracking-tighter font-[Chakra_Petch]">
+          <img src={logoImg} alt="Combat Zone" className="h-9 w-auto object-contain" />
+          <span className="text-lg font-bold italic tracking-tight font-[Chakra_Petch]">
             <span className="text-primary">COMBAT</span>ZONE
           </span>
         </Link>
@@ -185,6 +185,9 @@ export function Navbar() {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[350px] bg-black border border-white/10">
+                    <ListItem href="/sponsors/current" title="Current Sponsors">
+                      Our official partners
+                    </ListItem>
                     <ListItem href="/sponsors" title="Why Sponsor">
                       Brand identity & Audience
                     </ListItem>
@@ -354,6 +357,9 @@ export function Navbar() {
                 </button>
                 {expandedMenu === "sponsors" && (
                   <div className="pl-4 pt-2 pb-2 space-y-2">
+                    <MobileLink href="/sponsors/current" onClick={() => setIsOpen(false)} isSubItem>
+                      Current Sponsors
+                    </MobileLink>
                     <MobileLink href="/sponsors" onClick={() => setIsOpen(false)} isSubItem>
                       Why Sponsor
                     </MobileLink>

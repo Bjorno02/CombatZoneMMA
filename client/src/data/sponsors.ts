@@ -25,39 +25,33 @@ export const SPONSORS: Sponsor[] = [
   },
   {
     id: 4,
-    image: "/images/Sponsor4.jpeg",
-    name: "GED Lawyers",
-    url: "https://www.gedlawyers.com/",
-  },
-  {
-    id: 5,
-    image: "/images/Sponsor5.avif",
-    name: "Goat City Transport",
-    url: "https://goatcitytransport.com/",
-  },
-  {
-    id: 6,
     image: "/images/Sponsor6.jpeg",
     name: "Alltown Fresh",
     url: "https://alltownfresh.com/",
   },
   {
-    id: 7,
-    image: "/images/Sponsor7.jpeg",
-    name: "Brunt Workwear",
-    url: "https://bruntworkwear.com/",
-  },
-  {
-    id: 8,
+    id: 5,
     image: "/images/Sponsor8.jpg",
     name: "Goat Barn Nation",
     url: "https://goatbarnation.com/",
   },
   {
-    id: 9,
+    id: 6,
     image: "/images/Sponsor9.jpg",
     name: "Bell and Williams",
     url: "https://bellandwilliams.com/",
+  },
+  {
+    id: 7,
+    image: "/images/Muraco-Group-gold-[Converted].webp",
+    name: "Muraco Group",
+    url: "https://muracogroup.com/",
+  },
+  {
+    id: 8,
+    image: "/images/Ruthless.avif",
+    name: "Ruthless Syndicate",
+    url: "https://www.ruthlesssyndicate.com/",
   },
 ];
 

@@ -1,10 +1,9 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { Mail, ArrowRight, ExternalLink } from "lucide-react";
+import { Mail, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
-import { SPONSORS } from "@/data/sponsors";
 
 export default function SponsorsPage() {
   useSEO(SEO_CONFIG.sponsors);
@@ -149,55 +148,6 @@ export default function SponsorsPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Current Partners */}
-      <section className="py-24 md:py-32 bg-neutral-50">
-        <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-            <div>
-              <p className="text-sm font-medium text-primary tracking-wide mb-4">
-                Current Partners
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900">
-                Our Official Sponsors
-              </h2>
-            </div>
-            <Link href="/contact">
-              <Button
-                variant="outline"
-                className="border-neutral-300 text-neutral-700 hover:bg-white"
-              >
-                Become a Partner
-                <ArrowRight className="ml-2" size={16} />
-              </Button>
-            </Link>
-          </div>
-
-          {/* Clean Logo Grid */}
-          <div className="flex flex-wrap justify-center border-t border-l border-neutral-200">
-            {SPONSORS.map((sponsor) => (
-              <a
-                key={sponsor.id}
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-white p-6 md:p-8 flex items-center justify-center aspect-square hover:bg-neutral-50 transition-all relative border-b border-r border-neutral-200 w-1/2 md:w-1/3"
-              >
-                <img
-                  src={sponsor.image}
-                  alt={sponsor.name}
-                  className="w-full h-full object-contain"
-                  loading="lazy"
-                />
-                <ExternalLink
-                  className="absolute top-4 right-4 text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity"
-                  size={14}
-                />
-              </a>
-            ))}
           </div>
         </Container>
       </section>
