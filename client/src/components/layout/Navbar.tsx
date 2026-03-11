@@ -74,12 +74,12 @@ export function Navbar() {
 
       <div className="container mx-auto px-4 h-20 flex items-center relative">
         {/* Left Navigation - Desktop */}
-        <div className="hidden lg:flex items-center flex-1 relative z-[51]">
+        <div className="hidden lg:flex items-center flex-1 relative z-[51] pr-16 xl:pr-20">
           <NavigationMenu>
             <NavigationMenuList>
               {/* Events Dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-wide text-sm">
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-normal xl:tracking-wide text-xs xl:text-sm px-2 xl:px-4">
                   Events
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -99,7 +99,7 @@ export function Navbar() {
 
               {/* Media Dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-wide text-sm">
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-normal xl:tracking-wide text-xs xl:text-sm px-2 xl:px-4">
                   Media
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -116,7 +116,7 @@ export function Navbar() {
 
               {/* Store Dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-wide text-sm">
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-normal xl:tracking-wide text-xs xl:text-sm px-2 xl:px-4">
                   Store
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -133,7 +133,7 @@ export function Navbar() {
 
               {/* Fighters Dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-wide text-sm">
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-normal xl:tracking-wide text-xs xl:text-sm px-2 xl:px-4">
                   Fighters
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -175,12 +175,12 @@ export function Navbar() {
         </Link>
 
         {/* Right Navigation - Desktop */}
-        <div className="hidden lg:flex items-center justify-end flex-1 relative z-[51]">
+        <div className="hidden lg:flex items-center justify-end flex-1 relative z-[51] pl-16 xl:pl-20">
           <NavigationMenu>
             <NavigationMenuList>
               {/* Sponsors Dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-wide text-sm">
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-normal xl:tracking-wide text-xs xl:text-sm px-2 xl:px-4">
                   Sponsors
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -200,7 +200,7 @@ export function Navbar() {
 
               {/* About Dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-wide text-sm">
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-normal xl:tracking-wide text-xs xl:text-sm px-2 xl:px-4">
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -214,7 +214,7 @@ export function Navbar() {
 
               {/* Contact Dropdown */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-wide text-sm">
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 hover:text-primary focus:bg-white/10 focus:text-primary data-[state=open]:bg-white/10 font-[Chakra_Petch] uppercase font-bold tracking-normal xl:tracking-wide text-xs xl:text-sm px-2 xl:px-4">
                   Contact
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -238,7 +238,7 @@ export function Navbar() {
             rel="noopener noreferrer"
             className="ml-2"
           >
-            <Button className="bg-primary hover:bg-white hover:text-primary text-white font-bold uppercase tracking-wider px-6 rounded-none transition-all">
+            <Button className="bg-primary hover:bg-white hover:text-primary text-white font-bold uppercase tracking-wider px-4 xl:px-6 text-xs xl:text-sm rounded-none transition-all">
               Tickets
             </Button>
           </a>

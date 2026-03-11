@@ -7,20 +7,12 @@ import { useSEO } from "@/hooks/useSEO";
 // Form data - centralized for easy maintenance
 const FIGHTER_FORMS = [
   {
-    id: "nh-medical",
-    title: "NH Medical Forms",
-    description: "New Hampshire State Required Medical Forms for fighters.",
-    fileName: "NH_Medical_Forms.pdf",
-    fileType: "PDF",
+    id: "medical-requirements",
+    title: "Medical Requirements",
+    description: "Required medical documentation and clearance forms for all fighters.",
+    fileName: "Medical Requirements.docx",
+    fileType: "DOCX",
     number: "01",
-  },
-  {
-    id: "nh-mma-rules",
-    title: "NH MMA Rules",
-    description: "New Hampshire Professional MMA Unified Rules for fighters.",
-    fileName: "NH_Professional_MMA_Rules.pdf",
-    fileType: "PDF",
-    number: "02",
   },
   {
     id: "cz-fighter-info",
@@ -28,7 +20,7 @@ const FIGHTER_FORMS = [
     description: "Combat Zone Fighter Information form for fighters competing.",
     fileName: "CZ_Fighter_Information_Form.docx",
     fileType: "DOCX",
-    number: "03",
+    number: "02",
   },
   {
     id: "cz-kickboxing-rules",
@@ -37,15 +29,7 @@ const FIGHTER_FORMS = [
       "Combat Zone Kickboxing Rules & Regulations for Professional and Amateur Fighters.",
     fileName: "CZ_Kickboxing_Rules.docx",
     fileType: "DOCX",
-    number: "04",
-  },
-  {
-    id: "ma-mma-rules",
-    title: "MA MMA Rules",
-    description: "Massachusetts Professional MMA Rules for fighters.",
-    fileName: "MA_Professional_MMA_Rules.pdf",
-    fileType: "PDF",
-    number: "05",
+    number: "03",
   },
 ];
 
@@ -57,10 +41,6 @@ export default function FighterFormsPage() {
   });
 
   const formsBasePath = "/forms";
-
-  // Split forms: first 3 on top, last 2 on bottom
-  const topRow = FIGHTER_FORMS.slice(0, 3);
-  const bottomRow = FIGHTER_FORMS.slice(3);
 
   return (
     <PageLayout>
@@ -74,16 +54,8 @@ export default function FighterFormsPage() {
       {/* Forms Section */}
       <section className="py-20 md:py-28 bg-white">
         <Container>
-          {/* Top Row - 3 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-6">
-            {topRow.map((form) => (
-              <FormCard key={form.id} form={form} basePath={formsBasePath} />
-            ))}
-          </div>
-
-          {/* Bottom Row - 2 cards centered */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[calc(66.666%-0.75rem)] mx-auto">
-            {bottomRow.map((form) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {FIGHTER_FORMS.map((form) => (
               <FormCard key={form.id} form={form} basePath={formsBasePath} />
             ))}
           </div>

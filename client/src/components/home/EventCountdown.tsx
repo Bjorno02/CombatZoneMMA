@@ -81,18 +81,18 @@ export function EventCountdown() {
         </div>
 
         {/* Countdown blocks */}
-        <div className="flex justify-center gap-3 md:gap-6 mb-8">
+        <div className="flex justify-center items-center gap-1 sm:gap-2 md:gap-4 mb-8">
           {timeBlocks.map((block, index) => (
             <div key={block.label} className="flex items-center">
               <div className="relative group">
                 {/* Glow effect */}
                 <div className="absolute -inset-1 bg-primary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                <div className="relative bg-neutral-900 border border-neutral-800 group-hover:border-primary/50 transition-colors px-4 md:px-8 py-4 md:py-6 min-w-[70px] md:min-w-[100px]">
-                  <div className="text-3xl md:text-5xl lg:text-6xl font-black font-[Chakra_Petch] text-white tabular-nums">
+                <div className="relative bg-neutral-900 border border-neutral-800 group-hover:border-primary/50 transition-colors px-3 sm:px-4 md:px-8 py-4 md:py-6 w-[68px] sm:w-[76px] md:w-[100px] flex flex-col items-center">
+                  <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black font-[Chakra_Petch] text-white tabular-nums text-center leading-none">
                     {String(block.value).padStart(2, "0")}
                   </div>
-                  <div className="text-[10px] md:text-xs uppercase tracking-widest text-neutral-500 mt-1 text-center">
+                  <div className="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest text-neutral-500 mt-1 text-center">
                     {block.label}
                   </div>
                 </div>
@@ -100,7 +100,7 @@ export function EventCountdown() {
 
               {/* Separator */}
               {index < timeBlocks.length - 1 && (
-                <div className="text-2xl md:text-4xl font-bold text-primary mx-1 md:mx-2 animate-pulse">
+                <div className="text-xl sm:text-2xl md:text-4xl font-bold text-primary mx-0.5 sm:mx-1 md:mx-2 animate-pulse self-center">
                   :
                 </div>
               )}
