@@ -8,6 +8,19 @@ import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
+const MATCHUPS = [
+  { id: 1, image: "/images/matchups/Abdulla-Lanes.jpg", fighters: "Abdulla vs Lanes" },
+  { id: 2, image: "/images/matchups/Aguirre-Mazumdar.jpg", fighters: "Aguirre vs Mazumdar" },
+  { id: 3, image: "/images/matchups/Batista-Colon.jpg", fighters: "Batista vs Colon" },
+  { id: 4, image: "/images/matchups/Carey-Aguiar.jpg", fighters: "Carey vs Aguiar" },
+  { id: 5, image: "/images/matchups/Darling-Hill.jpg", fighters: "Darling vs Hill" },
+  { id: 6, image: "/images/matchups/Durham-DAmico.jpg", fighters: "Durham vs D'Amico" },
+  { id: 7, image: "/images/matchups/Grimard-Reese.jpg", fighters: "Grimard vs Reese" },
+  { id: 8, image: "/images/matchups/Lindfors-Boucher.jpg", fighters: "Lindfors vs Boucher" },
+  { id: 9, image: "/images/matchups/Sharkir-Wurlitzer.jpg", fighters: "Sharkir vs Wurlitzer" },
+  { id: 10, image: "/images/matchups/Viera-Whitehouse.jpg", fighters: "Viera vs Whitehouse" },
+];
+
 export default function FightCardPage() {
   useSEO(SEO_CONFIG.fightCard);
   return (
@@ -83,70 +96,66 @@ export default function FightCardPage() {
         </Container>
       </section>
 
-      {/* Coming Soon Section */}
-      <section className="py-24 md:py-36 bg-white relative overflow-hidden">
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.1) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        {/* Accent line */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
-
+      {/* Matchups Section */}
+      <section className="py-12 md:py-16 bg-white relative overflow-hidden">
         <Container className="relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* CZ92 large text */}
-            <div className="mb-8">
-              <span className="text-[120px] md:text-[180px] lg:text-[220px] font-black font-[Chakra_Petch] text-neutral-100 leading-none select-none">
-                92
-              </span>
-            </div>
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <p className="text-primary font-bold tracking-[0.3em] text-xs uppercase mb-3">
+              CZ92 Official Lineup
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
+              {MATCHUPS.length} Bouts Confirmed
+            </h2>
+          </div>
 
-            {/* Main content - overlaid */}
-            <div className="-mt-32 md:-mt-44 relative">
-              <p className="text-primary font-bold tracking-[0.3em] text-sm uppercase mb-4">
-                Full Card Announcement
-              </p>
-
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase mb-6 leading-tight">
-                Coming Soon
-              </h2>
-
-              <div className="w-24 h-1 bg-primary mx-auto mb-8" />
-
-              <p className="text-lg text-neutral-600 leading-relaxed mb-12 max-w-xl mx-auto">
-                Championship bouts and top regional matchups are being finalized. Check back soon
-                for the complete CZ92 lineup.
-              </p>
-
-              {/* CTA */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
-                  <Button
-                    size="lg"
-                    className="bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-14 px-10"
-                  >
-                    Get Tickets
-                  </Button>
-                </a>
-                <Link href="/events">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white font-bold uppercase tracking-wider h-14 px-10"
-                  >
-                    Event Info
-                  </Button>
-                </Link>
+          {/* Matchups Grid - 2 columns on tablet, stacks on mobile */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-12 max-w-[58rem] mx-auto">
+            {MATCHUPS.map((matchup, index) => (
+              <div
+                key={matchup.id}
+                className={`group relative bg-white p-2 rounded border-2 border-primary/80 hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl max-w-[420px] mx-auto ${index % 2 === 0 ? "md:mr-auto md:ml-0" : "md:ml-auto md:mr-0"}`}
+              >
+                {/* Matchup Image - natural aspect ratio */}
+                <div className="overflow-hidden rounded-sm">
+                  <img
+                    src={matchup.image}
+                    alt={matchup.fighters}
+                    className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
+                    loading={index < 4 ? "eager" : "lazy"}
+                  />
+                </div>
               </div>
+            ))}
+          </div>
+
+          {/* CTA Section */}
+          <div className="mt-14 text-center">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4">
+              <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  className="bg-primary hover:bg-neutral-900 text-white font-bold uppercase tracking-wider h-14 px-10 rounded-none transition-all"
+                >
+                  <Ticket className="mr-2" size={18} />
+                  Get Tickets
+                </Button>
+              </a>
+              <Link href="/events">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white font-bold uppercase tracking-wider h-14 px-10 rounded-none transition-all"
+                >
+                  Event Details
+                </Button>
+              </Link>
             </div>
           </div>
         </Container>
+
+        {/* Bottom accent */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
       </section>
     </PageLayout>
   );

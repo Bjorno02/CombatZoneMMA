@@ -102,7 +102,7 @@ export const SEO_CONFIG = {
   fightCard: {
     title: "Fight Card - CZ92",
     description:
-      "The official fight card for Combat Zone 92 coming soon. Championship bouts and top regional talent at SNHU Arena on May 16, 2026.",
+      "The official fight card for Combat Zone 92 featuring 10 exciting matchups. Live at SNHU Arena on May 16, 2026.",
   },
   about: {
     title: "About Us",
