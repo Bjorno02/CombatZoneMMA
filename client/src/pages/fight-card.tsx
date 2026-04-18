@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
@@ -19,6 +20,9 @@ const MATCHUPS = [
   { id: 8, image: "/images/matchups/Lindfors-Boucher.jpg", fighters: "Lindfors vs Boucher" },
   { id: 9, image: "/images/matchups/Sharkir-Wurlitzer.jpg", fighters: "Sharkir vs Wurlitzer" },
   { id: 10, image: "/images/matchups/Viera-Whitehouse.jpg", fighters: "Viera vs Whitehouse" },
+  { id: 11, image: "/images/Carter-Gonzales.jpeg", fighters: "Carter vs Gonzales" },
+  { id: 12, image: "/images/IMG_3390.jpeg", fighters: "CZ 92 matchup" },
+  { id: 13, image: "/images/Santiago-Samoisette.jpeg", fighters: "Santiago vs Samoisette" },
 ];
 
 export default function FightCardPage() {
@@ -111,22 +115,32 @@ export default function FightCardPage() {
 
           {/* Matchups Grid - 2 columns on tablet, stacks on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-12 max-w-[58rem] mx-auto">
-            {MATCHUPS.map((matchup, index) => (
-              <div
-                key={matchup.id}
-                className={`group relative bg-white p-2 rounded border-2 border-primary/80 hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl max-w-[420px] mx-auto ${index % 2 === 0 ? "md:mr-auto md:ml-0" : "md:ml-auto md:mr-0"}`}
-              >
-                {/* Matchup Image - natural aspect ratio */}
-                <div className="overflow-hidden rounded-sm">
-                  <img
-                    src={matchup.image}
-                    alt={matchup.fighters}
-                    className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
-                    loading={index < 4 ? "eager" : "lazy"}
-                  />
+            {MATCHUPS.map((matchup, index) => {
+              const isLastOddRow = MATCHUPS.length % 2 === 1 && index === MATCHUPS.length - 1;
+              return (
+                <div
+                  key={matchup.id}
+                  className={cn(
+                    "group relative bg-white p-2 rounded border-2 border-primary/80 hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl max-w-[420px] mx-auto",
+                    isLastOddRow
+                      ? "md:col-span-2 md:mx-auto"
+                      : index % 2 === 0
+                        ? "md:mr-auto md:ml-0"
+                        : "md:ml-auto md:mr-0"
+                  )}
+                >
+                  {/* Matchup Image - natural aspect ratio */}
+                  <div className="overflow-hidden rounded-sm">
+                    <img
+                      src={matchup.image}
+                      alt={matchup.fighters}
+                      className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
+                      loading={index < 4 ? "eager" : "lazy"}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* CTA Section */}
