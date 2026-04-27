@@ -10,11 +10,11 @@ import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
 const MATCHUPS = [
+  { id: 14, image: "/images/matchups/Darling-Nsiambote.JPEG", fighters: "Darling vs Nsiambote" },
   { id: 1, image: "/images/matchups/Abdulla-Lanes.jpg", fighters: "Abdulla vs Lanes" },
   { id: 2, image: "/images/matchups/Aguirre-Mazumdar.jpg", fighters: "Aguirre vs Mazumdar" },
   { id: 3, image: "/images/matchups/Batista-Colon.jpg", fighters: "Batista vs Colon" },
   { id: 4, image: "/images/matchups/Carey-Aguiar.jpg", fighters: "Carey vs Aguiar" },
-  { id: 5, image: "/images/matchups/Darling-Hill.jpg", fighters: "Darling vs Hill" },
   { id: 6, image: "/images/matchups/Durham-DAmico.jpg", fighters: "Durham vs D'Amico" },
   { id: 7, image: "/images/matchups/Grimard-Reese.jpg", fighters: "Grimard vs Reese" },
   { id: 8, image: "/images/matchups/Lindfors-Boucher.jpg", fighters: "Lindfors vs Boucher" },
@@ -116,15 +116,17 @@ export default function FightCardPage() {
           {/* Matchups Grid - 2 columns on tablet, stacks on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-12 max-w-[58rem] mx-auto">
             {MATCHUPS.map((matchup, index) => {
-              const isLastOddRow = MATCHUPS.length % 2 === 1 && index === MATCHUPS.length - 1;
+              const isOddCount = MATCHUPS.length % 2 === 1;
+              const isFirstOddRow = isOddCount && index === 0;
+              const effectiveIndex = isOddCount ? index - 1 : index;
               return (
                 <div
                   key={matchup.id}
                   className={cn(
                     "group relative bg-white p-2 rounded border-2 border-primary/80 hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl max-w-[420px] mx-auto",
-                    isLastOddRow
+                    isFirstOddRow
                       ? "md:col-span-2 md:mx-auto"
-                      : index % 2 === 0
+                      : effectiveIndex % 2 === 0
                         ? "md:mr-auto md:ml-0"
                         : "md:ml-auto md:mr-0"
                   )}
