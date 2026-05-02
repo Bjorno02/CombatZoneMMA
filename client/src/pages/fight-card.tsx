@@ -11,6 +11,11 @@ import { EventSchema } from "@/components/StructuredData";
 
 const MATCHUPS = [
   { id: 14, image: "/images/matchups/Darling-Nsiambote.JPEG", fighters: "Darling vs Nsiambote" },
+  {
+    id: 15,
+    image: "/images/matchups/Burke-Conde-Navarro.JPEG",
+    fighters: "Burke vs Conde-Navarro",
+  },
   { id: 1, image: "/images/matchups/Abdulla-Lanes.jpg", fighters: "Abdulla vs Lanes" },
   { id: 2, image: "/images/matchups/Aguirre-Mazumdar.jpg", fighters: "Aguirre vs Mazumdar" },
   { id: 3, image: "/images/matchups/Batista-Colon.jpg", fighters: "Batista vs Colon" },
