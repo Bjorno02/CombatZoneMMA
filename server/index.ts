@@ -56,6 +56,7 @@ app.use(
           "https://*.shopify.com",
           "https://vimeo.com",
           "https://player.vimeo.com",
+          "https://*.ticketspice.com",
         ],
         connectSrc: [
           "'self'",

@@ -474,11 +474,12 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
 
         // Webconnex public API — search tickets scoped to our form/event
         // Docs: https://docs.webconnex.io/api/v2/
-        // TicketSpice access codes are typically the orderDisplayId, often formatted
-        // like XXX-XXX-XXX. We try the raw code first, then try stripped (no dashes)
-        // since users may enter it either way.
-        const normalizedCode = code.replace(/[-\s]/g, "");
-        const codesToTry = code !== normalizedCode ? [code, normalizedCode] : [code];
+        // Verification uses the Order Number (e.g. "CMBTZN92-QV40001"), which is in
+        // every TicketSpice confirmation email and is searchable via API.
+        // Note: the XXX-XXX-XXX access token shown on TicketSpice's virtual event page
+        // is internal to their player and NOT exposed via API.
+        const upperCode = code.toUpperCase();
+        const codesToTry = upperCode !== code ? [code, upperCode] : [code];
 
         interface WebconnexTicketResponse {
           responseCode?: number;
@@ -498,7 +499,7 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           : undefined = undefined;
 
         for (const tryCode of codesToTry) {
-          const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderDisplayId=${encodeURIComponent(tryCode)}`;
+          const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderNumber=${encodeURIComponent(tryCode)}`;
 
           const tsResponse = await fetch(apiUrl, {
             headers: {
@@ -524,7 +525,7 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
             (t) =>
               String(t.formId) === String(eventId) &&
               !t.refunded &&
-              (t.status === "active" || t.status === "complete" || !t.status)
+              (t.status === "completed" || t.status === "active" || !t.status)
           );
 
           if (validTicket) break;

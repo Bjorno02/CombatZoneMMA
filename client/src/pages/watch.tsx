@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Radio, Ticket, Loader2, AlertCircle } from "lucide-react";
+import { Radio, Ticket, Loader2, AlertCircle, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -71,6 +71,13 @@ export default function WatchPage() {
         {/* Slim header */}
         <div className="bg-neutral-900 border-b border-white/10 px-4 md:px-8 py-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group"
+            >
+              <ArrowLeft size={18} className="group-hover:-translate-x-0.5 transition-transform" />
+              <span className="text-sm uppercase tracking-wider hidden sm:inline">Back</span>
+            </Link>
             <div className="flex items-center gap-3">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -80,11 +87,7 @@ export default function WatchPage() {
                 {PPV_LIVE_EVENT_NAME} <span className="text-primary">Live</span>
               </h1>
             </div>
-            <Link href="/">
-              <span className="text-neutral-400 hover:text-white text-sm uppercase tracking-wider cursor-pointer">
-                Exit
-              </span>
-            </Link>
+            <div className="w-[60px]" aria-hidden="true" />
           </div>
         </div>
 
@@ -120,6 +123,14 @@ export default function WatchPage() {
         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
 
+        <Link
+          href="/"
+          className="absolute top-6 left-6 flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group z-10"
+        >
+          <ArrowLeft size={18} className="group-hover:-translate-x-0.5 transition-transform" />
+          <span className="text-sm uppercase tracking-wider hidden sm:inline">Back</span>
+        </Link>
+
         <div className="relative z-10 max-w-md w-full text-center">
           <div className="flex items-center justify-center gap-2 mb-6">
             <span className="relative flex h-3 w-3">
@@ -153,6 +164,15 @@ export default function WatchPage() {
       {/* Top accent bar */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
 
+      {/* Back arrow */}
+      <Link
+        href="/"
+        className="absolute top-6 left-6 flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group z-10"
+      >
+        <ArrowLeft size={18} className="group-hover:-translate-x-0.5 transition-transform" />
+        <span className="text-sm uppercase tracking-wider hidden sm:inline">Back</span>
+      </Link>
+
       <div className="relative z-10 max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-10">
@@ -180,21 +200,22 @@ export default function WatchPage() {
             htmlFor="access-code"
             className="block text-white text-sm font-bold uppercase tracking-wider mb-3"
           >
-            Access Code
+            Order Number
           </label>
           <Input
             id="access-code"
             type="text"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            placeholder="Enter your code"
+            placeholder="e.g. CMBTZN92-XXXXXXX"
             className="w-full bg-neutral-800 border-neutral-700 text-white text-lg h-12 rounded-none mb-2 placeholder:text-neutral-500 focus-visible:ring-primary"
             disabled={loading}
             autoFocus
             autoComplete="off"
           />
           <p className="text-neutral-500 text-xs mb-6">
-            Find your code in your TicketSpice confirmation email.
+            Find your order number in your TicketSpice confirmation email (starts with{" "}
+            <span className="text-neutral-400 font-mono">CMBTZN92-</span>).
           </p>
 
           {error && (

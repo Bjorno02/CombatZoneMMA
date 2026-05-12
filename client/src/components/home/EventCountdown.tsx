@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Ticket, Radio } from "lucide-react";
-import { TICKETMASTER_EVENT_URL, PPV_LIVE_TICKET_URL } from "@/lib/constants";
+import { Ticket, Radio, Play } from "lucide-react";
+import { TICKETMASTER_EVENT_URL, PPV_LIVE_WATCH_PATH } from "@/lib/constants";
+import { PPVPurchaseModal } from "@/components/PPVPurchaseModal";
 
 // May 16, 2026 at 5:00 PM EDT
 const EVENT_DATE = new Date("2026-05-16T17:00:00-04:00");
@@ -124,12 +126,7 @@ export function EventCountdown() {
               Get Tickets
             </Button>
           </a>
-          <a
-            href={PPV_LIVE_TICKET_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto"
-          >
+          <PPVPurchaseModal>
             <Button
               size="lg"
               variant="outline"
@@ -138,7 +135,17 @@ export function EventCountdown() {
               <Radio className="mr-2" size={18} />
               Buy PPV
             </Button>
-          </a>
+          </PPVPurchaseModal>
+          <Link href={PPV_LIVE_WATCH_PATH} className="w-full sm:w-auto">
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto bg-transparent border-2 border-neutral-500 text-neutral-300 hover:bg-neutral-300 hover:text-neutral-900 hover:border-neutral-300 font-bold uppercase tracking-wider h-12 md:h-14 px-8 md:px-10"
+            >
+              <Play className="mr-2" size={18} />
+              Watch Live
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

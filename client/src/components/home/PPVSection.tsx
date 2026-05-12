@@ -1,9 +1,7 @@
 import { Play, Star, Tv, Radio, Ticket } from "lucide-react";
 import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
 import {
   PPV_REPLAY_URL,
-  PPV_LIVE_TICKET_URL,
   PPV_LIVE_EVENT_NUMBER,
   PPV_LIVE_EVENT_DATE,
   PPV_LIVE_EVENT_VENUE,
@@ -12,6 +10,7 @@ import {
   PPV_REPLAY_EVENT_DATE,
   PPV_REPLAY_EVENT_VENUE,
 } from "@/lib/constants";
+import { PPVPurchaseModal } from "@/components/PPVPurchaseModal";
 
 export function PPVSection() {
   return (
@@ -101,17 +100,15 @@ export function PPVSection() {
 
                   {/* CTA buttons */}
                   <div className="space-y-3">
-                    <a
-                      href={PPV_LIVE_TICKET_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <div className="flex items-center justify-center gap-2 bg-primary text-white font-bold uppercase tracking-wider py-4 hover:bg-primary/90 transition-colors cursor-pointer">
+                    <PPVPurchaseModal>
+                      <button
+                        type="button"
+                        className="w-full flex items-center justify-center gap-2 bg-primary text-white font-bold uppercase tracking-wider py-4 hover:bg-primary/90 transition-colors cursor-pointer"
+                      >
                         <Ticket size={18} />
                         <span>Buy PPV Access</span>
-                      </div>
-                    </a>
+                      </button>
+                    </PPVPurchaseModal>
                     <Link href={PPV_LIVE_WATCH_PATH} className="block">
                       <div className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white font-bold uppercase tracking-wider py-4 hover:bg-white hover:text-neutral-900 transition-colors cursor-pointer">
                         <Radio size={18} />
@@ -130,9 +127,9 @@ export function PPVSection() {
           <div className="pt-8 mt-4 border-t border-neutral-200">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
               {/* Left: Event info */}
-              <div>
+              <div className="text-center lg:text-left">
                 {/* Replay badge */}
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
                   <Tv className="w-4 h-4 text-primary" />
                   <span className="text-primary text-xs font-bold uppercase tracking-widest">
                     Replay Available
@@ -150,13 +147,13 @@ export function PPVSection() {
                 </p>
 
                 {/* Description */}
-                <p className="text-neutral-700 text-sm md:text-base leading-relaxed max-w-lg">
+                <p className="text-neutral-700 text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
                   Missed the action? Watch the full event replay on demand in HD.
                 </p>
               </div>
 
               {/* Right: Pricing + CTA */}
-              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start sm:items-center lg:items-start xl:items-center gap-4 sm:gap-6 lg:justify-end">
+              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center justify-center lg:justify-end gap-4 sm:gap-6">
                 <div className="flex items-baseline gap-2">
                   <span className="text-neutral-500 text-sm uppercase tracking-wider">Replay</span>
                   <span className="text-neutral-900 font-bold text-2xl">$20</span>
