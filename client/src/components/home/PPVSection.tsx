@@ -1,6 +1,17 @@
-import { Play, Star, Tv } from "lucide-react";
+import { Play, Star, Tv, Radio, Ticket } from "lucide-react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { PPV_REPLAY_URL } from "@/lib/constants";
+import {
+  PPV_REPLAY_URL,
+  PPV_LIVE_TICKET_URL,
+  PPV_LIVE_EVENT_NUMBER,
+  PPV_LIVE_EVENT_DATE,
+  PPV_LIVE_EVENT_VENUE,
+  PPV_LIVE_WATCH_PATH,
+  PPV_REPLAY_EVENT_NUMBER,
+  PPV_REPLAY_EVENT_DATE,
+  PPV_REPLAY_EVENT_VENUE,
+} from "@/lib/constants";
 
 export function PPVSection() {
   return (
@@ -22,84 +33,145 @@ export function PPVSection() {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-          {/* Left side - takes 2 columns, offset */}
-          <div className="lg:col-span-2 lg:pl-8 scroll-reveal">
-            <span className="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block">
-              Watch Now
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] uppercase italic mb-6 leading-tight">
-              Pay-Per-<span className="text-primary">View</span>
-            </h2>
-            <div className="w-24 h-1 bg-primary mb-8"></div>
-            <p className="text-lg text-neutral-700 leading-relaxed mb-8">
-              Missed the action? Watch the full replay of Combat Zone 91 on demand. Every knockout,
-              submission, and championship moment in HD quality.
-            </p>
-            <a href={PPV_REPLAY_URL} target="_blank" rel="noopener noreferrer">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white font-bold uppercase px-6 sm:px-8 py-5 sm:py-6 rounded-none w-full sm:w-auto"
-              >
-                <Play className="mr-2" size={18} />
-                Watch CZ91 Replay
-              </Button>
-            </a>
-          </div>
+        {/* Section header */}
+        <div className="mb-12 text-center scroll-reveal">
+          <span className="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block">
+            Watch Now
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] uppercase italic mb-6 leading-tight">
+            Pay-Per-<span className="text-primary">View</span>
+          </h2>
+          <div className="w-24 h-1 bg-primary mx-auto"></div>
+        </div>
 
-          {/* Right side - takes 3 columns, event promo card */}
-          <div className="lg:col-span-3 flex justify-center lg:justify-end scroll-reveal scroll-reveal-delay-1">
-            <a
-              href={PPV_REPLAY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative w-full max-w-md block"
-            >
-              <div className="bg-neutral-900 shadow-2xl relative overflow-hidden group cursor-pointer">
-                {/* Top accent bar */}
-                <div className="h-1 bg-primary" />
+        {/* LIVE PPV - Full width, primary CTA */}
+        <div className="mb-8 scroll-reveal">
+          <div className="bg-neutral-900 shadow-2xl relative overflow-hidden">
+            {/* Top accent bar */}
+            <div className="h-1 bg-primary" />
 
-                {/* Subtle pattern overlay */}
-                <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+            {/* Subtle pattern overlay */}
+            <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
-                {/* Content */}
-                <div className="relative z-10 p-8 md:p-10">
-                  {/* Replay badge */}
+            {/* Content */}
+            <div className="relative z-10 p-8 md:p-10 lg:p-12">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                {/* Left: Event info */}
+                <div>
+                  {/* LIVE badge */}
                   <div className="flex items-center gap-2 mb-6">
-                    <Play className="w-4 h-4 text-primary" fill="currentColor" />
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                    </span>
                     <span className="text-primary text-xs font-bold uppercase tracking-widest">
-                      Replay Available Now
+                      Live PPV Event
                     </span>
                   </div>
 
                   {/* Event title */}
-                  <h3 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-white uppercase mb-2">
-                    Combat Zone <span className="text-primary">91</span>
+                  <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold font-[Chakra_Petch] text-white uppercase mb-3 leading-none">
+                    Combat Zone <span className="text-primary">{PPV_LIVE_EVENT_NUMBER}</span>
                   </h3>
 
                   {/* Date */}
-                  <p className="text-neutral-400 mb-6">February 21, 2026 • SNHU Arena</p>
+                  <p className="text-neutral-400 text-lg mb-6">
+                    {PPV_LIVE_EVENT_DATE} • {PPV_LIVE_EVENT_VENUE}
+                  </p>
 
-                  {/* Replay info */}
+                  {/* Description */}
+                  <p className="text-neutral-300 leading-relaxed">
+                    Stream the full live event in HD from anywhere. Every fight, every finish, every
+                    moment of championship action — broadcast live from the cage.
+                  </p>
+                </div>
+
+                {/* Right: Pricing + CTAs */}
+                <div className="lg:pl-6 lg:border-l lg:border-white/10">
+                  {/* Pricing rows */}
                   <div className="space-y-3 mb-8">
                     <div className="flex justify-between items-center py-2 border-b border-white/10">
-                      <span className="text-neutral-300">Full Event Replay</span>
-                      <span className="text-white font-bold">$20</span>
+                      <span className="text-neutral-300">Live Stream Access</span>
+                      <span className="text-white font-bold text-xl">$30</span>
                     </div>
                     <div className="py-2 text-neutral-400 text-sm">
-                      Watch on demand • HD Quality • Unlimited replays
+                      Live broadcast • HD quality • Includes replay
                     </div>
                   </div>
 
-                  {/* CTA */}
-                  <div className="flex items-center justify-center gap-2 bg-primary text-white font-bold uppercase tracking-wider py-4 group-hover:bg-primary/90 transition-colors">
-                    <Play size={18} />
-                    <span>Watch Replay</span>
+                  {/* CTA buttons */}
+                  <div className="space-y-3">
+                    <a
+                      href={PPV_LIVE_TICKET_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <div className="flex items-center justify-center gap-2 bg-primary text-white font-bold uppercase tracking-wider py-4 hover:bg-primary/90 transition-colors cursor-pointer">
+                        <Ticket size={18} />
+                        <span>Buy PPV Access</span>
+                      </div>
+                    </a>
+                    <Link href={PPV_LIVE_WATCH_PATH} className="block">
+                      <div className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white font-bold uppercase tracking-wider py-4 hover:bg-white hover:text-neutral-900 transition-colors cursor-pointer">
+                        <Radio size={18} />
+                        <span>Watch Live</span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
+          </div>
+        </div>
+
+        {/* REPLAY - Floating in the white, no card */}
+        <div className="scroll-reveal scroll-reveal-delay-1">
+          <div className="pt-8 mt-4 border-t border-neutral-200">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+              {/* Left: Event info */}
+              <div>
+                {/* Replay badge */}
+                <div className="flex items-center gap-2 mb-3">
+                  <Tv className="w-4 h-4 text-primary" />
+                  <span className="text-primary text-xs font-bold uppercase tracking-widest">
+                    Replay Available
+                  </span>
+                </div>
+
+                {/* Event title */}
+                <h3 className="text-2xl md:text-3xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase mb-2 leading-tight">
+                  Combat Zone <span className="text-primary">{PPV_REPLAY_EVENT_NUMBER}</span>
+                </h3>
+
+                {/* Date */}
+                <p className="text-neutral-500 text-sm md:text-base mb-3">
+                  {PPV_REPLAY_EVENT_DATE} • {PPV_REPLAY_EVENT_VENUE}
+                </p>
+
+                {/* Description */}
+                <p className="text-neutral-700 text-sm md:text-base leading-relaxed max-w-lg">
+                  Missed the action? Watch the full event replay on demand in HD.
+                </p>
+              </div>
+
+              {/* Right: Pricing + CTA */}
+              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start sm:items-center lg:items-start xl:items-center gap-4 sm:gap-6 lg:justify-end">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-neutral-500 text-sm uppercase tracking-wider">Replay</span>
+                  <span className="text-neutral-900 font-bold text-2xl">$20</span>
+                </div>
+                <a
+                  href={PPV_REPLAY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors font-bold uppercase tracking-wider px-6 py-3 text-sm whitespace-nowrap"
+                >
+                  <Play size={16} />
+                  <span>Watch Replay</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

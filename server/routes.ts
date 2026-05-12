@@ -13,6 +13,7 @@ const RATE_LIMIT = {
   API: { windowMs: 15 * 60 * 1000, max: 100 }, // 100 req / 15 min
   YOUTUBE: { windowMs: 60 * 1000, max: 10 }, // 10 req / 1 min
   CONTACT: { windowMs: 60 * 60 * 1000, max: 5 }, // 5 req / 1 hour
+  PPV_VERIFY: { windowMs: 60 * 1000, max: 20 }, // 20 attempts / min - prevents brute-forcing codes
 } as const;
 
 // ===================
@@ -408,6 +409,132 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           console.error("[NEWSLETTER] Signup error:", error);
           res.status(500).json({ error: "Failed to subscribe. Please try again." });
         }
+      }
+    })
+  );
+
+  // ===================
+  // PPV ACCESS CODE VERIFICATION
+  // ===================
+  // Validates a TicketSpice access code, returns the Vimeo embed URL on success.
+  // Two paths: DEV_ACCESS_CODES env var (for testing) or live TicketSpice API call.
+  const ppvVerifyLimiter = rateLimit({
+    windowMs: RATE_LIMIT.PPV_VERIFY.windowMs,
+    max: RATE_LIMIT.PPV_VERIFY.max,
+    message: { error: "Too many verification attempts. Please try again shortly." },
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  const ppvVerifySchema = z.object({
+    code: z.string().min(4, "Code too short").max(40, "Code too long").trim(),
+  });
+
+  app.post(
+    "/api/ppv/verify",
+    ppvVerifyLimiter,
+    asyncHandler(async (req: Request, res: Response) => {
+      try {
+        const { code } = ppvVerifySchema.parse(req.body);
+
+        const vimeoEmbedUrl = process.env.VIMEO_EMBED_URL;
+        if (!vimeoEmbedUrl) {
+          console.error("[PPV] VIMEO_EMBED_URL not configured");
+          res.status(500).json({ error: "Stream not configured. Please try again later." });
+          return;
+        }
+
+        // Dev escape hatch — only honored when NODE_ENV !== "production"
+        // Set DEV_ACCESS_CODES=TEST123,DEMO456 to enable test codes during development
+        const devCodes = (process.env.DEV_ACCESS_CODES || "")
+          .split(",")
+          .map((c) => c.trim())
+          .filter(Boolean);
+        if (
+          process.env.NODE_ENV !== "production" &&
+          devCodes.length > 0 &&
+          devCodes.includes(code)
+        ) {
+          console.log("[PPV] Dev code accepted:", code);
+          res.json({ embedUrl: vimeoEmbedUrl });
+          return;
+        }
+
+        // Production path — verify against TicketSpice (Webconnex) API
+        const apiKey = process.env.TICKETSPICE_API_KEY;
+        const eventId = process.env.TICKETSPICE_EVENT_ID;
+
+        if (!apiKey || !eventId) {
+          console.error("[PPV] TicketSpice API credentials not configured");
+          res
+            .status(500)
+            .json({ error: "Verification service unavailable. Please try again later." });
+          return;
+        }
+
+        // Webconnex public API — search tickets by order number, scoped to our form/event
+        // Docs: https://docs.webconnex.io/api/v2/
+        // The exact field the buyer's "access code" maps to may need adjustment based on
+        // how TicketSpice generates codes for this event (orderNumber vs orderDisplayId vs ticketId).
+        const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderNumber=${encodeURIComponent(code)}`;
+
+        const tsResponse = await fetch(apiUrl, {
+          headers: {
+            apiKey: apiKey,
+            Accept: "application/json",
+          },
+        });
+
+        if (!tsResponse.ok) {
+          console.error(
+            "[PPV] TicketSpice API error:",
+            tsResponse.status,
+            await tsResponse.text().catch(() => "")
+          );
+          res.status(403).json({ error: "Invalid access code" });
+          return;
+        }
+
+        interface WebconnexTicketResponse {
+          responseCode?: number;
+          data?: Array<{
+            id?: number | string;
+            orderNumber?: string;
+            status?: string;
+            formId?: number | string;
+            refunded?: boolean;
+          }>;
+          totalResults?: number;
+        }
+
+        const data = (await tsResponse.json()) as WebconnexTicketResponse;
+
+        // Validate: at least one ticket exists, matches the event, and isn't refunded
+        const validTicket = data.data?.find(
+          (t) =>
+            String(t.formId) === String(eventId) &&
+            !t.refunded &&
+            (t.status === "active" || t.status === "complete" || !t.status)
+        );
+
+        if (!validTicket) {
+          console.log("[PPV] No valid ticket found for code:", code.substring(0, 4) + "...");
+          res.status(403).json({ error: "Invalid access code" });
+          return;
+        }
+
+        console.log("[PPV] Access granted for ticket:", validTicket.id);
+        res.json({ embedUrl: vimeoEmbedUrl });
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          res.status(400).json({
+            error: "Invalid code format",
+            details: error.errors.map((e) => e.message),
+          });
+          return;
+        }
+        console.error("[PPV] Verification error:", error);
+        res.status(500).json({ error: "Verification failed. Please try again." });
       }
     })
   );

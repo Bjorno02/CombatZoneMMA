@@ -26,6 +26,7 @@ import FightCardPage from "@/pages/fight-card";
 import SocialPage from "@/pages/social";
 import NewsletterPage from "@/pages/newsletter";
 import KattarmaniaPage from "@/pages/kattarmania";
+import WatchPage from "@/pages/watch";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -61,6 +62,7 @@ function Router() {
       <Route path="/fight-card" component={FightCardPage} />
       <Route path="/social" component={SocialPage} />
       <Route path="/newsletter" component={NewsletterPage} />
+      <Route path="/watch" component={WatchPage} />
       <Route component={NotFound} />
     </Switch>
   );

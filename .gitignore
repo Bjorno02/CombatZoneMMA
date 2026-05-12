@@ -54,6 +54,9 @@ vite.config.ts.*
 coverage/
 .nyc_output/
 
+# Playwright MCP cache (test artifacts)
+.playwright-mcp/
+
 # TypeScript build info
 *.tsbuildinfo
 
