@@ -455,7 +455,7 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           devCodes.length > 0 &&
           devCodes.includes(code)
         ) {
-          console.log("[PPV] Dev code accepted:", code);
+          console.log("[PPV] Dev code accepted");
           res.json({ embedUrl: vimeoEmbedUrl });
           return;
         }

@@ -5,30 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
-import { cn } from "@/lib/utils";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
-const MATCHUPS = [
-  { id: 14, image: "/images/matchups/Darling-Nsiambote.JPEG", fighters: "Darling vs Nsiambote" },
-  {
-    id: 15,
-    image: "/images/matchups/Burke-Conde-Navarro.JPEG",
-    fighters: "Burke vs Conde-Navarro",
-  },
-  { id: 1, image: "/images/matchups/Abdulla-Lanes.jpg", fighters: "Abdulla vs Lanes" },
-  { id: 2, image: "/images/matchups/Aguirre-Mazumdar.jpg", fighters: "Aguirre vs Mazumdar" },
-  { id: 3, image: "/images/matchups/Batista-Colon.jpg", fighters: "Batista vs Colon" },
-  { id: 4, image: "/images/matchups/Carey-Aguiar.jpg", fighters: "Carey vs Aguiar" },
-  { id: 6, image: "/images/matchups/Durham-DAmico.jpg", fighters: "Durham vs D'Amico" },
-  { id: 7, image: "/images/matchups/Grimard-Reese.jpg", fighters: "Grimard vs Reese" },
-  { id: 8, image: "/images/matchups/Lindfors-Boucher.jpg", fighters: "Lindfors vs Boucher" },
-  { id: 9, image: "/images/matchups/Sharkir-Wurlitzer.jpg", fighters: "Sharkir vs Wurlitzer" },
-  { id: 10, image: "/images/matchups/Viera-Whitehouse.jpg", fighters: "Viera vs Whitehouse" },
-  { id: 11, image: "/images/Carter-Gonzales.jpeg", fighters: "Carter vs Gonzales" },
-  { id: 12, image: "/images/IMG_3390.jpeg", fighters: "CZ 92 matchup" },
-  { id: 13, image: "/images/Santiago-Samoisette.jpeg", fighters: "Santiago vs Samoisette" },
-];
+const FIGHT_CARD_IMAGE = "/images/matchups/CZ92-Fight-Card.JPEG";
 
 export default function FightCardPage() {
   useSEO(SEO_CONFIG.fightCard);
@@ -105,7 +85,7 @@ export default function FightCardPage() {
         </Container>
       </section>
 
-      {/* Matchups Section */}
+      {/* Fight Card Section */}
       <section className="py-12 md:py-16 bg-white relative overflow-hidden">
         <Container className="relative z-10">
           {/* Section Header */}
@@ -114,40 +94,21 @@ export default function FightCardPage() {
               CZ92 Official Lineup
             </p>
             <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
-              {MATCHUPS.length} Bouts Confirmed
+              The Full Fight Card
             </h2>
           </div>
 
-          {/* Matchups Grid - 2 columns on tablet, stacks on mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-12 max-w-[58rem] mx-auto">
-            {MATCHUPS.map((matchup, index) => {
-              const isOddCount = MATCHUPS.length % 2 === 1;
-              const isFirstOddRow = isOddCount && index === 0;
-              const effectiveIndex = isOddCount ? index - 1 : index;
-              return (
-                <div
-                  key={matchup.id}
-                  className={cn(
-                    "group relative bg-white p-2 rounded border-2 border-primary/80 hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl max-w-[420px] mx-auto",
-                    isFirstOddRow
-                      ? "md:col-span-2 md:mx-auto"
-                      : effectiveIndex % 2 === 0
-                        ? "md:mr-auto md:ml-0"
-                        : "md:ml-auto md:mr-0"
-                  )}
-                >
-                  {/* Matchup Image - natural aspect ratio */}
-                  <div className="overflow-hidden rounded-sm">
-                    <img
-                      src={matchup.image}
-                      alt={matchup.fighters}
-                      className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
-                      loading={index < 4 ? "eager" : "lazy"}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+          {/* Full Fight Card Image */}
+          <div className="max-w-5xl mx-auto">
+            <div className="relative bg-white p-2 md:p-3 border-2 border-primary/80 shadow-xl">
+              <img
+                src={FIGHT_CARD_IMAGE}
+                alt="Combat Zone 92 official fight card"
+                className="w-full h-auto block"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
           </div>
 
           {/* CTA Section */}
