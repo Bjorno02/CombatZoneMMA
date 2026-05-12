@@ -23,12 +23,15 @@ interface WebconnexTicketResponse {
   data?: Array<{
     id?: number | string;
     orderNumber?: string;
+    orderDisplayId?: string;
     status?: string;
     formId?: number | string;
     refunded?: boolean;
   }>;
   totalResults?: number;
 }
+
+type WebconnexTicket = NonNullable<WebconnexTicketResponse["data"]>[number];
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -84,38 +87,50 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         .json({ error: "Verification service unavailable. Please try again later." });
     }
 
-    // The exact field the buyer's "access code" maps to may need adjustment based on
-    // how TicketSpice generates codes for this event (orderNumber vs orderDisplayId vs ticketId).
-    // Keep this in sync with server/routes.ts:482.
-    const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderNumber=${encodeURIComponent(trimmedCode)}`;
+    // TicketSpice access codes are typically the orderDisplayId, often formatted
+    // like XXX-XXX-XXX. Try both the raw code and the stripped (no dashes) version
+    // since users may enter it either way.
+    // Keep this logic in sync with server/routes.ts.
+    const normalizedCode = trimmedCode.replace(/[-\s]/g, "");
+    const codesToTry =
+      trimmedCode !== normalizedCode ? [trimmedCode, normalizedCode] : [trimmedCode];
 
-    const tsResponse = await fetch(apiUrl, {
-      headers: {
-        apiKey: apiKey,
-        Accept: "application/json",
-      },
-    });
+    let validTicket: WebconnexTicket | undefined = undefined;
 
-    if (!tsResponse.ok) {
-      console.error(
-        "[PPV] TicketSpice API error:",
-        tsResponse.status,
-        await tsResponse.text().catch(() => "")
+    for (const tryCode of codesToTry) {
+      const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderDisplayId=${encodeURIComponent(tryCode)}`;
+
+      const tsResponse = await fetch(apiUrl, {
+        headers: {
+          apiKey: apiKey,
+          Accept: "application/json",
+        },
+      });
+
+      if (!tsResponse.ok) {
+        const errorBody = await tsResponse.text().catch(() => "");
+        console.error("[PPV] TicketSpice API error:", tsResponse.status, errorBody);
+        continue;
+      }
+
+      const data = (await tsResponse.json()) as WebconnexTicketResponse;
+      console.log("[PPV] Webconnex returned", data.totalResults ?? 0, "results for code variant");
+
+      validTicket = data.data?.find(
+        (t) =>
+          String(t.formId) === String(eventId) &&
+          !t.refunded &&
+          (t.status === "active" || t.status === "complete" || !t.status)
       );
-      return res.status(403).json({ error: "Invalid access code" });
+
+      if (validTicket) break;
     }
 
-    const data = (await tsResponse.json()) as WebconnexTicketResponse;
-
-    const validTicket = data.data?.find(
-      (t) =>
-        String(t.formId) === String(eventId) &&
-        !t.refunded &&
-        (t.status === "active" || t.status === "complete" || !t.status)
-    );
-
     if (!validTicket) {
-      console.log("[PPV] No valid ticket found for code:", trimmedCode.substring(0, 4) + "...");
+      console.log(
+        "[PPV] No valid ticket found for code variant:",
+        trimmedCode.substring(0, 4) + "..."
+      );
       return res.status(403).json({ error: "Invalid access code" });
     }
 

@@ -472,34 +472,20 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           return;
         }
 
-        // Webconnex public API — search tickets by order number, scoped to our form/event
+        // Webconnex public API — search tickets scoped to our form/event
         // Docs: https://docs.webconnex.io/api/v2/
-        // The exact field the buyer's "access code" maps to may need adjustment based on
-        // how TicketSpice generates codes for this event (orderNumber vs orderDisplayId vs ticketId).
-        const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderNumber=${encodeURIComponent(code)}`;
-
-        const tsResponse = await fetch(apiUrl, {
-          headers: {
-            apiKey: apiKey,
-            Accept: "application/json",
-          },
-        });
-
-        if (!tsResponse.ok) {
-          console.error(
-            "[PPV] TicketSpice API error:",
-            tsResponse.status,
-            await tsResponse.text().catch(() => "")
-          );
-          res.status(403).json({ error: "Invalid access code" });
-          return;
-        }
+        // TicketSpice access codes are typically the orderDisplayId, often formatted
+        // like XXX-XXX-XXX. We try the raw code first, then try stripped (no dashes)
+        // since users may enter it either way.
+        const normalizedCode = code.replace(/[-\s]/g, "");
+        const codesToTry = code !== normalizedCode ? [code, normalizedCode] : [code];
 
         interface WebconnexTicketResponse {
           responseCode?: number;
           data?: Array<{
             id?: number | string;
             orderNumber?: string;
+            orderDisplayId?: string;
             status?: string;
             formId?: number | string;
             refunded?: boolean;
@@ -507,18 +493,48 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           totalResults?: number;
         }
 
-        const data = (await tsResponse.json()) as WebconnexTicketResponse;
+        let validTicket: WebconnexTicketResponse["data"] extends (infer T)[] | undefined
+          ? T | undefined
+          : undefined = undefined;
 
-        // Validate: at least one ticket exists, matches the event, and isn't refunded
-        const validTicket = data.data?.find(
-          (t) =>
-            String(t.formId) === String(eventId) &&
-            !t.refunded &&
-            (t.status === "active" || t.status === "complete" || !t.status)
-        );
+        for (const tryCode of codesToTry) {
+          const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderDisplayId=${encodeURIComponent(tryCode)}`;
+
+          const tsResponse = await fetch(apiUrl, {
+            headers: {
+              apiKey: apiKey,
+              Accept: "application/json",
+            },
+          });
+
+          if (!tsResponse.ok) {
+            const errorBody = await tsResponse.text().catch(() => "");
+            console.error("[PPV] TicketSpice API error:", tsResponse.status, errorBody);
+            continue;
+          }
+
+          const data = (await tsResponse.json()) as WebconnexTicketResponse;
+          console.log(
+            "[PPV] Webconnex returned",
+            data.totalResults ?? 0,
+            "results for code variant"
+          );
+
+          validTicket = data.data?.find(
+            (t) =>
+              String(t.formId) === String(eventId) &&
+              !t.refunded &&
+              (t.status === "active" || t.status === "complete" || !t.status)
+          );
+
+          if (validTicket) break;
+        }
 
         if (!validTicket) {
-          console.log("[PPV] No valid ticket found for code:", code.substring(0, 4) + "...");
+          console.log(
+            "[PPV] No valid ticket found for code variant:",
+            code.substring(0, 4) + "..."
+          );
           res.status(403).json({ error: "Invalid access code" });
           return;
         }
