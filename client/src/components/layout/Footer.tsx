@@ -4,7 +4,6 @@ import {
   Instagram,
   Twitter,
   Youtube,
-  Mail,
   MapPin,
   ArrowRight,
   Loader2,
@@ -161,10 +160,6 @@ export function Footer() {
               <div className="flex items-center gap-2">
                 <MapPin size={16} className="text-primary" />
                 <span>SNHU Arena, Manchester, NH</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail size={16} className="text-primary" />
-                <span>info@combatzonemma.com</span>
               </div>
             </div>
           </div>

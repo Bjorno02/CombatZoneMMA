@@ -11,21 +11,23 @@ export const TICKETMASTER_EVENT_URL =
   "https://www.ticketmaster.com/combat-zone-92-manchester-new-hampshire-05-16-2026/event/01006453D8DCC4F4";
 
 export const PPV_REPLAY_URL =
-  import.meta.env.VITE_PPV_REPLAY_URL || "https://combatzonemma.ticketspice.com/combat-zone-91";
+  import.meta.env.VITE_PPV_REPLAY_URL || "https://combatzonemma.ticketspice.com/combat-zone-92";
 
 export const PPV_LIVE_TICKET_URL =
   import.meta.env.VITE_PPV_LIVE_TICKET_URL ||
-  "https://combatzonemma.ticketspice.com/combat-zone-92";
+  "https://combatzonemma.ticketspice.com/combat-zone-93";
 
-export const PPV_LIVE_EVENT_NAME = "Combat Zone 92";
-export const PPV_LIVE_EVENT_NUMBER = "92";
-export const PPV_LIVE_EVENT_DATE = "May 16, 2026";
+export const PPV_LIVE_EVENT_NAME = "Combat Zone 93";
+export const PPV_LIVE_EVENT_NUMBER = "93";
+export const PPV_LIVE_EVENT_DATE = "August 22, 2026";
 export const PPV_LIVE_EVENT_VENUE = "SNHU Arena";
 export const PPV_LIVE_WATCH_PATH = "/watch";
+// Flip to false once the CZ93 TicketSpice checkout is live.
+export const PPV_LIVE_COMING_SOON = true;
 
-export const PPV_REPLAY_EVENT_NAME = "Combat Zone 91";
-export const PPV_REPLAY_EVENT_NUMBER = "91";
-export const PPV_REPLAY_EVENT_DATE = "February 21, 2026";
+export const PPV_REPLAY_EVENT_NAME = "Combat Zone 92";
+export const PPV_REPLAY_EVENT_NUMBER = "92";
+export const PPV_REPLAY_EVENT_DATE = "May 16, 2026";
 export const PPV_REPLAY_EVENT_VENUE = "SNHU Arena";
 
 export const YOUTUBE_CHANNEL_URL =

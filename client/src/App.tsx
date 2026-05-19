@@ -6,7 +6,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { EventPopup } from "@/components/EventPopup";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import EventsPage from "@/pages/events";
@@ -78,7 +77,6 @@ function App() {
           <ScrollToTop />
           <Toaster />
           <Router />
-          <EventPopup />
           <Analytics />
         </TooltipProvider>
       </QueryClientProvider>

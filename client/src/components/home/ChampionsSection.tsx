@@ -5,29 +5,20 @@ import { Link } from "wouter";
 const CHAMPIONS = [
   {
     id: 1,
-    name: "Connor Morrill",
-    weightClass: "Bantamweight",
-    defenses: 2,
-    image: "/images/ConnorMorrillCZ91.jpeg",
-    event: "Combat Zone 91",
-    discipline: "Kickboxing",
+    name: "Isaac Aguirre",
+    weightClass: "Flyweight",
+    defenses: 1,
+    image: "/images/IMG_1606.JPG",
+    event: "Combat Zone 92",
+    discipline: "Amateur Kickboxing",
   },
   {
     id: 2,
-    name: "John Rivera",
-    weightClass: "Lightweight",
-    defenses: 1,
-    image: "/images/JohnRiveraCZ91.jpeg",
-    event: "Combat Zone 91",
-    discipline: "MMA",
-  },
-  {
-    id: 3,
-    name: "Hussin Al Saadi",
-    weightClass: "Flyweight",
+    name: "Ryan Carey",
+    weightClass: "Featherweight",
     defenses: 0,
-    image: "/images/HussinAlSaadiCZ91.jpeg",
-    event: "Combat Zone 91",
+    image: "/images/IMG_1607.jpg",
+    event: "Combat Zone 92",
     discipline: "MMA",
   },
 ];
@@ -60,15 +51,15 @@ export function ChampionsSection() {
       <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
         <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto scroll-reveal">
           <h2 className="text-4xl md:text-5xl font-bold text-white font-[Chakra_Petch] uppercase tracking-tight leading-none">
-            CZ 91 <span className="text-primary">Champions</span>
+            CZ 92 <span className="text-primary">Champions</span>
           </h2>
           <p className="text-neutral-300 mt-2 text-sm uppercase tracking-wider font-bold">
-            Championship Fight Winners from Combat Zone 91
+            Championship Fight Winners from Combat Zone 92
           </p>
           <div className="w-24 h-1 bg-primary mt-2 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
           {CHAMPIONS.map((champion) => (
             <div
               key={champion.id}
@@ -113,7 +104,7 @@ export function ChampionsSection() {
                 <div className="mt-auto pt-4 border-t border-gray-100">
                   <p className="text-neutral-500 text-xs font-bold uppercase tracking-wide">
                     {champion.defenses === 0
-                      ? "Captured title at CZ91"
+                      ? "Captured title at CZ92"
                       : "Successfully defended title"}
                   </p>
                 </div>

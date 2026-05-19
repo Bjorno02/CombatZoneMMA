@@ -9,7 +9,7 @@ import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
-const EVENT_DATE = "2026-05-16T17:00:00-04:00";
+const EVENT_DATE = "2026-08-22T17:00:00-04:00";
 
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -45,16 +45,15 @@ export default function EventsPage() {
     <PageLayout>
       {/* Structured Data */}
       <EventSchema
-        name="Combat Zone 92"
+        name="Combat Zone 93"
         description="New England's premier MMA event featuring top regional fighters competing at SNHU Arena."
-        startDate="2026-05-16T17:00:00-04:00"
+        startDate="2026-08-22T17:00:00-04:00"
         venue={{
           name: "SNHU Arena",
           address: "555 Elm Street",
           city: "Manchester",
           state: "NH",
         }}
-        ticketUrl={TICKETMASTER_EVENT_URL}
         imageUrl="https://combatzonemma.com/opengraph.jpg"
       />
       <SectionHero
@@ -74,9 +73,9 @@ export default function EventsPage() {
                 Next Event
               </span>
               <span className="text-neutral-400 hidden sm:inline">|</span>
-              <span className="font-bold font-[Chakra_Petch] text-xl text-primary">CZ92</span>
+              <span className="font-bold font-[Chakra_Petch] text-xl text-primary">CZ93</span>
               <span className="text-neutral-400 hidden sm:inline">|</span>
-              <span className="text-neutral-600">May 16, 2026</span>
+              <span className="text-neutral-600">August 22, 2026</span>
             </div>
             <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
               <Button className="bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-10 px-6 text-sm">
@@ -88,7 +87,7 @@ export default function EventsPage() {
         </Container>
       </section>
 
-      {/* Featured Event - CZ92 */}
+      {/* Featured Event - CZ93 */}
       <section className="py-16 md:py-24 bg-neutral-50 relative overflow-hidden">
         {/* Subtle background elements */}
         <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-primary/5 to-transparent" />
@@ -153,8 +152,8 @@ export default function EventsPage() {
           <div className="flex justify-center mb-12 md:mb-16">
             <div className="relative group max-w-3xl">
               <img
-                src="/images/CZ92_Poster.jpeg"
-                alt="Combat Zone 92 Event Poster"
+                src="/images/CZ93_Poster.JPEG"
+                alt="Combat Zone 93 Event Poster"
                 className="w-full h-auto object-contain shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]"
                 loading="eager"
               />
@@ -172,7 +171,7 @@ export default function EventsPage() {
                   Next Live Event
                 </span>
                 <h2 className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900 mt-3">
-                  COMBAT ZONE <span className="text-primary">92</span>
+                  COMBAT ZONE <span className="text-primary">93</span>
                 </h2>
               </div>
 
@@ -183,7 +182,7 @@ export default function EventsPage() {
                     <Calendar className="text-primary" size={22} />
                   </div>
                   <div>
-                    <div className="font-bold text-neutral-900">May 16, 2026</div>
+                    <div className="font-bold text-neutral-900">August 22, 2026</div>
                     <div className="text-sm text-neutral-500">Saturday Night</div>
                   </div>
                 </div>
@@ -249,35 +248,9 @@ export default function EventsPage() {
 
           {/* Events List */}
           <div className="space-y-4">
-            {/* CZ 92 - Next Event */}
+            {/* CZ 93 - Next Event */}
             <div className="relative bg-white border border-neutral-200 overflow-hidden">
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary" />
-              <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
-                <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
-                  <div>
-                    <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900">
-                      CZ92
-                    </div>
-                  </div>
-                  <div className="hidden md:block w-px h-12 bg-neutral-200" />
-                  <div>
-                    <div className="font-bold text-neutral-900">May 16, 2026</div>
-                    <div className="text-sm text-neutral-500">Saturday</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 text-neutral-600">
-                  <MapPin size={18} className="text-neutral-400" />
-                  <div>
-                    <div className="font-medium">SNHU Arena</div>
-                    <div className="text-sm text-neutral-500">Manchester, NH</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CZ 93 - Upcoming */}
-            <div className="relative bg-white border border-neutral-200 overflow-hidden">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-neutral-200" />
               <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
                 <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
                   <div>
@@ -287,8 +260,8 @@ export default function EventsPage() {
                   </div>
                   <div className="hidden md:block w-px h-12 bg-neutral-200" />
                   <div>
-                    <div className="font-bold text-neutral-400">August 22, 2026</div>
-                    <div className="text-sm text-neutral-400">Saturday</div>
+                    <div className="font-bold text-neutral-900">August 22, 2026</div>
+                    <div className="text-sm text-neutral-500">Saturday</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 text-neutral-600">

@@ -8,63 +8,25 @@ import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 const CHAMPIONS = [
   {
     id: 1,
-    name: "Connor Morrill",
-    weightClass: "Bantamweight",
-    division: "Kickboxing",
-    defenses: 2,
-    record: "5-0",
-    image: "/images/ConnorMorrillCZ91.jpeg",
+    name: "Isaac Aguirre",
+    weightClass: "Flyweight",
+    division: "Amateur Kickboxing",
+    defenses: 1,
+    record: "3-0",
+    image: "/images/IMG_1606.JPG",
     wonAt: "Combat Zone 88",
-    hometown: "Manchester, NH",
-    age: 25,
-    stance: "Southpaw",
-    bio: "KTA's Connor Morrill successfully defended his CZ Gold against Team Link's Austin Smith in the highly anticipated rematch at CZ91.",
-    stats: {
-      koTko: 4,
-      decisions: 8,
-      finishRate: "33%",
-    },
-    signature: "Footwork & Precision combinations",
+    bio: "Isaac Aguirre made the first defense of his CZ Flyweight Amateur Kickboxing title at CZ92, finishing Neil Mazumdar with a thunderous head-kick KO to move to 3-0.",
   },
   {
     id: 2,
-    name: "John Rivera",
-    weightClass: "Lightweight",
-    division: "MMA",
-    defenses: 1,
-    record: "5-2",
-    image: "/images/JohnRiveraCZ91.jpeg",
-    wonAt: "Combat Zone 89",
-    hometown: "New England",
-    age: null,
-    stance: "Orthodox",
-    bio: "John Rivera defended his CZ Lightweight title against Isaiah Longs at CZ91, proving himself as the top 155-pounder in the region.",
-    stats: {
-      koTko: 2,
-      decisions: 3,
-      finishRate: "40%",
-    },
-    signature: "Well-rounded game",
-  },
-  {
-    id: 3,
-    name: "Hussin Al Saadi",
-    weightClass: "Flyweight",
+    name: "Ryan Carey",
+    weightClass: "Featherweight",
     division: "MMA",
     defenses: 0,
-    record: "5-2",
-    image: "/images/HussinAlSaadiCZ91.jpeg",
-    wonAt: "Combat Zone 91",
-    hometown: "New England",
-    age: null,
-    stance: "Orthodox",
-    bio: "Hussin Al Saadi captured the vacant CZ Flyweight championship in an extremely high-level fight at CZ91, showcasing elite skills at 125 lbs.",
-    stats: {
-      koTko: 2,
-      decisions: 3,
-      finishRate: "40%",
-    },
-    signature: "Technical striking & grappling",
+    record: "4-0",
+    image: "/images/IMG_1607.jpg",
+    wonAt: "Combat Zone 92",
+    bio: "Ryan Carey captured the CZ Featherweight title at CZ92 with a first-round ground-and-pound finish over Lazaro Aguiar, pushing his MMA record to 4-0.",
   },
 ];
 
@@ -72,7 +34,7 @@ export default function ChampionsPage() {
   useSEO({
     title: "Current Champions | Combat Zone MMA",
     description:
-      "Meet the current Combat Zone champions. Connor Morrill, John Rivera, and Hussin Al Saadi hold gold in Kickboxing and MMA.",
+      "Meet the current Combat Zone champions. Isaac Aguirre and Ryan Carey hold gold in Amateur Kickboxing and MMA.",
   });
 
   return (
@@ -115,7 +77,7 @@ export default function ChampionsPage() {
             </h1>
 
             <p className="text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl mx-auto">
-              Fighters who touched gold at Combat Zone 91.
+              Fighters who touched gold at Combat Zone 92.
             </p>
           </div>
         </Container>

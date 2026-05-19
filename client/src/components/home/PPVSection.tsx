@@ -6,6 +6,7 @@ import {
   PPV_LIVE_EVENT_DATE,
   PPV_LIVE_EVENT_VENUE,
   PPV_LIVE_WATCH_PATH,
+  PPV_LIVE_COMING_SOON,
   PPV_REPLAY_EVENT_NUMBER,
   PPV_REPLAY_EVENT_DATE,
   PPV_REPLAY_EVENT_VENUE,
@@ -64,7 +65,7 @@ export function PPVSection() {
                       <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
                     </span>
                     <span className="text-primary text-xs font-bold uppercase tracking-widest">
-                      Live PPV Event
+                      {PPV_LIVE_COMING_SOON ? "Live PPV Event • Coming Soon" : "Live PPV Event"}
                     </span>
                   </div>
 
@@ -91,24 +92,39 @@ export function PPVSection() {
                   <div className="space-y-3 mb-8">
                     <div className="flex justify-between items-center py-2 border-b border-white/10">
                       <span className="text-neutral-300">Live Stream Access</span>
-                      <span className="text-white font-bold text-xl">$30</span>
+                      <span className="text-white font-bold text-xl">
+                        {PPV_LIVE_COMING_SOON ? "TBA" : "$30"}
+                      </span>
                     </div>
                     <div className="py-2 text-neutral-400 text-sm">
-                      Live broadcast • HD quality • Includes replay
+                      {PPV_LIVE_COMING_SOON
+                        ? "PPV purchase will open closer to fight night"
+                        : "Live broadcast • HD quality • Includes replay"}
                     </div>
                   </div>
 
                   {/* CTA buttons */}
                   <div className="space-y-3">
-                    <PPVPurchaseModal>
+                    {PPV_LIVE_COMING_SOON ? (
                       <button
                         type="button"
-                        className="w-full flex items-center justify-center gap-2 bg-primary text-white font-bold uppercase tracking-wider py-4 hover:bg-primary/90 transition-colors cursor-pointer"
+                        disabled
+                        className="w-full flex items-center justify-center gap-2 bg-neutral-700 text-white/70 font-bold uppercase tracking-wider py-4 cursor-not-allowed"
                       >
                         <Ticket size={18} />
-                        <span>Buy PPV Access</span>
+                        <span>Coming Soon</span>
                       </button>
-                    </PPVPurchaseModal>
+                    ) : (
+                      <PPVPurchaseModal>
+                        <button
+                          type="button"
+                          className="w-full flex items-center justify-center gap-2 bg-primary text-white font-bold uppercase tracking-wider py-4 hover:bg-primary/90 transition-colors cursor-pointer"
+                        >
+                          <Ticket size={18} />
+                          <span>Buy PPV Access</span>
+                        </button>
+                      </PPVPurchaseModal>
+                    )}
                     <Link href={PPV_LIVE_WATCH_PATH} className="block">
                       <div className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white font-bold uppercase tracking-wider py-4 hover:bg-white hover:text-neutral-900 transition-colors cursor-pointer">
                         <Radio size={18} />

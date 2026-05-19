@@ -8,31 +8,28 @@ import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
-const FIGHT_CARD_IMAGE = "/images/matchups/CZ92-Fight-Card.JPEG";
-
 export default function FightCardPage() {
   useSEO(SEO_CONFIG.fightCard);
   return (
     <PageLayout>
       {/* Structured Data */}
       <EventSchema
-        name="Combat Zone 92 - Fight Card"
-        description="The complete fight card for Combat Zone 92 at SNHU Arena."
-        startDate="2026-05-16T17:00:00-04:00"
+        name="Combat Zone 93 - Fight Card"
+        description="The complete fight card for Combat Zone 93 at SNHU Arena."
+        startDate="2026-08-22T17:00:00-04:00"
         venue={{
           name: "SNHU Arena",
           address: "555 Elm Street",
           city: "Manchester",
           state: "NH",
         }}
-        ticketUrl={TICKETMASTER_EVENT_URL}
       />
 
       <SectionHero
         label="Official Lineup"
         title="FIGHT CARD"
         highlightWord="CARD"
-        description="Combat Zone 92 • May 16, 2026"
+        description="Combat Zone 93 • August 22, 2026"
       />
 
       {/* Event Info Bar */}
@@ -45,7 +42,7 @@ export default function FightCardPage() {
                   <Calendar className="text-primary" size={20} />
                 </div>
                 <div>
-                  <div className="font-bold text-neutral-900">May 16, 2026</div>
+                  <div className="font-bold text-neutral-900">August 22, 2026</div>
                   <div className="text-xs text-neutral-500 uppercase tracking-wider">Saturday</div>
                 </div>
               </div>
@@ -91,23 +88,30 @@ export default function FightCardPage() {
           {/* Section Header */}
           <div className="text-center mb-12">
             <p className="text-primary font-bold tracking-[0.3em] text-xs uppercase mb-3">
-              CZ92 Official Lineup
+              CZ93 Announced Bouts
             </p>
             <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
-              The Full Fight Card
+              First Matchup Confirmed
             </h2>
           </div>
 
-          {/* Full Fight Card Image */}
-          <div className="max-w-5xl mx-auto">
+          {/* Announced Fight */}
+          <div className="max-w-3xl mx-auto">
             <div className="relative bg-white p-2 md:p-3 border-2 border-primary/80 shadow-xl">
               <img
-                src={FIGHT_CARD_IMAGE}
-                alt="Combat Zone 92 official fight card"
+                src="/images/Smith-Castro.JPEG"
+                alt="Smith vs Castro — Combat Zone 93 matchup"
                 className="w-full h-auto block"
                 loading="eager"
                 decoding="async"
               />
+            </div>
+
+            {/* Stay tuned message */}
+            <div className="mt-10 text-center">
+              <p className="text-lg md:text-xl text-neutral-700 font-semibold">
+                Stay tuned — more fights will be announced soon!
+              </p>
             </div>
           </div>
 

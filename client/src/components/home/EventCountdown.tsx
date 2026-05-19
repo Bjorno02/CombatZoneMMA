@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Ticket, Radio, Play } from "lucide-react";
-import { TICKETMASTER_EVENT_URL, PPV_LIVE_WATCH_PATH } from "@/lib/constants";
+import { TICKETMASTER_EVENT_URL, PPV_LIVE_WATCH_PATH, PPV_LIVE_COMING_SOON } from "@/lib/constants";
 import { PPVPurchaseModal } from "@/components/PPVPurchaseModal";
 
-// May 16, 2026 at 5:00 PM EDT
-const EVENT_DATE = new Date("2026-05-16T17:00:00-04:00");
+// August 22, 2026 at 5:00 PM EDT
+const EVENT_DATE = new Date("2026-08-22T17:00:00-04:00");
 
 interface TimeLeft {
   days: number;
@@ -77,9 +77,11 @@ export function EventCountdown() {
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-white uppercase">
-            CZ<span className="text-primary">92</span> Countdown
+            CZ<span className="text-primary">93</span> Countdown
           </h2>
-          <p className="text-neutral-500 text-sm mt-2">May 16, 2026 • 5:00 PM EDT • SNHU Arena</p>
+          <p className="text-neutral-500 text-sm mt-2">
+            August 22, 2026 • 5:00 PM EDT • SNHU Arena
+          </p>
         </div>
 
         {/* Countdown blocks */}
@@ -126,16 +128,28 @@ export function EventCountdown() {
               Get Tickets
             </Button>
           </a>
-          <PPVPurchaseModal>
+          {PPV_LIVE_COMING_SOON ? (
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold uppercase tracking-wider h-12 md:h-14 px-8 md:px-10"
+              disabled
+              className="w-full sm:w-auto bg-transparent border-2 border-white/40 text-white/60 font-bold uppercase tracking-wider h-12 md:h-14 px-8 md:px-10 cursor-not-allowed disabled:opacity-100"
             >
               <Radio className="mr-2" size={18} />
-              Buy PPV
+              PPV Coming Soon
             </Button>
-          </PPVPurchaseModal>
+          ) : (
+            <PPVPurchaseModal>
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold uppercase tracking-wider h-12 md:h-14 px-8 md:px-10"
+              >
+                <Radio className="mr-2" size={18} />
+                Buy PPV
+              </Button>
+            </PPVPurchaseModal>
+          )}
           <Link href={PPV_LIVE_WATCH_PATH} className="w-full sm:w-auto">
             <Button
               size="lg"

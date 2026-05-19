@@ -85,7 +85,7 @@ export function Navbar() {
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[350px] bg-black border border-white/10">
                     <ListItem href="/events" title="Upcoming Events">
-                      Next: CZ 92 at SNHU Arena
+                      Next: CZ 93 at SNHU Arena
                     </ListItem>
                     <ListItem href="/fight-card" title="Fight Card">
                       View the full lineup
@@ -139,7 +139,7 @@ export function Navbar() {
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 w-[350px] bg-black border border-white/10">
                     <ListItem href="/champions" title="Latest Champions">
-                      Results from CZ 91
+                      Results from CZ 92
                     </ListItem>
                     <ListItem href="/fighters/forms" title="Fighter Forms">
                       Fighter Documentation
