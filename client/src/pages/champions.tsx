@@ -12,10 +12,10 @@ const CHAMPIONS = [
     weightClass: "Flyweight",
     division: "Amateur Kickboxing",
     defenses: 1,
-    record: "3-0",
+    record: "4-0",
     image: "/images/IMG_1606.JPG",
     wonAt: "Combat Zone 88",
-    bio: "Isaac Aguirre made the first defense of his CZ Flyweight Amateur Kickboxing title at CZ92, finishing Neil Mazumdar with a thunderous head-kick KO to move to 3-0.",
+    bio: "Isaac Aguirre made the first defense of his CZ Flyweight Amateur Kickboxing title at CZ92, finishing Neil Mazumdar with a thunderous head-kick KO to move to 4-0.",
   },
   {
     id: 2,
