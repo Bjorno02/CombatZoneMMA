@@ -53,7 +53,7 @@ export function MerchSection() {
               </div>
 
               <img
-                src="/images/CZMERCH.JPG"
+                src="/images/IMG_1725.JPG"
                 alt="Combat Zone Official Merchandise"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
