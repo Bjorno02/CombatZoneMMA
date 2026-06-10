@@ -28,6 +28,8 @@ import SocialPage from "@/pages/social";
 import NewsletterPage from "@/pages/newsletter";
 import KattarmaniaPage from "@/pages/kattarmania";
 import WatchPage from "@/pages/watch";
+import PrivacyPage from "@/pages/privacy";
+import TermsPage from "@/pages/terms";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -64,6 +66,8 @@ function Router() {
       <Route path="/social" component={SocialPage} />
       <Route path="/newsletter" component={NewsletterPage} />
       <Route path="/watch" component={WatchPage} />
+      <Route path="/privacy" component={PrivacyPage} />
+      <Route path="/terms" component={TermsPage} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -171,15 +171,12 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Combat Zone MMA. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a href="#" className="hover:text-white">
+            <Link href="/privacy" className="hover:text-white">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white">
+            </Link>
+            <Link href="/terms" className="hover:text-white">
               Terms of Service
-            </a>
-            <a href="#" className="hover:text-white">
-              Sitemap
-            </a>
+            </Link>
           </div>
         </div>
       </div>
