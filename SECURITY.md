@@ -31,6 +31,7 @@
 #### CORS Configuration
 
 - Allowed origins explicitly defined
+- Yes
 - Credentials support enabled
 - Methods restricted to necessary HTTP verbs
 
