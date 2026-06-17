@@ -44,7 +44,7 @@ export function TicketOptionsModal({ children }: TicketOptionsModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-md w-[95vw] bg-neutral-950 border border-neutral-800 sm:rounded-none">
+      <DialogContent className="max-w-md w-[95vw] bg-neutral-950 border border-neutral-800 text-white sm:rounded-none [&>button]:opacity-100 [&>button]:text-neutral-400 [&>button:hover]:text-white">
         <DialogTitle className="text-white text-xl font-bold uppercase tracking-wider font-[Chakra_Petch]">
           Get {PPV_LIVE_EVENT_NAME} Tickets
         </DialogTitle>
