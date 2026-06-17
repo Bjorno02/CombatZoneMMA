@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
+import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -137,7 +138,7 @@ export function Hero() {
                       {/* CTA Buttons */}
                       <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
                         {slide.ctaExternal ? (
-                          <a href={slide.ctaLink} target="_blank" rel="noopener noreferrer">
+                          <TicketOptionsModal>
                             <Button
                               size="lg"
                               className={cn(
@@ -150,7 +151,7 @@ export function Hero() {
                               {slide.cta}
                               {slide.isMain && <ChevronRight className="ml-2" />}
                             </Button>
-                          </a>
+                          </TicketOptionsModal>
                         ) : (
                           <Link href={slide.ctaLink}>
                             <Button

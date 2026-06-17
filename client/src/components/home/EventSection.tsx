@@ -1,7 +1,7 @@
 import { MapPin, Ticket, ChevronRight, Clock, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
+import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 
 export function EventSection() {
   return (
@@ -100,7 +100,7 @@ export function EventSection() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
+              <TicketOptionsModal>
                 <Button
                   size="lg"
                   className="bg-primary text-white hover:bg-primary/90 font-bold uppercase tracking-wider h-14 px-8"
@@ -108,7 +108,7 @@ export function EventSection() {
                   <Ticket className="mr-2" size={18} />
                   Get Tickets
                 </Button>
-              </a>
+              </TicketOptionsModal>
               <Link href="/fight-card">
                 <Button
                   size="lg"

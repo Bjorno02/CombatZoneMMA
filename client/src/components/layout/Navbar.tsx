@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
+import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 import logoImg from "/CZ_NEW-Transparent.png";
 import {
   NavigationMenu,
@@ -232,16 +232,11 @@ export function Navbar() {
           </NavigationMenu>
 
           {/* Tickets Button */}
-          <a
-            href={TICKETMASTER_EVENT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2"
-          >
-            <Button className="bg-primary hover:bg-white hover:text-primary text-white font-bold uppercase tracking-wider px-4 xl:px-6 text-xs xl:text-sm rounded-none transition-all">
+          <TicketOptionsModal>
+            <Button className="ml-2 bg-primary hover:bg-white hover:text-primary text-white font-bold uppercase tracking-wider px-4 xl:px-6 text-xs xl:text-sm rounded-none transition-all">
               Tickets
             </Button>
-          </a>
+          </TicketOptionsModal>
         </div>
 
         {/* Mobile Toggle */}
@@ -474,16 +469,11 @@ export function Navbar() {
                   </div>
                 )}
               </div>
-              <a
-                href={TICKETMASTER_EVENT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
+              <TicketOptionsModal>
                 <Button className="w-full bg-primary font-bold text-white uppercase mt-2 py-6 text-base touch-manipulation">
                   GET TICKETS
                 </Button>
-              </a>
+              </TicketOptionsModal>
             </div>
           </div>
         </div>

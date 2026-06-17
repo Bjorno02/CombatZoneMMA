@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
+import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
@@ -77,12 +77,12 @@ export default function EventsPage() {
               <span className="text-neutral-400 hidden sm:inline">|</span>
               <span className="text-neutral-600">August 22, 2026</span>
             </div>
-            <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
+            <TicketOptionsModal>
               <Button className="bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-10 px-6 text-sm">
                 <Ticket className="mr-2" size={16} />
                 Get Tickets
               </Button>
-            </a>
+            </TicketOptionsModal>
           </div>
         </Container>
       </section>
@@ -210,7 +210,7 @@ export default function EventsPage() {
 
               {/* CTA Buttons */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
+                <TicketOptionsModal>
                   <Button
                     size="lg"
                     className="w-full bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-14 text-base group"
@@ -218,7 +218,7 @@ export default function EventsPage() {
                     <Ticket className="mr-2" size={18} />
                     Get Tickets
                   </Button>
-                </a>
+                </TicketOptionsModal>
 
                 <Link href="/fight-card">
                   <Button

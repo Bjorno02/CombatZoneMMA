@@ -4,7 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
 import { Link } from "wouter";
-import { TICKETMASTER_EVENT_URL } from "@/lib/constants";
+import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
@@ -72,12 +72,12 @@ export default function FightCardPage() {
               </div>
             </div>
 
-            <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
+            <TicketOptionsModal>
               <Button className="bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-12 px-6">
                 <Ticket className="mr-2" size={18} />
                 Get Tickets
               </Button>
-            </a>
+            </TicketOptionsModal>
           </div>
         </Container>
       </section>
@@ -118,7 +118,7 @@ export default function FightCardPage() {
           {/* CTA Section */}
           <div className="mt-14 text-center">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4">
-              <a href={TICKETMASTER_EVENT_URL} target="_blank" rel="noopener noreferrer">
+              <TicketOptionsModal>
                 <Button
                   size="lg"
                   className="bg-primary hover:bg-neutral-900 text-white font-bold uppercase tracking-wider h-14 px-10 rounded-none transition-all"
@@ -126,7 +126,7 @@ export default function FightCardPage() {
                   <Ticket className="mr-2" size={18} />
                   Get Tickets
                 </Button>
-              </a>
+              </TicketOptionsModal>
               <Link href="/events">
                 <Button
                   size="lg"

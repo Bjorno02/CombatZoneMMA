@@ -6,9 +6,14 @@
  */
 
 // External URLs - configurable via environment variables
+// General Admission tickets (Combat Zone 93)
 export const TICKETMASTER_EVENT_URL =
-  import.meta.env.VITE_TICKETMASTER_URL ||
-  "https://www.ticketmaster.com/combat-zone-92-manchester-new-hampshire-05-16-2026/event/01006453D8DCC4F4";
+  import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/010064CAA9F77B03";
+
+// VIP Experience tickets (Combat Zone 93)
+export const TICKETMASTER_VIP_URL =
+  import.meta.env.VITE_TICKETMASTER_VIP_URL ||
+  "https://www.ticketmaster.com/event/010064CAAC2D875E";
 
 export const PPV_REPLAY_URL =
   import.meta.env.VITE_PPV_REPLAY_URL || "https://combatzonemma.ticketspice.com/combat-zone-92";

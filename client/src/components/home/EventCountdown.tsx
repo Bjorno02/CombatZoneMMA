@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Ticket, Radio, Play } from "lucide-react";
-import { TICKETMASTER_EVENT_URL, PPV_LIVE_WATCH_PATH, PPV_LIVE_COMING_SOON } from "@/lib/constants";
+import { PPV_LIVE_WATCH_PATH, PPV_LIVE_COMING_SOON } from "@/lib/constants";
+import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 import { PPVPurchaseModal } from "@/components/PPVPurchaseModal";
 
 // August 22, 2026 at 5:00 PM EDT
@@ -114,12 +115,7 @@ export function EventCountdown() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-          <a
-            href={TICKETMASTER_EVENT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto"
-          >
+          <TicketOptionsModal>
             <Button
               size="lg"
               className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-12 md:h-14 px-8 md:px-10"
@@ -127,7 +123,7 @@ export function EventCountdown() {
               <Ticket className="mr-2" size={18} />
               Get Tickets
             </Button>
-          </a>
+          </TicketOptionsModal>
           {PPV_LIVE_COMING_SOON ? (
             <Button
               size="lg"
