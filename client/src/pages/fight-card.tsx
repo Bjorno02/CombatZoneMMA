@@ -10,16 +10,19 @@ import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
 const MATCHUPS = [
-  { id: 1, image: "/images/cz-93/MacNeil-Batista.JPEG", fighters: "MacNeil vs Batista" },
-  { id: 2, image: "/images/cz-93/Damico-Duffy.JPEG", fighters: "D'Amico vs Duffy" },
-  { id: 3, image: "/images/cz-93/Fitzpatrick-Hanley.JPEG", fighters: "Fitzpatrick vs Hanley" },
-  { id: 4, image: "/images/cz-93/Johnson-Cetoute.JPEG", fighters: "Johnson vs Cetoute" },
-  { id: 5, image: "/images/cz-93/Kench-Boucher.JPEG", fighters: "Kench vs Boucher" },
-  { id: 6, image: "/images/cz-93/Looney-Teer.JPEG", fighters: "Looney vs Teer" },
-  { id: 7, image: "/images/cz-93/Morrill-Villeges.JPEG", fighters: "Morrill vs Villeges" },
-  { id: 8, image: "/images/cz-93/Noleto-Reese.JPEG", fighters: "Noleto vs Reese" },
+  { id: 1, image: "/images/cz-93/Hargrove-Schmelzer.JPEG", fighters: "Hargrove vs Schmelzer" },
+  { id: 2, image: "/images/cz-93/Bilodeau-Reza.JPEG", fighters: "Bilodeau vs Reza" },
+  { id: 3, image: "/images/cz-93/Darling-Wasi.JPEG", fighters: "Darling vs Wasi" },
+  { id: 4, image: "/images/cz-93/MacNeil-Batista.JPEG", fighters: "MacNeil vs Batista" },
+  { id: 5, image: "/images/cz-93/Damico-Duffy.JPEG", fighters: "D'Amico vs Duffy" },
+  { id: 6, image: "/images/cz-93/Fitzpatrick-Hanley.JPEG", fighters: "Fitzpatrick vs Hanley" },
+  { id: 7, image: "/images/cz-93/Johnson-Cetoute.JPEG", fighters: "Johnson vs Cetoute" },
+  { id: 8, image: "/images/cz-93/Kench-Boucher.JPEG", fighters: "Kench vs Boucher" },
+  { id: 9, image: "/images/cz-93/Looney-Teer.JPEG", fighters: "Looney vs Teer" },
+  { id: 10, image: "/images/cz-93/Morrill-Villeges.JPEG", fighters: "Morrill vs Villeges" },
+  { id: 11, image: "/images/cz-93/Noleto-Reese.JPEG", fighters: "Noleto vs Reese" },
   {
-    id: 9,
+    id: 12,
     image: "/images/cz-93/Whitehouse-Bernardini.JPEG",
     fighters: "Whitehouse vs Bernardini",
   },
