@@ -9,6 +9,7 @@ Official website for Combat Zone MMA, New England's longest-running MMA promotio
 **Routing:** Wouter
 **Forms:** React Hook Form + Zod
 **Data Fetching:** TanStack Query
+**Commerce:** Shopify Buy Button SDK (shop, event ticketing, and VIP pages)
 **Backend:** Vercel Serverless Functions
 **Code Quality:** TypeScript strict mode, Prettier, Husky
 
