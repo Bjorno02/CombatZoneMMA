@@ -26,6 +26,9 @@ const MATCHUPS = [
     image: "/images/cz-93/Whitehouse-Bernardini.JPEG",
     fighters: "Whitehouse vs Bernardini",
   },
+  { id: 13, image: "/images/cz-93/Smith-Ellis.JPEG", fighters: "Smith vs Ellis" },
+  { id: 14, image: "/images/cz-93/Medina-Roberts.JPEG", fighters: "Medina vs Roberts" },
+  { id: 15, image: "/images/cz-93/Spiewak-Fagan.JPEG", fighters: "Spiewak vs Fagan" },
 ];
 
 export default function FightCardPage() {
