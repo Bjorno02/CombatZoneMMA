@@ -59,7 +59,7 @@ export default function FightCardPage() {
       <section className="bg-white border-b border-neutral-200">
         <Container>
           <div className="flex flex-col md:flex-row items-center justify-between py-6 gap-6">
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-8">
+            <div className="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-4 md:gap-8">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded flex items-center justify-center">
                   <Calendar className="text-primary" size={20} />
@@ -75,7 +75,7 @@ export default function FightCardPage() {
                   <Clock className="text-primary" size={20} />
                 </div>
                 <div>
-                  <div className="font-bold text-neutral-900">5:00 PM ET</div>
+                  <div className="font-bold text-neutral-900">4:00 PM ET</div>
                   <div className="text-xs text-neutral-500 uppercase tracking-wider">
                     Doors Open
                   </div>
