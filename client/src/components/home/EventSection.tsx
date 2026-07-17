@@ -51,10 +51,6 @@ export function EventSection() {
             <div className="absolute inset-4 bg-neutral-900/10 blur-2xl rounded-lg" />
 
             <div className="relative">
-              {/* Poster frame */}
-              <div className="absolute -inset-3 border border-neutral-200" />
-              <div className="absolute -inset-6 border border-neutral-100" />
-
               <img
                 src="/images/CZ93_Poster.JPEG"
                 alt="Combat Zone 93 Event Poster"
