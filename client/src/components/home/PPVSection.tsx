@@ -93,7 +93,7 @@ export function PPVSection() {
                     <div className="flex justify-between items-center py-2 border-b border-white/10">
                       <span className="text-neutral-300">Live Stream Access</span>
                       <span className="text-white font-bold text-xl">
-                        {PPV_LIVE_COMING_SOON ? "TBA" : "$30"}
+                        {PPV_LIVE_COMING_SOON ? "TBA" : "$26.90"}
                       </span>
                     </div>
                     <div className="py-2 text-neutral-400 text-sm">

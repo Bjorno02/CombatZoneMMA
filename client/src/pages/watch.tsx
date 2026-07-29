@@ -207,7 +207,7 @@ export default function WatchPage() {
             type="text"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            placeholder="e.g. CMBTZN92-XXXXXXX"
+            placeholder={`e.g. CMBTZN${PPV_LIVE_EVENT_NUMBER}-XXXXXXX`}
             className="w-full bg-neutral-800 border-neutral-700 text-white text-lg h-12 rounded-none mb-2 placeholder:text-neutral-500 focus-visible:ring-primary"
             disabled={loading}
             autoFocus
@@ -215,7 +215,7 @@ export default function WatchPage() {
           />
           <p className="text-neutral-500 text-xs mb-6">
             Find your order number in your TicketSpice confirmation email (starts with{" "}
-            <span className="text-neutral-400 font-mono">CMBTZN92-</span>).
+            <span className="text-neutral-400 font-mono">CMBTZN{PPV_LIVE_EVENT_NUMBER}-</span>).
           </p>
 
           {error && (

@@ -9,7 +9,14 @@ import { cn } from "@/lib/utils";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
+// Ordered newest-announced first
 const MATCHUPS = [
+  { id: 18, image: "/images/cz-93/Zahid-Bernier.JPEG", fighters: "Zahid vs Bernier" },
+  { id: 17, image: "/images/cz-93/StJean-Marques.JPEG", fighters: "St. Jean vs Marques" },
+  { id: 16, image: "/images/cz-93/Ovalle-StPierre.JPEG", fighters: "Ovalle vs St Pierre" },
+  { id: 13, image: "/images/cz-93/Smith-Ellis.JPEG", fighters: "Smith vs Ellis" },
+  { id: 14, image: "/images/cz-93/Medina-Roberts.JPEG", fighters: "Medina vs Roberts" },
+  { id: 15, image: "/images/cz-93/Spiewak-Fagan.JPEG", fighters: "Spiewak vs Fagan" },
   { id: 1, image: "/images/cz-93/Hargrove-Schmelzer.JPEG", fighters: "Hargrove vs Schmelzer" },
   { id: 2, image: "/images/cz-93/Bilodeau-Reza.JPEG", fighters: "Bilodeau vs Reza" },
   { id: 3, image: "/images/cz-93/Darling-Wasi.JPEG", fighters: "Darling vs Wasi" },
@@ -26,10 +33,6 @@ const MATCHUPS = [
     image: "/images/cz-93/Whitehouse-Bernardini.JPEG",
     fighters: "Whitehouse vs Bernardini",
   },
-  { id: 13, image: "/images/cz-93/Smith-Ellis.JPEG", fighters: "Smith vs Ellis" },
-  { id: 14, image: "/images/cz-93/Medina-Roberts.JPEG", fighters: "Medina vs Roberts" },
-  { id: 15, image: "/images/cz-93/Spiewak-Fagan.JPEG", fighters: "Spiewak vs Fagan" },
-  { id: 16, image: "/images/cz-93/Ovalle-StPierre.JPEG", fighters: "Ovalle vs St Pierre" },
 ];
 
 export default function FightCardPage() {

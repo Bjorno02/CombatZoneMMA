@@ -11,6 +11,8 @@ export interface PastEvent {
 
 // Past events archive
 export const PAST_EVENTS: PastEvent[] = [
+  { id: 92, date: "May 2026", venue: "SNHU Arena", fights: 13 },
+  { id: 91, date: "February 2026", venue: "SNHU Arena", fights: 16 },
   { id: 90, date: "November 2025", venue: "SNHU Arena", fights: 12 },
   { id: 89, date: "August 2025", venue: "SNHU Arena", fights: 11 },
   { id: 88, date: "May 2025", venue: "SNHU Arena", fights: 12 },
