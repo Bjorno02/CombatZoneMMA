@@ -11,7 +11,12 @@ import { EventSchema } from "@/components/StructuredData";
 
 // Ordered newest-announced first
 const MATCHUPS = [
-  { id: 18, image: "/images/cz-93/Zahid-Bernier.JPEG", fighters: "Zahid vs Bernier" },
+  { id: 19, image: "/images/cz-93/Castro-Bernier.JPEG", fighters: "Castro vs Bernier" },
+  {
+    id: 20,
+    image: "/images/cz-93/Zahid-Bernardini.JPEG",
+    fighters: "Zahid vs Bernardini",
+  },
   { id: 17, image: "/images/cz-93/StJean-Marques.JPEG", fighters: "St. Jean vs Marques" },
   { id: 16, image: "/images/cz-93/Ovalle-StPierre.JPEG", fighters: "Ovalle vs St Pierre" },
   { id: 13, image: "/images/cz-93/Smith-Ellis.JPEG", fighters: "Smith vs Ellis" },
@@ -28,11 +33,6 @@ const MATCHUPS = [
   { id: 9, image: "/images/cz-93/Looney-Teer.JPEG", fighters: "Looney vs Teer" },
   { id: 10, image: "/images/cz-93/Morrill-Villeges.JPEG", fighters: "Morrill vs Villeges" },
   { id: 11, image: "/images/cz-93/Noleto-Reese.JPEG", fighters: "Noleto vs Reese" },
-  {
-    id: 12,
-    image: "/images/cz-93/Whitehouse-Bernardini.JPEG",
-    fighters: "Whitehouse vs Bernardini",
-  },
 ];
 
 export default function FightCardPage() {

@@ -56,6 +56,17 @@ export default function EventsPage() {
         }}
         imageUrl="https://combatzonemma.com/opengraph.jpg"
       />
+      <EventSchema
+        name="Combat Zone 94"
+        description="New England's premier MMA event featuring top regional fighters competing at SNHU Arena."
+        startDate="2026-11-07T17:00:00-05:00"
+        venue={{
+          name: "SNHU Arena",
+          address: "555 Elm Street",
+          city: "Manchester",
+          state: "NH",
+        }}
+      />
       <SectionHero
         label="Live Events"
         title="UPCOMING EVENTS"
@@ -261,6 +272,32 @@ export default function EventsPage() {
                   <div className="hidden md:block w-px h-12 bg-neutral-200" />
                   <div>
                     <div className="font-bold text-neutral-900">August 22, 2026</div>
+                    <div className="text-sm text-neutral-500">Saturday</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 text-neutral-600">
+                  <MapPin size={18} className="text-neutral-400" />
+                  <div>
+                    <div className="font-medium">SNHU Arena</div>
+                    <div className="text-sm text-neutral-500">Manchester, NH</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CZ 94 */}
+            <div className="relative bg-white border border-neutral-200 overflow-hidden">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-neutral-300" />
+              <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
+                <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
+                  <div>
+                    <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900">
+                      CZ94
+                    </div>
+                  </div>
+                  <div className="hidden md:block w-px h-12 bg-neutral-200" />
+                  <div>
+                    <div className="font-bold text-neutral-900">November 7, 2026</div>
                     <div className="text-sm text-neutral-500">Saturday</div>
                   </div>
                 </div>
