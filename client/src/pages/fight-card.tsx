@@ -11,6 +11,9 @@ import { EventSchema } from "@/components/StructuredData";
 
 // Ordered newest-announced first
 const MATCHUPS = [
+  { id: 21, image: "/images/cz-93/Tobin-Barry.JPEG", fighters: "Tobin vs Barry" },
+  { id: 22, image: "/images/cz-93/Darling-Teer.JPEG", fighters: "Darling vs Teer" },
+  { id: 23, image: "/images/cz-93/Marini-Cassidy.JPEG", fighters: "Marini vs Cassidy" },
   { id: 19, image: "/images/cz-93/Castro-Bernier.JPEG", fighters: "Castro vs Bernier" },
   {
     id: 20,
@@ -24,13 +27,11 @@ const MATCHUPS = [
   { id: 15, image: "/images/cz-93/Spiewak-Fagan.JPEG", fighters: "Spiewak vs Fagan" },
   { id: 1, image: "/images/cz-93/Hargrove-Schmelzer.JPEG", fighters: "Hargrove vs Schmelzer" },
   { id: 2, image: "/images/cz-93/Bilodeau-Reza.JPEG", fighters: "Bilodeau vs Reza" },
-  { id: 3, image: "/images/cz-93/Darling-Wasi.JPEG", fighters: "Darling vs Wasi" },
   { id: 4, image: "/images/cz-93/MacNeil-Batista.JPEG", fighters: "MacNeil vs Batista" },
   { id: 5, image: "/images/cz-93/Damico-Duffy.JPEG", fighters: "D'Amico vs Duffy" },
   { id: 6, image: "/images/cz-93/Fitzpatrick-Hanley.JPEG", fighters: "Fitzpatrick vs Hanley" },
   { id: 7, image: "/images/cz-93/Johnson-Cetoute.JPEG", fighters: "Johnson vs Cetoute" },
   { id: 8, image: "/images/cz-93/Kench-Boucher.JPEG", fighters: "Kench vs Boucher" },
-  { id: 9, image: "/images/cz-93/Looney-Teer.JPEG", fighters: "Looney vs Teer" },
   { id: 10, image: "/images/cz-93/Morrill-Villeges.JPEG", fighters: "Morrill vs Villeges" },
   { id: 11, image: "/images/cz-93/Noleto-Reese.JPEG", fighters: "Noleto vs Reese" },
 ];
