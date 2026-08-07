@@ -9,12 +9,14 @@ import { cn } from "@/lib/utils";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
-// Ordered newest-announced first
+// Title fights (belt posters) first, then newest-announced first
 const MATCHUPS = [
+  { id: 19, image: "/images/cz-93/Castro-Bernier.JPEG", fighters: "Castro vs Bernier" },
+  { id: 1, image: "/images/cz-93/Hargrove-Schmelzer.JPEG", fighters: "Hargrove vs Schmelzer" },
+  { id: 4, image: "/images/cz-93/MacNeil-Batista.JPEG", fighters: "MacNeil vs Batista" },
   { id: 21, image: "/images/cz-93/Tobin-Barry.JPEG", fighters: "Tobin vs Barry" },
   { id: 22, image: "/images/cz-93/Darling-Teer.JPEG", fighters: "Darling vs Teer" },
   { id: 23, image: "/images/cz-93/Marini-Cassidy.JPEG", fighters: "Marini vs Cassidy" },
-  { id: 19, image: "/images/cz-93/Castro-Bernier.JPEG", fighters: "Castro vs Bernier" },
   {
     id: 20,
     image: "/images/cz-93/Zahid-Bernardini.JPEG",
@@ -25,9 +27,7 @@ const MATCHUPS = [
   { id: 13, image: "/images/cz-93/Smith-Ellis.JPEG", fighters: "Smith vs Ellis" },
   { id: 14, image: "/images/cz-93/Medina-Roberts.JPEG", fighters: "Medina vs Roberts" },
   { id: 15, image: "/images/cz-93/Spiewak-Fagan.JPEG", fighters: "Spiewak vs Fagan" },
-  { id: 1, image: "/images/cz-93/Hargrove-Schmelzer.JPEG", fighters: "Hargrove vs Schmelzer" },
   { id: 2, image: "/images/cz-93/Bilodeau-Reza.JPEG", fighters: "Bilodeau vs Reza" },
-  { id: 4, image: "/images/cz-93/MacNeil-Batista.JPEG", fighters: "MacNeil vs Batista" },
   { id: 5, image: "/images/cz-93/Damico-Duffy.JPEG", fighters: "D'Amico vs Duffy" },
   { id: 6, image: "/images/cz-93/Fitzpatrick-Hanley.JPEG", fighters: "Fitzpatrick vs Hanley" },
   { id: 7, image: "/images/cz-93/Johnson-Cetoute.JPEG", fighters: "Johnson vs Cetoute" },
