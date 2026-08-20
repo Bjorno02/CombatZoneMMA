@@ -10,13 +10,16 @@ import {
 import { PPV_LIVE_TICKET_URL, PPV_LIVE_EVENT_NAME, PPV_LIVE_WATCH_PATH } from "@/lib/constants";
 
 interface PPVPurchaseModalProps {
-  children: React.ReactNode;
+  /** Trigger element. Omit when controlling the modal via open/onOpenChange. */
+  children?: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export function PPVPurchaseModal({ children }: PPVPurchaseModalProps) {
+export function PPVPurchaseModal({ children, open, onOpenChange }: PPVPurchaseModalProps) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      {children && <DialogTrigger asChild>{children}</DialogTrigger>}
       <DialogContent className="max-w-3xl w-[95vw] h-[92vh] p-0 bg-neutral-950 border border-neutral-800 flex flex-col overflow-hidden gap-0 sm:rounded-none">
         {/* Accessible title (visually hidden — header below provides visible label) */}
         <DialogTitle className="sr-only">Buy {PPV_LIVE_EVENT_NAME} PPV Access</DialogTitle>
