@@ -472,34 +472,36 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           return;
         }
 
-        // Webconnex public API — search tickets scoped to our form/event
+        // Webconnex public API — search orders scoped to our form/event
         // Docs: https://docs.webconnex.io/api/v2/
-        // Verification uses the Order Number (e.g. "CMBTZN92-QV40001"), which is in
-        // every TicketSpice confirmation email and is searchable via API.
-        // Note: the XXX-XXX-XXX access token shown on TicketSpice's virtual event page
-        // is internal to their player and NOT exposed via API.
+        // Verification uses the Order Number (e.g. "CMBTZN93-QV40001"), which is in
+        // every TicketSpice confirmation email. Must use search/orders — the
+        // search/tickets endpoint silently IGNORES its orderNumber param and returns
+        // every ticket on the form. The XXX-XXX-XXX access token shown on TicketSpice's
+        // virtual event page is internal to their player and NOT exposed via API.
+        // The orderNumber param is case-sensitive, hence the variant loop.
+        // Keep in sync with api/ppv/verify.ts.
         const upperCode = code.toUpperCase();
         const codesToTry = upperCode !== code ? [code, upperCode] : [code];
 
-        interface WebconnexTicketResponse {
+        interface WebconnexOrderResponse {
           responseCode?: number;
           data?: Array<{
             id?: number | string;
             orderNumber?: string;
-            orderDisplayId?: string;
+            displayId?: string;
             status?: string;
             formId?: number | string;
-            refunded?: boolean;
           }>;
           totalResults?: number;
         }
 
-        let validTicket: WebconnexTicketResponse["data"] extends (infer T)[] | undefined
+        let validOrder: WebconnexOrderResponse["data"] extends (infer T)[] | undefined
           ? T | undefined
           : undefined = undefined;
 
         for (const tryCode of codesToTry) {
-          const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderNumber=${encodeURIComponent(tryCode)}`;
+          const apiUrl = `https://api.webconnex.com/v2/public/search/orders?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderNumber=${encodeURIComponent(tryCode)}`;
 
           const tsResponse = await fetch(apiUrl, {
             headers: {
@@ -514,33 +516,38 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
             continue;
           }
 
-          const data = (await tsResponse.json()) as WebconnexTicketResponse;
+          const data = (await tsResponse.json()) as WebconnexOrderResponse;
           console.log(
             "[PPV] Webconnex returned",
             data.totalResults ?? 0,
             "results for code variant"
           );
 
-          validTicket = data.data?.find(
-            (t) =>
-              String(t.formId) === String(eventId) &&
-              !t.refunded &&
-              (t.status === "completed" || t.status === "active" || !t.status)
+          // Never trust the API's filtering alone — require an exact order-number
+          // match (refunded orders come back with status "refunded", not a flag).
+          validOrder = data.data?.find(
+            (o) =>
+              String(o.formId) === String(eventId) &&
+              o.orderNumber?.toUpperCase() === upperCode &&
+              o.status === "completed"
           );
 
-          if (validTicket) break;
+          if (validOrder) break;
         }
 
-        if (!validTicket) {
+        if (!validOrder) {
           console.log(
             "[PPV] No valid ticket found for code variant:",
             code.substring(0, 4) + "..."
           );
-          res.status(403).json({ error: "Invalid access code" });
+          res.status(403).json({
+            error:
+              "No matching order found. Double-check the order number from your confirmation email.",
+          });
           return;
         }
 
-        console.log("[PPV] Access granted for ticket:", validTicket.id);
+        console.log("[PPV] Access granted for order:", validOrder.id);
         res.json({ embedUrl: vimeoEmbedUrl });
       } catch (error) {
         if (error instanceof z.ZodError) {

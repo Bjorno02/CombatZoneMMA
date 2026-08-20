@@ -18,20 +18,19 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-interface WebconnexTicketResponse {
+interface WebconnexOrderResponse {
   responseCode?: number;
   data?: Array<{
     id?: number | string;
     orderNumber?: string;
-    orderDisplayId?: string;
+    displayId?: string;
     status?: string;
     formId?: number | string;
-    refunded?: boolean;
   }>;
   totalResults?: number;
 }
 
-type WebconnexTicket = NonNullable<WebconnexTicketResponse["data"]>[number];
+type WebconnexOrder = NonNullable<WebconnexOrderResponse["data"]>[number];
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -87,18 +86,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         .json({ error: "Verification service unavailable. Please try again later." });
     }
 
-    // Verification uses the Order Number (e.g. "CMBTZN92-QV40001"), which is in
-    // every TicketSpice confirmation email and is searchable via Webconnex API.
-    // Note: the XXX-XXX-XXX access token shown on TicketSpice's virtual event page
-    // is internal to their player and NOT exposed via API — we deliberately don't
-    // try to validate it. Keep this logic in sync with server/routes.ts.
+    // Verification uses the Order Number (e.g. "CMBTZN93-QV40001"), which is in
+    // every TicketSpice confirmation email. Must use search/orders — the
+    // search/tickets endpoint silently IGNORES its orderNumber param and returns
+    // every ticket on the form. The XXX-XXX-XXX access token shown on TicketSpice's
+    // virtual event page is internal to their player and NOT exposed via API — we
+    // deliberately don't try to validate it. The orderNumber param is
+    // case-sensitive, hence the variant loop. Keep in sync with server/routes.ts.
     const trimmedUpper = trimmedCode.toUpperCase();
     const codesToTry = trimmedUpper !== trimmedCode ? [trimmedCode, trimmedUpper] : [trimmedCode];
 
-    let validTicket: WebconnexTicket | undefined = undefined;
+    let validOrder: WebconnexOrder | undefined = undefined;
 
     for (const tryCode of codesToTry) {
-      const apiUrl = `https://api.webconnex.com/v2/public/search/tickets?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderNumber=${encodeURIComponent(tryCode)}`;
+      const apiUrl = `https://api.webconnex.com/v2/public/search/orders?product=ticketspice.com&formId=${encodeURIComponent(eventId)}&orderNumber=${encodeURIComponent(tryCode)}`;
 
       const tsResponse = await fetch(apiUrl, {
         headers: {
@@ -113,28 +114,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         continue;
       }
 
-      const data = (await tsResponse.json()) as WebconnexTicketResponse;
+      const data = (await tsResponse.json()) as WebconnexOrderResponse;
       console.log("[PPV] Webconnex returned", data.totalResults ?? 0, "results for code variant");
 
-      validTicket = data.data?.find(
-        (t) =>
-          String(t.formId) === String(eventId) &&
-          !t.refunded &&
-          (t.status === "completed" || t.status === "active" || !t.status)
+      // Never trust the API's filtering alone — require an exact order-number
+      // match (refunded orders come back with status "refunded", not a flag).
+      validOrder = data.data?.find(
+        (o) =>
+          String(o.formId) === String(eventId) &&
+          o.orderNumber?.toUpperCase() === trimmedUpper &&
+          o.status === "completed"
       );
 
-      if (validTicket) break;
+      if (validOrder) break;
     }
 
-    if (!validTicket) {
+    if (!validOrder) {
       console.log(
         "[PPV] No valid ticket found for code variant:",
         trimmedCode.substring(0, 4) + "..."
       );
-      return res.status(403).json({ error: "Invalid access code" });
+      return res.status(403).json({
+        error:
+          "No matching order found. Double-check the order number from your confirmation email.",
+      });
     }
 
-    console.log("[PPV] Access granted for ticket:", validTicket.id);
+    console.log("[PPV] Access granted for order:", validOrder.id);
     return res.status(200).json({ embedUrl: vimeoEmbedUrl });
   } catch (error) {
     console.error("[PPV] Verification error:", error);

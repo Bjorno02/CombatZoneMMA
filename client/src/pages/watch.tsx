@@ -46,6 +46,18 @@ export default function WatchPage() {
 
   // Auto-validate when arriving with ?code=XXX in the URL (post-TicketSpice redirect)
   useEffect(() => {
+    // TicketSpice checkout is embedded in an iframe modal (PPVPurchaseModal), so
+    // its post-purchase redirect lands THIS page inside that iframe. Break out to
+    // a full window — the parent is our own origin, so top navigation is allowed.
+    if (window.self !== window.top) {
+      try {
+        window.top!.location.replace(window.location.href);
+        return;
+      } catch {
+        // Cross-origin parent (someone else framed us) — stay embedded.
+      }
+    }
+
     const params = new URLSearchParams(window.location.search);
     const codeFromUrl = params.get("code")?.trim();
 
