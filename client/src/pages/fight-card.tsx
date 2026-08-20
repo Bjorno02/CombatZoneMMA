@@ -5,37 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { TicketOptionsModal } from "@/components/TicketOptionsModal";
-import { cn } from "@/lib/utils";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
-// Title fights (belt posters) first, then newest-announced first
-const MATCHUPS = [
-  { id: 19, image: "/images/cz-93/Castro-Bernier.JPEG", fighters: "Castro vs Bernier" },
-  { id: 1, image: "/images/cz-93/Hargrove-Schmelzer.JPEG", fighters: "Hargrove vs Schmelzer" },
-  { id: 4, image: "/images/cz-93/MacNeil-Batista.JPEG", fighters: "MacNeil vs Batista" },
-  { id: 24, image: "/images/cz-93/Skelli-Mitchell.JPEG", fighters: "Skelli vs Mitchell" },
-  { id: 25, image: "/images/cz-93/Smith-Johnson.JPEG", fighters: "Smith vs Johnson" },
-  { id: 21, image: "/images/cz-93/Tobin-Barry.JPEG", fighters: "Tobin vs Barry" },
-  { id: 22, image: "/images/cz-93/Darling-Teer.JPEG", fighters: "Darling vs Teer" },
-  { id: 23, image: "/images/cz-93/Marini-Cassidy.JPEG", fighters: "Marini vs Cassidy" },
-  {
-    id: 20,
-    image: "/images/cz-93/Zahid-Bernardini.JPEG",
-    fighters: "Zahid vs Bernardini",
-  },
-  { id: 17, image: "/images/cz-93/StJean-Marques.JPEG", fighters: "St. Jean vs Marques" },
-  { id: 16, image: "/images/cz-93/Ovalle-StPierre.JPEG", fighters: "Ovalle vs St Pierre" },
-  { id: 14, image: "/images/cz-93/Medina-Roberts.JPEG", fighters: "Medina vs Roberts" },
-  { id: 15, image: "/images/cz-93/Spiewak-Fagan.JPEG", fighters: "Spiewak vs Fagan" },
-  { id: 2, image: "/images/cz-93/Bilodeau-Reza.JPEG", fighters: "Bilodeau vs Reza" },
-  { id: 5, image: "/images/cz-93/Damico-Duffy.JPEG", fighters: "D'Amico vs Duffy" },
-  { id: 6, image: "/images/cz-93/Fitzpatrick-Hanley.JPEG", fighters: "Fitzpatrick vs Hanley" },
-  { id: 7, image: "/images/cz-93/Johnson-Cetoute.JPEG", fighters: "Johnson vs Cetoute" },
-  { id: 8, image: "/images/cz-93/Kench-Boucher.JPEG", fighters: "Kench vs Boucher" },
-  { id: 10, image: "/images/cz-93/Morrill-Villeges.JPEG", fighters: "Morrill vs Villeges" },
-  { id: 11, image: "/images/cz-93/Noleto-Reese.JPEG", fighters: "Noleto vs Reese" },
-];
+const BOUT_COUNT = 20;
+const POSTER_IMAGE = "/images/cz-93/CZ93-Fight-Card.jpg";
 
 export default function FightCardPage() {
   useSEO(SEO_CONFIG.fightCard);
@@ -120,40 +94,20 @@ export default function FightCardPage() {
               CZ93 Official Lineup
             </p>
             <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
-              {MATCHUPS.length} Bouts Confirmed
+              {BOUT_COUNT} Bouts Confirmed
             </h2>
           </div>
 
-          {/* Matchups Grid - 2 columns on tablet, stacks on mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-12 max-w-[58rem] mx-auto">
-            {MATCHUPS.map((matchup, index) => {
-              const isOddCount = MATCHUPS.length % 2 === 1;
-              const isFirstOddRow = isOddCount && index === 0;
-              const effectiveIndex = isOddCount ? index - 1 : index;
-              return (
-                <div
-                  key={matchup.id}
-                  className={cn(
-                    "group relative bg-white p-2 rounded border-2 border-primary/80 hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl max-w-[420px] mx-auto",
-                    isFirstOddRow
-                      ? "md:col-span-2 md:mx-auto"
-                      : effectiveIndex % 2 === 0
-                        ? "md:mr-auto md:ml-0"
-                        : "md:ml-auto md:mr-0"
-                  )}
-                >
-                  {/* Matchup Image - natural aspect ratio */}
-                  <div className="overflow-hidden rounded-sm">
-                    <img
-                      src={matchup.image}
-                      alt={matchup.fighters}
-                      className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
-                      loading={index < 4 ? "eager" : "lazy"}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+          {/* Official Fight Card Poster */}
+          <div className="bg-white p-2 rounded border-2 border-primary/80 shadow-md max-w-[58rem] mx-auto">
+            <div className="overflow-hidden rounded-sm">
+              <img
+                src={POSTER_IMAGE}
+                alt="Combat Zone 93 official fight card"
+                className="w-full h-auto"
+                loading="eager"
+              />
+            </div>
           </div>
 
           {/* CTA Section */}
