@@ -100,9 +100,9 @@ export const SEO_CONFIG = {
       "Browse the complete history of Combat Zone MMA events, fight results, and championship bouts.",
   },
   fightCard: {
-    title: "Fight Card - CZ93",
+    title: "Fight Card - CZ94",
     description:
-      "The official fight card for Combat Zone 93. Live at SNHU Arena on August 22, 2026.",
+      "The official fight card for Combat Zone 94. Live at SNHU Arena on November 7, 2026. Matchups to be announced.",
   },
   about: {
     title: "About Us",

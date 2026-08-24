@@ -9,6 +9,7 @@ import {
   PPV_LIVE_EVENT_NUMBER,
   PPV_LIVE_EVENT_DATE,
   PPV_LIVE_EVENT_VENUE,
+  PPV_LIVE_COMING_SOON,
 } from "@/lib/constants";
 
 export default function WatchPage() {
@@ -259,15 +260,26 @@ export default function WatchPage() {
         {/* No code? Get tickets */}
         <div className="mt-8 text-center">
           <p className="text-neutral-400 text-sm mb-3">Don't have an access code?</p>
-          <a href={PPV_LIVE_TICKET_URL} target="_blank" rel="noopener noreferrer">
+          {PPV_LIVE_COMING_SOON ? (
             <Button
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold uppercase tracking-wider rounded-none bg-transparent"
+              disabled
+              className="border-2 border-white/40 text-white/60 font-bold uppercase tracking-wider rounded-none bg-transparent cursor-not-allowed disabled:opacity-100"
             >
               <Ticket size={18} />
-              Buy PPV Access
+              PPV On Sale Soon
             </Button>
-          </a>
+          ) : (
+            <a href={PPV_LIVE_TICKET_URL} target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold uppercase tracking-wider rounded-none bg-transparent"
+              >
+                <Ticket size={18} />
+                Buy PPV Access
+              </Button>
+            </a>
+          )}
         </div>
       </div>
     </div>

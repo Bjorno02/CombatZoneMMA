@@ -6,8 +6,8 @@ import { PPV_LIVE_WATCH_PATH, PPV_LIVE_COMING_SOON } from "@/lib/constants";
 import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 import { PPVPurchaseModal } from "@/components/PPVPurchaseModal";
 
-// August 22, 2026 at 5:00 PM EDT
-const EVENT_DATE = new Date("2026-08-22T17:00:00-04:00");
+// November 7, 2026 at 5:00 PM EST
+const EVENT_DATE = new Date("2026-11-07T17:00:00-05:00");
 
 interface TimeLeft {
   days: number;
@@ -78,10 +78,10 @@ export function EventCountdown() {
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-white uppercase">
-            CZ<span className="text-primary">93</span> Countdown
+            CZ<span className="text-primary">94</span> Countdown
           </h2>
           <p className="text-neutral-500 text-sm mt-2">
-            August 22, 2026 • 5:00 PM EDT • SNHU Arena
+            November 7, 2026 • 5:00 PM EST • SNHU Arena
           </p>
         </div>
 

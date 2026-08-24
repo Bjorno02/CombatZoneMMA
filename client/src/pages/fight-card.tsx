@@ -2,14 +2,11 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
+import { Calendar, MapPin, Ticket, Clock, Bell } from "lucide-react";
 import { Link } from "wouter";
 import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
-
-const BOUT_COUNT = 20;
-const POSTER_IMAGE = "/images/cz-93/CZ93-Fight-Card.jpg";
 
 export default function FightCardPage() {
   useSEO(SEO_CONFIG.fightCard);
@@ -17,9 +14,9 @@ export default function FightCardPage() {
     <PageLayout>
       {/* Structured Data */}
       <EventSchema
-        name="Combat Zone 93 - Fight Card"
-        description="The complete fight card for Combat Zone 93 at SNHU Arena."
-        startDate="2026-08-22T17:00:00-04:00"
+        name="Combat Zone 94 - Fight Card"
+        description="The fight card for Combat Zone 94 at SNHU Arena. Matchups to be announced."
+        startDate="2026-11-07T17:00:00-05:00"
         venue={{
           name: "SNHU Arena",
           address: "555 Elm Street",
@@ -32,7 +29,7 @@ export default function FightCardPage() {
         label="Official Lineup"
         title="FIGHT CARD"
         highlightWord="CARD"
-        description="Combat Zone 93 • August 22, 2026"
+        description="Combat Zone 94 • November 7, 2026"
       />
 
       {/* Event Info Bar */}
@@ -45,7 +42,7 @@ export default function FightCardPage() {
                   <Calendar className="text-primary" size={20} />
                 </div>
                 <div>
-                  <div className="font-bold text-neutral-900">August 22, 2026</div>
+                  <div className="font-bold text-neutral-900">November 7, 2026</div>
                   <div className="text-xs text-neutral-500 uppercase tracking-wider">Saturday</div>
                 </div>
               </div>
@@ -91,22 +88,45 @@ export default function FightCardPage() {
           {/* Section Header */}
           <div className="text-center mb-12">
             <p className="text-primary font-bold tracking-[0.3em] text-xs uppercase mb-3">
-              CZ93 Official Lineup
+              CZ94 Official Lineup
             </p>
             <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
-              {BOUT_COUNT} Bouts Confirmed
+              Matchups Coming Soon
             </h2>
           </div>
 
-          {/* Official Fight Card Poster */}
-          <div className="bg-white p-2 rounded border-2 border-primary/80 shadow-md max-w-[58rem] mx-auto">
-            <div className="overflow-hidden rounded-sm">
-              <img
-                src={POSTER_IMAGE}
-                alt="Combat Zone 93 official fight card"
-                className="w-full h-auto"
-                loading="eager"
-              />
+          {/* Fights To Be Announced */}
+          <div className="relative bg-neutral-950 border border-neutral-800 shadow-2xl max-w-[58rem] mx-auto overflow-hidden">
+            {/* Background effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,38,38,0.15),transparent_70%)]" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+
+            <div className="relative z-10 flex flex-col items-center text-center px-8 py-16 md:py-24">
+              <div className="inline-flex items-center gap-2 mb-6">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <span className="text-primary font-bold tracking-[0.25em] text-xs uppercase">
+                  Coming Soon
+                </span>
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              </div>
+
+              <h3 className="text-4xl md:text-6xl font-bold font-[Chakra_Petch] text-white uppercase leading-tight mb-4">
+                Fights For CZ<span className="text-primary">94</span>
+                <br />
+                To Be Announced
+              </h3>
+
+              <p className="text-neutral-400 text-base md:text-lg max-w-xl mb-8">
+                The matchups are being locked in now. Stay tuned — the official CZ94 fight card
+                drops soon.
+              </p>
+
+              <div className="inline-flex items-center gap-3 border-2 border-white/40 px-6 py-3 text-white/90 text-sm font-bold uppercase tracking-[0.2em]">
+                <Bell size={16} className="text-primary" />
+                Stay Tuned
+              </div>
             </div>
           </div>
 

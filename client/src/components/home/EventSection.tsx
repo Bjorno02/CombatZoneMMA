@@ -45,18 +45,38 @@ export function EventSection() {
 
         {/* Main content - Side by side on desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left - Event Poster */}
+          {/* Left - Event Poster placeholder (official CZ94 poster coming soon) */}
           <div className="relative group flex justify-center lg:justify-start">
             {/* Shadow effect */}
             <div className="absolute inset-4 bg-neutral-900/10 blur-2xl rounded-lg" />
 
-            <div className="relative">
-              <img
-                src="/images/CZ93_Poster.JPEG"
-                alt="Combat Zone 93 Event Poster"
-                className="relative w-full max-w-md h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02] shadow-xl"
-                loading="eager"
-              />
+            <div className="relative w-full max-w-md aspect-[3/4] bg-neutral-950 border border-neutral-800 shadow-xl overflow-hidden flex flex-col items-center justify-center text-center p-10 transition-transform duration-700 group-hover:scale-[1.02]">
+              {/* Background effects */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,38,38,0.15),transparent_70%)]" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
+
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 mb-6">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  <span className="text-primary font-bold tracking-[0.25em] text-xs uppercase">
+                    Save The Date
+                  </span>
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                </div>
+                <div className="text-7xl md:text-8xl font-bold font-[Chakra_Petch] text-white leading-none mb-4">
+                  CZ<span className="text-primary">94</span>
+                </div>
+                <div className="text-neutral-400 uppercase tracking-[0.2em] text-sm font-bold mb-2">
+                  November 7, 2026
+                </div>
+                <div className="text-neutral-500 uppercase tracking-wider text-xs mb-8">
+                  SNHU Arena • Manchester, NH
+                </div>
+                <div className="inline-block border-2 border-white/40 px-5 py-2 text-white/80 text-xs font-bold uppercase tracking-[0.2em]">
+                  Fight Card To Be Announced
+                </div>
+              </div>
             </div>
           </div>
 
@@ -66,13 +86,13 @@ export function EventSection() {
             <div className="inline-flex items-center gap-3 bg-neutral-100 border border-neutral-200 px-4 py-2 mb-6">
               <Calendar className="text-primary" size={16} />
               <span className="text-sm font-bold uppercase tracking-wider text-neutral-700">
-                August 22, 2026
+                November 7, 2026
               </span>
             </div>
 
             {/* Title */}
             <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold font-[Chakra_Petch] leading-[0.85] mb-8 text-neutral-900">
-              CZ<span className="text-primary">93</span>
+              CZ<span className="text-primary">94</span>
             </h2>
 
             {/* Event details */}

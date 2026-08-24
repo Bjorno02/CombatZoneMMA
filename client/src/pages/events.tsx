@@ -9,7 +9,7 @@ import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
-const EVENT_DATE = "2026-08-22T17:00:00-04:00";
+const EVENT_DATE = "2026-11-07T17:00:00-05:00";
 
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -45,18 +45,6 @@ export default function EventsPage() {
     <PageLayout>
       {/* Structured Data */}
       <EventSchema
-        name="Combat Zone 93"
-        description="New England's premier MMA event featuring top regional fighters competing at SNHU Arena."
-        startDate="2026-08-22T17:00:00-04:00"
-        venue={{
-          name: "SNHU Arena",
-          address: "555 Elm Street",
-          city: "Manchester",
-          state: "NH",
-        }}
-        imageUrl="https://combatzonemma.com/opengraph.jpg"
-      />
-      <EventSchema
         name="Combat Zone 94"
         description="New England's premier MMA event featuring top regional fighters competing at SNHU Arena."
         startDate="2026-11-07T17:00:00-05:00"
@@ -66,6 +54,7 @@ export default function EventsPage() {
           city: "Manchester",
           state: "NH",
         }}
+        imageUrl="https://combatzonemma.com/opengraph.jpg"
       />
       <SectionHero
         label="Live Events"
@@ -84,9 +73,9 @@ export default function EventsPage() {
                 Next Event
               </span>
               <span className="text-neutral-400 hidden sm:inline">|</span>
-              <span className="font-bold font-[Chakra_Petch] text-xl text-primary">CZ93</span>
+              <span className="font-bold font-[Chakra_Petch] text-xl text-primary">CZ94</span>
               <span className="text-neutral-400 hidden sm:inline">|</span>
-              <span className="text-neutral-600">August 22, 2026</span>
+              <span className="text-neutral-600">November 7, 2026</span>
             </div>
             <TicketOptionsModal>
               <Button className="bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-10 px-6 text-sm">
@@ -98,7 +87,7 @@ export default function EventsPage() {
         </Container>
       </section>
 
-      {/* Featured Event - CZ93 */}
+      {/* Featured Event - CZ94 */}
       <section className="py-16 md:py-24 bg-neutral-50 relative overflow-hidden">
         {/* Subtle background elements */}
         <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-primary/5 to-transparent" />
@@ -159,15 +148,36 @@ export default function EventsPage() {
             <div className="h-px flex-1 max-w-24 bg-neutral-300" />
           </div>
 
-          {/* Central Poster Display */}
+          {/* Central Poster Display - placeholder until the official CZ94 poster drops */}
           <div className="flex justify-center mb-12 md:mb-16">
-            <div className="relative group max-w-3xl">
-              <img
-                src="/images/CZ93_Poster.JPEG"
-                alt="Combat Zone 93 Event Poster"
-                className="w-full h-auto object-contain shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]"
-                loading="eager"
-              />
+            <div className="relative group w-full max-w-3xl">
+              <div className="relative bg-neutral-950 border border-neutral-800 overflow-hidden shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,38,38,0.15),transparent_70%)]" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
+
+                <div className="relative z-10 flex flex-col items-center text-center px-8 py-16 md:py-24">
+                  <div className="inline-flex items-center gap-2 mb-6">
+                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                    <span className="text-primary font-bold tracking-[0.25em] text-xs uppercase">
+                      Save The Date
+                    </span>
+                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  </div>
+                  <div className="text-7xl md:text-9xl font-bold font-[Chakra_Petch] text-white leading-none mb-6">
+                    CZ<span className="text-primary">94</span>
+                  </div>
+                  <div className="text-neutral-400 uppercase tracking-[0.2em] text-sm md:text-base font-bold mb-2">
+                    November 7, 2026
+                  </div>
+                  <div className="text-neutral-500 uppercase tracking-wider text-xs md:text-sm mb-8">
+                    SNHU Arena • Manchester, NH
+                  </div>
+                  <div className="inline-block border-2 border-white/40 px-6 py-3 text-white/80 text-xs md:text-sm font-bold uppercase tracking-[0.2em]">
+                    Fight Card To Be Announced
+                  </div>
+                </div>
+              </div>
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10" />
             </div>
@@ -182,7 +192,7 @@ export default function EventsPage() {
                   Next Live Event
                 </span>
                 <h2 className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900 mt-3">
-                  COMBAT ZONE <span className="text-primary">93</span>
+                  COMBAT ZONE <span className="text-primary">94</span>
                 </h2>
               </div>
 
@@ -193,7 +203,7 @@ export default function EventsPage() {
                     <Calendar className="text-primary" size={22} />
                   </div>
                   <div>
-                    <div className="font-bold text-neutral-900">August 22, 2026</div>
+                    <div className="font-bold text-neutral-900">November 7, 2026</div>
                     <div className="text-sm text-neutral-500">Saturday Night</div>
                   </div>
                 </div>
@@ -259,35 +269,9 @@ export default function EventsPage() {
 
           {/* Events List */}
           <div className="space-y-4">
-            {/* CZ 93 - Next Event */}
+            {/* CZ 94 - Next Event */}
             <div className="relative bg-white border border-neutral-200 overflow-hidden">
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary" />
-              <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
-                <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
-                  <div>
-                    <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900">
-                      CZ93
-                    </div>
-                  </div>
-                  <div className="hidden md:block w-px h-12 bg-neutral-200" />
-                  <div>
-                    <div className="font-bold text-neutral-900">August 22, 2026</div>
-                    <div className="text-sm text-neutral-500">Saturday</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 text-neutral-600">
-                  <MapPin size={18} className="text-neutral-400" />
-                  <div>
-                    <div className="font-medium">SNHU Arena</div>
-                    <div className="text-sm text-neutral-500">Manchester, NH</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CZ 94 */}
-            <div className="relative bg-white border border-neutral-200 overflow-hidden">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-neutral-300" />
               <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
                 <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
                   <div>
@@ -307,6 +291,37 @@ export default function EventsPage() {
                     <div className="font-medium">SNHU Arena</div>
                     <div className="text-sm text-neutral-500">Manchester, NH</div>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CZ 93 - Completed */}
+            <div className="relative bg-neutral-50 border border-neutral-200 overflow-hidden opacity-75">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-neutral-300" />
+              <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
+                <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
+                  <div>
+                    <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-400">
+                      CZ93
+                    </div>
+                  </div>
+                  <div className="hidden md:block w-px h-12 bg-neutral-200" />
+                  <div>
+                    <div className="font-bold text-neutral-500">August 22, 2026</div>
+                    <div className="text-sm text-neutral-400">Saturday</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 text-neutral-500">
+                    <MapPin size={18} className="text-neutral-300" />
+                    <div>
+                      <div className="font-medium">SNHU Arena</div>
+                      <div className="text-sm text-neutral-400">Manchester, NH</div>
+                    </div>
+                  </div>
+                  <span className="bg-neutral-200 text-neutral-600 text-xs font-bold uppercase tracking-wider px-3 py-1.5">
+                    Completed
+                  </span>
                 </div>
               </div>
             </div>

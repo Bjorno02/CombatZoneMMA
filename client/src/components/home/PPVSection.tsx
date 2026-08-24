@@ -2,6 +2,7 @@ import { Play, Star, Tv, Radio, Ticket } from "lucide-react";
 import { Link } from "wouter";
 import {
   PPV_REPLAY_URL,
+  PPV_REPLAY_EVENT_NAME,
   PPV_LIVE_EVENT_NUMBER,
   PPV_LIVE_EVENT_DATE,
   PPV_LIVE_EVENT_VENUE,
@@ -174,15 +175,19 @@ export function PPVSection() {
                   <span className="text-neutral-500 text-sm uppercase tracking-wider">Replay</span>
                   <span className="text-neutral-900 font-bold text-2xl">$20</span>
                 </div>
-                <a
-                  href={PPV_REPLAY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors font-bold uppercase tracking-wider px-6 py-3 text-sm whitespace-nowrap"
+                <PPVPurchaseModal
+                  eventName={PPV_REPLAY_EVENT_NAME}
+                  ticketUrl={PPV_REPLAY_URL}
+                  variant="replay"
                 >
-                  <Play size={16} />
-                  <span>Watch Replay</span>
-                </a>
+                  <button
+                    type="button"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors font-bold uppercase tracking-wider px-6 py-3 text-sm whitespace-nowrap cursor-pointer"
+                  >
+                    <Play size={16} />
+                    <span>Watch Replay</span>
+                  </button>
+                </PPVPurchaseModal>
               </div>
             </div>
           </div>

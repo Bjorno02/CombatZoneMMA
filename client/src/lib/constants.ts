@@ -6,33 +6,38 @@
  */
 
 // External URLs - configurable via environment variables
-// General Admission tickets (Combat Zone 93)
+// General Admission tickets — CZ 94 links not live yet; still the old CZ 93 event.
+// Update these (or the env vars) when Ticketmaster publishes CZ 94, then flip
+// TICKETS_ON_SALE to true.
 export const TICKETMASTER_EVENT_URL =
   import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/010064CAA9F77B03";
 
-// VIP Experience tickets (Combat Zone 93)
+// VIP Experience tickets — same deal as above, still pointing at CZ 93.
 export const TICKETMASTER_VIP_URL =
   import.meta.env.VITE_TICKETMASTER_VIP_URL ||
   "https://www.ticketmaster.com/event/010064CAAC2D875E";
 
+// Flip to true once CZ 94 Ticketmaster links are live and swapped in above.
+export const TICKETS_ON_SALE = false;
+
 export const PPV_REPLAY_URL =
-  import.meta.env.VITE_PPV_REPLAY_URL || "https://combatzonemma.ticketspice.com/combat-zone-92";
+  import.meta.env.VITE_PPV_REPLAY_URL || "https://combatzonemma.ticketspice.com/combat-zone-93";
 
 export const PPV_LIVE_TICKET_URL =
   import.meta.env.VITE_PPV_LIVE_TICKET_URL ||
-  "https://combatzonemma.ticketspice.com/combat-zone-93";
+  "https://combatzonemma.ticketspice.com/combat-zone-94";
 
-export const PPV_LIVE_EVENT_NAME = "Combat Zone 93";
-export const PPV_LIVE_EVENT_NUMBER = "93";
-export const PPV_LIVE_EVENT_DATE = "August 22, 2026";
+export const PPV_LIVE_EVENT_NAME = "Combat Zone 94";
+export const PPV_LIVE_EVENT_NUMBER = "94";
+export const PPV_LIVE_EVENT_DATE = "November 7, 2026";
 export const PPV_LIVE_EVENT_VENUE = "SNHU Arena";
 export const PPV_LIVE_WATCH_PATH = "/watch";
-// Flip to true if PPV checkout needs to be hidden before an event goes on sale.
-export const PPV_LIVE_COMING_SOON = false;
+// Flip to false once the CZ 94 TicketSpice page is live.
+export const PPV_LIVE_COMING_SOON = true;
 
-export const PPV_REPLAY_EVENT_NAME = "Combat Zone 92";
-export const PPV_REPLAY_EVENT_NUMBER = "92";
-export const PPV_REPLAY_EVENT_DATE = "May 16, 2026";
+export const PPV_REPLAY_EVENT_NAME = "Combat Zone 93";
+export const PPV_REPLAY_EVENT_NUMBER = "93";
+export const PPV_REPLAY_EVENT_DATE = "August 22, 2026";
 export const PPV_REPLAY_EVENT_VENUE = "SNHU Arena";
 
 export const YOUTUBE_CHANNEL_URL =
