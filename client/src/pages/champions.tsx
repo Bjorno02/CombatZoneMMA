@@ -8,25 +8,14 @@ import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 const CHAMPIONS = [
   {
     id: 1,
-    name: "Isaac Aguirre",
-    weightClass: "Flyweight",
-    division: "Amateur Kickboxing",
-    defenses: 1,
-    record: "4-0",
-    image: "/images/IMG_1606.JPG",
-    wonAt: "Combat Zone 88",
-    bio: "Isaac Aguirre made the first defense of his CZ Flyweight Amateur Kickboxing title at CZ92, finishing Neil Mazumdar with a thunderous head-kick KO to move to 4-0.",
-  },
-  {
-    id: 2,
-    name: "Ryan Carey",
-    weightClass: "Featherweight",
-    division: "MMA",
+    name: "Luis Castro",
+    weightClass: "Bantamweight",
+    division: "Kickboxing",
     defenses: 0,
-    record: "4-0",
-    image: "/images/IMG_1607.jpg",
-    wonAt: "Combat Zone 92",
-    bio: "Ryan Carey captured the CZ Featherweight title at CZ92 with a first-round ground-and-pound finish over Lazaro Aguiar, pushing his MMA record to 4-0.",
+    result: "UD",
+    image: "/images/cz-93/CZ93Website-2.jpg",
+    wonAt: "Combat Zone 93",
+    bio: "Luis Castro captured the CZ Bantamweight Kickboxing title at Combat Zone 93, defeating Aiden Bernier by unanimous decision in a beautiful performance.",
   },
 ];
 
@@ -34,7 +23,7 @@ export default function ChampionsPage() {
   useSEO({
     title: "Current Champions | Combat Zone MMA",
     description:
-      "Meet the current Combat Zone champions. Isaac Aguirre and Ryan Carey hold gold in Amateur Kickboxing and MMA.",
+      "Meet the current Combat Zone champions. Luis Castro holds gold in Bantamweight Kickboxing after Combat Zone 93.",
   });
 
   return (
@@ -77,7 +66,7 @@ export default function ChampionsPage() {
             </h1>
 
             <p className="text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl mx-auto">
-              Fighters who touched gold at Combat Zone 92.
+              Fighters who touched gold at Combat Zone 93.
             </p>
           </div>
         </Container>
@@ -189,10 +178,10 @@ export default function ChampionsPage() {
                       <div className="grid grid-cols-3 gap-6 py-8 border-t border-b border-white/10">
                         <div className="text-center">
                           <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-white mb-1">
-                            {champion.record}
+                            {champion.result}
                           </div>
                           <div className="text-xs uppercase tracking-widest text-neutral-500">
-                            Record
+                            Title Win
                           </div>
                         </div>
                         <div className="text-center">

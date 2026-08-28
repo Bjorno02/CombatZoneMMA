@@ -27,21 +27,25 @@ export default function FightersPage() {
           <h2 className="text-3xl font-bold font-[Chakra_Petch] uppercase mb-16 text-center">
             Current Champions
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="relative group cursor-pointer">
-                <div className="aspect-[3/4] bg-neutral-100 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                    <span className="text-primary font-bold uppercase tracking-widest text-xs mb-1">
-                      Heavyweight Champion
-                    </span>
-                    <h3 className="text-white text-2xl font-bold font-[Chakra_Petch] uppercase">
-                      Fighter Name
-                    </h3>
-                  </div>
+          <div className="grid grid-cols-1 gap-10 max-w-sm mx-auto">
+            <div className="relative group cursor-pointer">
+              <div className="aspect-[3/4] bg-neutral-100 overflow-hidden relative">
+                <img
+                  src="/images/cz-93/CZ93Website-2.jpg"
+                  alt="Luis Castro"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                  <span className="text-primary font-bold uppercase tracking-widest text-xs mb-1">
+                    Bantamweight Kickboxing Champion
+                  </span>
+                  <h3 className="text-white text-2xl font-bold font-[Chakra_Petch] uppercase">
+                    Luis Castro
+                  </h3>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

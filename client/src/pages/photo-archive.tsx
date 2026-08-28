@@ -4,25 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { Camera, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO } from "@/hooks/useSEO";
-
-// All gallery images - randomly assorted
-const GALLERY_IMAGES = [
-  "/images/Gal8.JPG",
-  "/images/Gal3.jpg",
-  "/images/Gal12.JPG",
-  "/images/Gal1.jpg",
-  "/images/Gal15.JPG",
-  "/images/Gal6.jpg",
-  "/images/Gal10.jpg",
-  "/images/Gal4.jpg",
-  "/images/Gal14.JPG",
-  "/images/Gal2.jpg",
-  "/images/Gal9.JPG",
-  "/images/Gal5.JPG",
-  "/images/Gal13.jpg",
-  "/images/Gal7.jpg",
-  "/images/Gal11.JPG",
-];
+import { GALLERY_IMAGES } from "@/lib/gallery";
 
 export default function PhotoArchivePage() {
   useSEO({

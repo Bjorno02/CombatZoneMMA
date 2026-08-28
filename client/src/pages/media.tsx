@@ -1,17 +1,11 @@
+import { useState } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Container } from "@/components/layout/Container";
 import { ExternalLink } from "lucide-react";
 import { YouTubeFeed } from "@/components/media/YouTubeFeed";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { Link } from "wouter";
-
-// Featured gallery images for preview
-const GALLERY_PREVIEW = [
-  "/images/Gal3.jpg",
-  "/images/Gal7.jpg",
-  "/images/Gal11.JPG",
-  "/images/Gal14.JPG",
-];
+import { pickRandomImages } from "@/lib/gallery";
 
 // Featured video configuration
 const FEATURED_VIDEO_ID = "u4KfsNQrJqw";
@@ -19,6 +13,9 @@ const FEATURED_VIDEO_START = 150; // Start at 2:30 (150 seconds)
 
 export default function MediaPage() {
   useSEO(SEO_CONFIG.media);
+
+  // 4 random gallery photos, re-rolled on every visit to the page
+  const [galleryPreview] = useState(() => pickRandomImages(4));
 
   return (
     <PageLayout className="pt-20">
@@ -72,8 +69,8 @@ export default function MediaPage() {
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {GALLERY_PREVIEW.map((image, i) => (
-              <Link key={i} href="/media/photos">
+            {galleryPreview.map((image, i) => (
+              <Link key={image} href="/media/photos">
                 <div className="aspect-square bg-neutral-100 relative group overflow-hidden cursor-pointer">
                   <img
                     src={image}
