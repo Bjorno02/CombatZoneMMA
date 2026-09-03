@@ -97,7 +97,8 @@ export function Hero() {
               {/* Content Container */}
               <div className="absolute inset-0 max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 flex flex-col justify-center items-start text-left h-full z-10">
                 <div
-                  className="animate-in fade-in slide-in-from-left-10 duration-1000 fill-mode-both"
+                  // mt-* pushes slide text down on phones only; reset at sm and up
+                  className="animate-in fade-in slide-in-from-left-10 duration-1000 fill-mode-both mt-[4.5rem] sm:mt-0"
                   style={{ animationDelay: "200ms" }}
                 >
                   {/* Vertical accent line + content wrapper */}
