@@ -45,38 +45,18 @@ export function EventSection() {
 
         {/* Main content - Side by side on desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left - Event Poster placeholder (official CZ94 poster coming soon) */}
+          {/* Left - Event Poster */}
           <div className="relative group flex justify-center lg:justify-start">
             {/* Shadow effect */}
             <div className="absolute inset-4 bg-neutral-900/10 blur-2xl rounded-lg" />
 
-            <div className="relative w-full max-w-md aspect-[3/4] bg-neutral-950 border border-neutral-800 shadow-xl overflow-hidden flex flex-col items-center justify-center text-center p-10 transition-transform duration-700 group-hover:scale-[1.02]">
-              {/* Background effects */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,38,38,0.15),transparent_70%)]" />
-              <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
-
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 mb-6">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                  <span className="text-primary font-bold tracking-[0.25em] text-xs uppercase">
-                    Save The Date
-                  </span>
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                </div>
-                <div className="text-7xl md:text-8xl font-bold font-[Chakra_Petch] text-white leading-none mb-4">
-                  CZ<span className="text-primary">94</span>
-                </div>
-                <div className="text-neutral-400 uppercase tracking-[0.2em] text-sm font-bold mb-2">
-                  November 7, 2026
-                </div>
-                <div className="text-neutral-500 uppercase tracking-wider text-xs mb-8">
-                  SNHU Arena • Manchester, NH
-                </div>
-                <div className="inline-block border-2 border-white/40 px-5 py-2 text-white/80 text-xs font-bold uppercase tracking-[0.2em]">
-                  Fight Card To Be Announced
-                </div>
-              </div>
+            <div className="relative">
+              <img
+                src="/images/CZ94_Poster.jpeg"
+                alt="Combat Zone 94 Event Poster"
+                className="relative w-full max-w-md h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02] shadow-xl"
+                loading="eager"
+              />
             </div>
           </div>
 

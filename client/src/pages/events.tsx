@@ -148,36 +148,15 @@ export default function EventsPage() {
             <div className="h-px flex-1 max-w-24 bg-neutral-300" />
           </div>
 
-          {/* Central Poster Display - placeholder until the official CZ94 poster drops */}
+          {/* Central Poster Display */}
           <div className="flex justify-center mb-12 md:mb-16">
-            <div className="relative group w-full max-w-3xl">
-              <div className="relative bg-neutral-950 border border-neutral-800 overflow-hidden shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,38,38,0.15),transparent_70%)]" />
-                <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
-
-                <div className="relative z-10 flex flex-col items-center text-center px-8 py-16 md:py-24">
-                  <div className="inline-flex items-center gap-2 mb-6">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                    <span className="text-primary font-bold tracking-[0.25em] text-xs uppercase">
-                      Save The Date
-                    </span>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                  </div>
-                  <div className="text-7xl md:text-9xl font-bold font-[Chakra_Petch] text-white leading-none mb-6">
-                    CZ<span className="text-primary">94</span>
-                  </div>
-                  <div className="text-neutral-400 uppercase tracking-[0.2em] text-sm md:text-base font-bold mb-2">
-                    November 7, 2026
-                  </div>
-                  <div className="text-neutral-500 uppercase tracking-wider text-xs md:text-sm mb-8">
-                    SNHU Arena • Manchester, NH
-                  </div>
-                  <div className="inline-block border-2 border-white/40 px-6 py-3 text-white/80 text-xs md:text-sm font-bold uppercase tracking-[0.2em]">
-                    Fight Card To Be Announced
-                  </div>
-                </div>
-              </div>
+            <div className="relative group max-w-3xl">
+              <img
+                src="/images/CZ94_Poster.jpeg"
+                alt="Combat Zone 94 Event Poster"
+                className="w-full h-auto object-contain shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]"
+                loading="eager"
+              />
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10" />
             </div>
@@ -262,7 +241,7 @@ export default function EventsPage() {
           {/* Section Header */}
           <div className="flex items-center gap-4 mb-12">
             <div className="bg-neutral-900 text-white px-4 py-2 font-bold font-[Chakra_Petch] uppercase tracking-wider text-sm">
-              2026 Schedule
+              Upcoming Events
             </div>
             <div className="h-px flex-1 bg-neutral-200" />
           </div>
@@ -291,37 +270,6 @@ export default function EventsPage() {
                     <div className="font-medium">SNHU Arena</div>
                     <div className="text-sm text-neutral-500">Manchester, NH</div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CZ 93 - Completed */}
-            <div className="relative bg-neutral-50 border border-neutral-200 overflow-hidden opacity-75">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-neutral-300" />
-              <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
-                <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
-                  <div>
-                    <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-400">
-                      CZ93
-                    </div>
-                  </div>
-                  <div className="hidden md:block w-px h-12 bg-neutral-200" />
-                  <div>
-                    <div className="font-bold text-neutral-500">August 22, 2026</div>
-                    <div className="text-sm text-neutral-400">Saturday</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-3 text-neutral-500">
-                    <MapPin size={18} className="text-neutral-300" />
-                    <div>
-                      <div className="font-medium">SNHU Arena</div>
-                      <div className="text-sm text-neutral-400">Manchester, NH</div>
-                    </div>
-                  </div>
-                  <span className="bg-neutral-200 text-neutral-600 text-xs font-bold uppercase tracking-wider px-3 py-1.5">
-                    Completed
-                  </span>
                 </div>
               </div>
             </div>
