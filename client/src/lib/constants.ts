@@ -6,19 +6,17 @@
  */
 
 // External URLs - configurable via environment variables
-// General Admission tickets — CZ 94 links not live yet; still the old CZ 93 event.
-// Update these (or the env vars) when Ticketmaster publishes CZ 94, then flip
-// TICKETS_ON_SALE to true.
+// General Admission tickets — Combat Zone 94 on Ticketmaster.
 export const TICKETMASTER_EVENT_URL =
-  import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/010064CAA9F77B03";
+  import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/0100652F8EF184D8";
 
-// VIP Experience tickets — same deal as above, still pointing at CZ 93.
+// VIP Experience tickets — Combat Zone 94 on Ticketmaster.
 export const TICKETMASTER_VIP_URL =
   import.meta.env.VITE_TICKETMASTER_VIP_URL ||
-  "https://www.ticketmaster.com/event/010064CAAC2D875E";
+  "https://www.ticketmaster.com/event/0100652F92C19064";
 
-// Flip to true once CZ 94 Ticketmaster links are live and swapped in above.
-export const TICKETS_ON_SALE = false;
+// Set to false to show the "on sale soon" state in the ticket options modal.
+export const TICKETS_ON_SALE = true;
 
 export const PPV_REPLAY_URL =
   import.meta.env.VITE_PPV_REPLAY_URL || "https://combatzonemma.ticketspice.com/combat-zone-93";
