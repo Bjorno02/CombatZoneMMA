@@ -2,11 +2,20 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Ticket, Clock, Bell } from "lucide-react";
+import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { TicketOptionsModal } from "@/components/TicketOptionsModal";
+import { cn } from "@/lib/utils";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
+
+// Newest-announced first: add new fights to the TOP of this list
+const MATCHUPS = [
+  { id: 4, image: "/images/cz-94/Carey-Batsinelas.jpeg", fighters: "Carey vs Batsinelas" },
+  { id: 3, image: "/images/cz-94/Olivero-Mosso.jpeg", fighters: "Olivero vs Mosso" },
+  { id: 2, image: "/images/cz-94/Vieira-Boucher.jpeg", fighters: "Vieira vs Boucher" },
+  { id: 1, image: "/images/cz-94/Chiasson-Thomas.jpeg", fighters: "Chiasson vs Thomas" },
+];
 
 export default function FightCardPage() {
   useSEO(SEO_CONFIG.fightCard);
@@ -15,7 +24,7 @@ export default function FightCardPage() {
       {/* Structured Data */}
       <EventSchema
         name="Combat Zone 94 - Fight Card"
-        description="The fight card for Combat Zone 94 at SNHU Arena. Matchups to be announced."
+        description="The fight card for Combat Zone 94 at SNHU Arena."
         startDate="2026-11-07T17:00:00-05:00"
         venue={{
           name: "SNHU Arena",
@@ -91,43 +100,48 @@ export default function FightCardPage() {
               CZ94 Official Lineup
             </p>
             <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
-              Matchups Coming Soon
+              {MATCHUPS.length} Bouts Confirmed
             </h2>
           </div>
 
-          {/* Fights To Be Announced */}
-          <div className="relative bg-neutral-950 border border-neutral-800 shadow-2xl max-w-[58rem] mx-auto overflow-hidden">
-            {/* Background effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,38,38,0.15),transparent_70%)]" />
-            <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+          {/* Matchups Grid - 2 columns on tablet, stacks on mobile */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-12 max-w-[58rem] mx-auto">
+            {MATCHUPS.map((matchup, index) => {
+              const isOddCount = MATCHUPS.length % 2 === 1;
+              const isFirstOddRow = isOddCount && index === 0;
+              const effectiveIndex = isOddCount ? index - 1 : index;
+              return (
+                <div
+                  key={matchup.id}
+                  className={cn(
+                    "group relative bg-white p-2 rounded border-2 border-primary/80 hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl max-w-[420px] mx-auto",
+                    isFirstOddRow
+                      ? "md:col-span-2 md:mx-auto"
+                      : effectiveIndex % 2 === 0
+                        ? "md:mr-auto md:ml-0"
+                        : "md:ml-auto md:mr-0"
+                  )}
+                >
+                  {/* Matchup Image - natural aspect ratio */}
+                  <div className="overflow-hidden rounded-sm">
+                    <img
+                      src={matchup.image}
+                      alt={`${matchup.fighters} — Combat Zone 94 matchup`}
+                      className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
+                      loading={index < 4 ? "eager" : "lazy"}
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
-            <div className="relative z-10 flex flex-col items-center text-center px-8 py-16 md:py-24">
-              <div className="inline-flex items-center gap-2 mb-6">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                <span className="text-primary font-bold tracking-[0.25em] text-xs uppercase">
-                  Coming Soon
-                </span>
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              </div>
-
-              <h3 className="text-4xl md:text-6xl font-bold font-[Chakra_Petch] text-white uppercase leading-tight mb-4">
-                Fights For CZ<span className="text-primary">94</span>
-                <br />
-                To Be Announced
-              </h3>
-
-              <p className="text-neutral-400 text-base md:text-lg max-w-xl mb-8">
-                The matchups are being locked in now. Stay tuned — the official CZ94 fight card
-                drops soon.
-              </p>
-
-              <div className="inline-flex items-center gap-3 border-2 border-white/40 px-6 py-3 text-white/90 text-sm font-bold uppercase tracking-[0.2em]">
-                <Bell size={16} className="text-primary" />
-                Stay Tuned
-              </div>
-            </div>
+          {/* Stay tuned message */}
+          <div className="mt-10 text-center">
+            <p className="text-lg md:text-xl text-neutral-700 font-semibold">
+              Stay tuned — more fights will be announced soon!
+            </p>
           </div>
 
           {/* CTA Section */}
