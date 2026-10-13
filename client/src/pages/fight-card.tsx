@@ -11,6 +11,11 @@ import { EventSchema } from "@/components/StructuredData";
 
 // Newest-announced first: add new fights to the TOP of this list
 const MATCHUPS = [
+  { id: 12, image: "/images/cz-94/Johnston-Pinto.jpeg", fighters: "Johnston vs Pinto" },
+  { id: 11, image: "/images/cz-94/Medina-Loyo.jpeg", fighters: "Medina vs Loyo" },
+  { id: 10, image: "/images/cz-94/Collins-Rosario.jpeg", fighters: "Collins vs Rosario" },
+  { id: 14, image: "/images/cz-94/Rosa-Swain.jpeg", fighters: "Rosa vs Swain" },
+  { id: 13, image: "/images/cz-94/Carter-Hanley.jpeg", fighters: "Carter vs Hanley" },
   { id: 9, image: "/images/cz-94/Phachansiri-Porter.jpeg", fighters: "Phachansiri vs Porter" },
   { id: 8, image: "/images/cz-94/Marini-Gagnon.jpeg", fighters: "Marini vs Gagnon" },
   { id: 7, image: "/images/cz-94/Sheehy-Marich.jpeg", fighters: "Sheehy vs Marich" },
