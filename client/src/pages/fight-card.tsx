@@ -11,6 +11,7 @@ import { EventSchema } from "@/components/StructuredData";
 
 // Newest-announced first: add new fights to the TOP of this list
 const MATCHUPS = [
+  { id: 15, image: "/images/cz-94/Rockwood-Denorscia.jpeg", fighters: "Rockwood vs Denorscia" },
   { id: 12, image: "/images/cz-94/Johnston-Pinto.jpeg", fighters: "Johnston vs Pinto" },
   { id: 11, image: "/images/cz-94/Medina-Loyo.jpeg", fighters: "Medina vs Loyo" },
   { id: 10, image: "/images/cz-94/Collins-Rosario.jpeg", fighters: "Collins vs Rosario" },

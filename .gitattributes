@@ -1,1 +1,4 @@
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+
+# Site videos are served as plain files; keep them out of LFS so Vercel gets the real bytes.
+client/public/videos/** -filter -diff -merge

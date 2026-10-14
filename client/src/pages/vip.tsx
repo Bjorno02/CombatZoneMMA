@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
@@ -9,14 +9,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Star, Crown, Ticket, MapPin, HelpCircle, Sparkles } from "lucide-react";
+import { Star, Crown, Ticket, MapPin, HelpCircle, Sparkles, ChevronsDown } from "lucide-react";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
-
-declare global {
-  interface Window {
-    ShopifyBuy: any;
-  }
-}
+import { TICKETMASTER_VIP_URL } from "@/lib/constants";
 
 const VIP_PACKAGES = {
   risingStar: {
@@ -42,6 +37,9 @@ const SHARED_FEATURES = [
 ];
 
 const VIP_IMAGES = [
+  "/images/VIP9.jpg",
+  "/images/VIP7.jpg",
+  "/images/VIP8.jpg",
   "/images/VIP1.jpg",
   "/images/VIP2.jpg",
   "/images/VIP3.jpg",
@@ -93,66 +91,24 @@ const FAQS = [
 
 export default function VIPPage() {
   useSEO(SEO_CONFIG.vip);
-  const shopifyClientRef = useRef<any>(null);
-  const shopifyInitialized = useRef(false);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Start playback once the panel has mostly unfolded;
+  // reset when folded back up so it starts from the top next time.
   useEffect(() => {
-    if (shopifyInitialized.current) return;
-    shopifyInitialized.current = true;
-
-    const scriptURL = "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
-
-    function initShopify() {
-      if (!window.ShopifyBuy) return;
-
-      shopifyClientRef.current = window.ShopifyBuy.buildClient({
-        domain: "p5rwip-64.myshopify.com",
-        storefrontAccessToken: "ccab007e3fe2aac68a4d91b5f4adfbb0",
-      });
+    const video = videoRef.current;
+    if (!video) return;
+    if (videoOpen) {
+      const timer = window.setTimeout(() => {
+        video.play().catch(() => {});
+      }, 400);
+      return () => window.clearTimeout(timer);
     }
-
-    if (window.ShopifyBuy) {
-      initShopify();
-    } else {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = scriptURL;
-      script.onload = initShopify;
-      const target = document.head || document.body;
-      target.appendChild(script);
-    }
-  }, []);
-
-  const handleShopifyPurchase = async (productId: string) => {
-    if (!shopifyClientRef.current) {
-      console.error("Shopify client not initialized");
-      return;
-    }
-
-    try {
-      const product = await shopifyClientRef.current.product.fetch(productId);
-
-      if (!product || !product.variants || product.variants.length === 0) {
-        console.error("Product or variants not found");
-        return;
-      }
-
-      const variantId = product.variants[0].id;
-      const checkout = await shopifyClientRef.current.checkout.create();
-
-      const updatedCheckout = await shopifyClientRef.current.checkout.addLineItems(checkout.id, [
-        { variantId, quantity: 1 },
-      ]);
-
-      window.location.href = updatedCheckout.webUrl;
-    } catch (error) {
-      console.error("Error creating checkout:", error);
-    }
-  };
-
-  const handleRisingStarPurchase = () =>
-    handleShopifyPurchase("gid://shopify/Product/7814781403178");
-  const handleElitePurchase = () => handleShopifyPurchase("gid://shopify/Product/7814781468714");
+    video.pause();
+    video.currentTime = 0;
+    return undefined;
+  }, [videoOpen]);
 
   return (
     <PageLayout>
@@ -180,7 +136,7 @@ export default function VIPPage() {
           </div>
 
           {/* Limited Availability Badge - Premium Style */}
-          <div className="flex justify-center mb-12">
+          <div className="flex flex-col items-center gap-3 mb-12">
             <div className="inline-flex items-center gap-3 bg-neutral-900 px-6 py-3 border border-neutral-700">
               <Sparkles className="text-primary" size={18} />
               <span className="text-white font-bold uppercase tracking-[0.15em] text-sm">
@@ -188,6 +144,7 @@ export default function VIPPage() {
               </span>
               <Sparkles className="text-primary" size={18} />
             </div>
+            <p className="text-sm text-neutral-500">*Must purchase main event ticket first</p>
           </div>
 
           {/* Packages Side by Side */}
@@ -217,6 +174,9 @@ export default function VIPPage() {
                   <div className="text-5xl font-bold text-neutral-900 font-[Chakra_Petch]">
                     ${VIP_PACKAGES.risingStar.price.toFixed(2)}
                   </div>
+                  <p className="mt-1 text-xs text-neutral-500">
+                    *Including purchase of main event ticket
+                  </p>
                 </div>
 
                 <div className="bg-neutral-50 border border-neutral-200 p-4 mb-8">
@@ -232,12 +192,14 @@ export default function VIPPage() {
                 </div>
 
                 <Button
+                  asChild
                   size="lg"
                   className="w-full bg-primary text-white hover:bg-primary/90 font-bold uppercase h-14 text-base tracking-wider"
-                  onClick={handleRisingStarPurchase}
                 >
-                  <Ticket className="mr-2" size={18} />
-                  Purchase Package
+                  <a href={TICKETMASTER_VIP_URL} target="_blank" rel="noopener noreferrer">
+                    <Ticket className="mr-2" size={18} />
+                    Purchase Package
+                  </a>
                 </Button>
               </div>
             </div>
@@ -274,6 +236,9 @@ export default function VIPPage() {
                   <div className="text-5xl font-bold text-white font-[Chakra_Petch]">
                     ${VIP_PACKAGES.elite.price.toFixed(2)}
                   </div>
+                  <p className="mt-1 text-xs text-neutral-400">
+                    *Including purchase of main event ticket
+                  </p>
                 </div>
 
                 <div className="bg-white/5 border border-white/10 p-4 mb-8">
@@ -287,14 +252,106 @@ export default function VIPPage() {
                 </div>
 
                 <Button
+                  asChild
                   size="lg"
                   variant="outline"
                   className="w-full border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold uppercase h-14 text-base tracking-wider"
-                  onClick={handleElitePurchase}
                 >
-                  <Ticket className="mr-2" size={18} />
-                  Purchase Package
+                  <a href={TICKETMASTER_VIP_URL} target="_blank" rel="noopener noreferrer">
+                    <Ticket className="mr-2" size={18} />
+                    Purchase Package
+                  </a>
                 </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* VIP Highlight Video */}
+      <section className="relative overflow-hidden bg-neutral-950 py-20 md:py-28">
+        {/* Backdrop: red radial glow, edge lines, ghosted VIP wordmark */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.16),transparent_60%)]" />
+        <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 flex select-none items-center justify-center"
+        >
+          <span className="font-[Chakra_Petch] text-[32vw] font-bold uppercase leading-none tracking-tighter text-white/[0.035] md:text-[18rem]">
+            VIP
+          </span>
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-center font-[Chakra_Petch] text-4xl font-bold uppercase leading-[0.95] text-white md:text-6xl">
+              Step Inside
+              <br />
+              <span className="text-primary">VIP Fight Night</span>
+            </h2>
+
+            {/* Unfold trigger: outlined button sitting on a thin rule */}
+            <div className="mt-12 flex items-center gap-6 md:mt-14">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent to-neutral-700" />
+              <button
+                type="button"
+                onClick={() => setVideoOpen((open) => !open)}
+                aria-expanded={videoOpen}
+                aria-controls="vip-video-panel"
+                className="group/trigger relative flex shrink-0 cursor-pointer items-center gap-4 border-2 border-primary bg-neutral-950 px-7 py-4 font-[Chakra_Petch] text-sm font-bold uppercase tracking-[0.25em] text-white shadow-[0_0_30px_-8px_hsl(var(--primary)/0.7)] transition-all duration-300 hover:bg-primary hover:shadow-[0_0_40px_-6px_hsl(var(--primary)/0.9)] focus-visible:bg-primary focus-visible:outline-none active:scale-[0.98] md:px-9 md:py-5 md:text-base"
+              >
+                <span>{videoOpen ? "Close video" : "Click to watch"}</span>
+                <ChevronsDown
+                  size={22}
+                  strokeWidth={2.5}
+                  className={`text-primary transition-all duration-500 group-hover/trigger:text-white group-focus-visible/trigger:text-white ${
+                    videoOpen
+                      ? "rotate-180"
+                      : "motion-safe:animate-[bounce_2s_infinite] group-hover/trigger:animate-none group-hover/trigger:translate-y-0.5"
+                  }`}
+                />
+              </button>
+              <span className="h-px flex-1 bg-gradient-to-l from-transparent to-neutral-700" />
+            </div>
+
+            {/* Unfolding panel: grid-rows 0fr -> 1fr animates height without JS measuring */}
+            <div
+              id="vip-video-panel"
+              className={`grid transition-[grid-template-rows] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                videoOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+              }`}
+            >
+              <div className="min-h-0 overflow-hidden">
+                <div className="flex justify-center pt-14 pb-4 md:pt-16">
+                  <div
+                    className={`relative w-full max-w-sm origin-top transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      videoOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+                    }`}
+                  >
+                    {/* Faint glow */}
+                    <div className="absolute -inset-6 bg-primary/15 blur-2xl" />
+
+                    <div className="relative overflow-hidden border border-neutral-800 bg-black shadow-[0_30px_70px_-20px_rgba(0,0,0,0.9)]">
+                      <video
+                        ref={videoRef}
+                        className="aspect-[808/1080] w-full object-cover"
+                        src="/videos/vip-highlight.mp4"
+                        poster="/videos/vip-highlight-poster.jpg"
+                        controls
+                        controlsList="nodownload"
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                      />
+                    </div>
+
+                    {/* Red tick marks at the corners */}
+                    <div className="absolute -top-1.5 -left-1.5 h-4 w-4 border-t-2 border-l-2 border-primary" />
+                    <div className="absolute -bottom-1.5 -right-1.5 h-4 w-4 border-r-2 border-b-2 border-primary" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -375,44 +432,22 @@ export default function VIPPage() {
             </p>
           </div>
 
-          {/* TODO: Fix video deployment on Vercel
-          <div className="max-w-4xl mx-auto mb-12">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary via-primary/50 to-primary rounded-lg opacity-50 group-hover:opacity-75 transition-opacity duration-500 blur-sm" />
-              <div className="relative bg-black rounded-lg overflow-hidden border border-neutral-700">
-                <video
-                  className="w-full aspect-video"
-                  controls
-                  controlsList="nodownload"
-                  playsInline
-                  webkit-playsinline="true"
-                  poster="/images/VIP1.jpg"
-                  preload="auto"
-                  style={{ maxWidth: "100%", display: "block" }}
-                >
-                  <source src="/images/vip-experience.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-            <p className="text-center text-neutral-500 text-sm mt-4 uppercase tracking-wider">
-              <Play className="inline-block w-4 h-4 mr-2" />
-              Watch the VIP Experience
-            </p>
-          </div>
-          */}
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          {/* Hovered tile scales up over its neighbours while the rest dim back */}
+          <div className="group/gallery grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
             {VIP_IMAGES.map((image, index) => (
-              <div key={index} className="group">
-                <div className="aspect-square overflow-hidden relative border border-neutral-700 hover:border-primary/50 transition-all">
+              <div
+                key={index}
+                className={`relative aspect-square transition-all duration-500 ease-out group-hover/gallery:not-hover:opacity-40 group-hover/gallery:not-hover:scale-[0.97] hover:z-30 hover:scale-[1.28] md:hover:scale-[1.35] hover:shadow-[0_30px_60px_-10px_rgba(0,0,0,0.85)] ${
+                  index % 2 === 0 ? "hover:-rotate-2" : "hover:rotate-2"
+                }`}
+              >
+                <div className="h-full w-full overflow-hidden border border-neutral-700 transition-colors duration-500 hover:border-primary">
                   <img
                     src={image}
                     alt={`VIP Experience ${index + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="h-full w-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </div>
             ))}
