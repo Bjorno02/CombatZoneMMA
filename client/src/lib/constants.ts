@@ -31,7 +31,7 @@ export const PPV_LIVE_EVENT_DATE = "November 7, 2026";
 export const PPV_LIVE_EVENT_VENUE = "SNHU Arena";
 export const PPV_LIVE_WATCH_PATH = "/watch";
 // Flip to false once the CZ 94 TicketSpice page is live.
-export const PPV_LIVE_COMING_SOON = true;
+export const PPV_LIVE_COMING_SOON = false;
 
 export const PPV_REPLAY_EVENT_NAME = "Combat Zone 93";
 export const PPV_REPLAY_EVENT_NUMBER = "93";
