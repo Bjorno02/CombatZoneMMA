@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Ticket, Crown, MonitorPlay, ChevronRight } from "lucide-react";
 import {
   Dialog,
@@ -10,7 +11,6 @@ import {
 import { PPVPurchaseModal } from "@/components/PPVPurchaseModal";
 import {
   TICKETMASTER_EVENT_URL,
-  TICKETMASTER_VIP_URL,
   TICKETS_ON_SALE,
   PPV_LIVE_EVENT_NAME,
   PPV_LIVE_COMING_SOON,
@@ -24,6 +24,8 @@ interface TicketOptionsModalProps {
 interface TicketOption {
   /** External checkout link. Omitted for the PPV option, which opens the embedded checkout. */
   href?: string;
+  /** Internal route. Navigates within the site instead of opening a new tab. */
+  to?: string;
   label: string;
   description: string;
   icon: typeof Ticket;
@@ -40,13 +42,10 @@ const OPTIONS: TicketOption[] = [
     comingSoon: !TICKETS_ON_SALE,
   },
   {
-    href: TICKETMASTER_VIP_URL,
+    to: "/vip",
     label: "VIP Experience",
-    description: TICKETS_ON_SALE
-      ? "Premium seating, hospitality & more"
-      : "On sale soon — stay tuned",
+    description: "Premium seating, hospitality & more",
     icon: Crown,
-    comingSoon: !TICKETS_ON_SALE,
   },
   {
     label: "Pay-Per-View",
@@ -61,8 +60,9 @@ const OPTIONS: TicketOption[] = [
 /**
  * Wraps any trigger element so that clicking it opens a modal letting the user
  * choose between General Admission, the VIP Experience, or the live PPV stream.
- * Ticketmaster options link out in a new tab; the PPV option opens the embedded
- * TicketSpice checkout (PPVPurchaseModal) in place.
+ * General Admission links out to Ticketmaster in a new tab; the VIP option goes
+ * to the on-site VIP page (packages are booked by email); the PPV option opens
+ * the embedded TicketSpice checkout (PPVPurchaseModal) in place.
  */
 export function TicketOptionsModal({ children }: TicketOptionsModalProps) {
   const [optionsOpen, setOptionsOpen] = useState(false);
@@ -128,6 +128,18 @@ export function TicketOptionsModal({ children }: TicketOptionsModalProps) {
                   <div key={option.label} className={disabledOptionClasses} aria-disabled="true">
                     {content}
                   </div>
+                );
+              }
+              if (option.to) {
+                return (
+                  <Link
+                    key={option.label}
+                    href={option.to}
+                    className={optionClasses}
+                    onClick={() => setOptionsOpen(false)}
+                  >
+                    {content}
+                  </Link>
                 );
               }
               return option.href ? (

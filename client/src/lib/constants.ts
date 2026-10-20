@@ -10,10 +10,8 @@
 export const TICKETMASTER_EVENT_URL =
   import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/0100652F8EF184D8";
 
-// VIP Experience tickets — Combat Zone 94 on Ticketmaster.
-export const TICKETMASTER_VIP_URL =
-  import.meta.env.VITE_TICKETMASTER_VIP_URL ||
-  "https://www.ticketmaster.com/event/0100652F92C19064";
+// VIP packages are booked by email — see VIP_INQUIRY_EMAIL below.
+export const VIP_INQUIRY_EMAIL = "jmsnkattar@czmma.com";
 
 // Set to false to show the "on sale soon" state in the ticket options modal.
 export const TICKETS_ON_SALE = true;

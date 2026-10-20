@@ -112,6 +112,23 @@ const SUBJECT_LABELS: Record<string, string> = {
   media: "Media/Press Inquiry",
 };
 
+// VIP package inquiries go straight to the VIP coordinator.
+const VIP_INQUIRY_RECIPIENTS = [process.env.VIP_INQUIRY_EMAIL || "jmsnkattar@czmma.com"];
+
+const vipInquirySchema = z.object({
+  name: z.string().min(1, "Name is required").max(100, "Name too long").trim(),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Invalid email format")
+    .max(100)
+    .trim()
+    .toLowerCase(),
+  phone: z.string().max(30, "Phone number too long").trim().optional().or(z.literal("")),
+  package: z.string().max(100, "Package name too long").trim().optional().or(z.literal("")),
+  message: z.string().max(2000, "Message too long").trim().optional().or(z.literal("")),
+});
+
 export async function registerRoutes(httpServer: Server, app: Express): Promise<Server> {
   // Apply general rate limiter to all API routes
   app.use("/api", apiLimiter);
@@ -218,6 +235,111 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
           });
         } else {
           console.error("[CONTACT] Form error:", error);
+          res.status(500).json({ error: "Failed to process your request. Please try again." });
+        }
+      }
+    })
+  );
+
+  // ===================
+  // VIP INQUIRY ENDPOINT
+  // ===================
+  app.post(
+    "/api/vip-inquiry",
+    contactLimiter,
+    asyncHandler(async (req: Request, res: Response) => {
+      try {
+        const validatedData = vipInquirySchema.parse(req.body);
+
+        const sanitizedData = {
+          name: sanitizeString(validatedData.name),
+          email: validatedData.email,
+          phone: validatedData.phone ? sanitizeString(validatedData.phone) : "",
+          package: validatedData.package ? sanitizeString(validatedData.package) : "",
+          message: validatedData.message ? sanitizeString(validatedData.message) : "",
+        };
+
+        console.log("[VIP] Inquiry submission:", {
+          ...sanitizedData,
+          ip: req.ip,
+          timestamp: new Date().toISOString(),
+          userAgent: req.get("User-Agent")?.substring(0, 100),
+        });
+
+        const packageLabel = sanitizedData.package || "Not sure yet";
+        const phoneLabel = sanitizedData.phone || "Not provided";
+        const messageBlock = sanitizedData.message || "(No additional message)";
+
+        const resendApiKey = process.env.RESEND_API_KEY;
+        if (resendApiKey) {
+          const resend = new Resend(resendApiKey);
+
+          try {
+            await resend.emails.send({
+              from: process.env.RESEND_FROM_EMAIL || "Combat Zone <onboarding@resend.dev>",
+              to: VIP_INQUIRY_RECIPIENTS,
+              replyTo: sanitizedData.email,
+              subject: `[VIP Inquiry] ${sanitizedData.name} — ${packageLabel}`,
+              html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                  <div style="background: #dc2626; padding: 20px; text-align: center;">
+                    <h1 style="color: white; margin: 0; font-size: 24px;">Combat Zone MMA</h1>
+                  </div>
+                  <div style="padding: 30px; background: #f9f9f9;">
+                    <h2 style="color: #333; margin-top: 0;">New VIP Package Inquiry</h2>
+                    <table style="width: 100%; border-collapse: collapse;">
+                      <tr>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold; width: 120px;">Name:</td>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${sanitizedData.name}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Email:</td>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd;"><a href="mailto:${sanitizedData.email}">${sanitizedData.email}</a></td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Phone:</td>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${phoneLabel}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd; font-weight: bold;">Package:</td>
+                        <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${packageLabel}</td>
+                      </tr>
+                    </table>
+                    <div style="margin-top: 20px;">
+                      <h3 style="color: #333; margin-bottom: 10px;">Message:</h3>
+                      <div style="background: white; padding: 15px; border-left: 4px solid #dc2626; white-space: pre-wrap;">${messageBlock}</div>
+                    </div>
+                    <p style="margin-top: 20px; color: #555; font-size: 14px;">Hit reply to answer ${sanitizedData.name} directly.</p>
+                  </div>
+                  <div style="background: #333; padding: 15px; text-align: center;">
+                    <p style="color: #999; margin: 0; font-size: 12px;">This message was sent from the Combat Zone MMA website VIP page.</p>
+                  </div>
+                </div>
+              `,
+            });
+            console.log("[VIP] Email sent successfully to:", VIP_INQUIRY_RECIPIENTS.join(", "));
+          } catch (emailError) {
+            console.error("[VIP] Failed to send email:", emailError);
+          }
+        } else {
+          console.log("[VIP] Resend API key not configured, skipping email");
+        }
+
+        res.status(200).json({
+          success: true,
+          message: "Thanks. We'll be in touch soon about your package.",
+        });
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          res.status(400).json({
+            error: "Validation failed",
+            details: error.errors.map((e) => ({
+              field: e.path.join("."),
+              message: e.message,
+            })),
+          });
+        } else {
+          console.error("[VIP] Form error:", error);
           res.status(500).json({ error: "Failed to process your request. Please try again." });
         }
       }
