@@ -5,28 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { TicketOptionsModal } from "@/components/TicketOptionsModal";
-import { cn } from "@/lib/utils";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
 
-// Newest-announced first: add new fights to the TOP of this list
-const MATCHUPS = [
-  { id: 17, image: "/images/cz-94/Sheehy-Herbert.jpeg", fighters: "Sheehy vs Herbert" },
-  { id: 16, image: "/images/cz-94/Pereira-Chowdhury.jpeg", fighters: "Pereira vs Chowdhury" },
-  { id: 15, image: "/images/cz-94/Rockwood-Denorscia.jpeg", fighters: "Rockwood vs Denorscia" },
-  { id: 12, image: "/images/cz-94/Johnston-Pinto.jpeg", fighters: "Johnston vs Pinto" },
-  { id: 11, image: "/images/cz-94/Medina-Loyo.jpeg", fighters: "Medina vs Loyo" },
-  { id: 10, image: "/images/cz-94/Collins-Rosario.jpeg", fighters: "Collins vs Rosario" },
-  { id: 13, image: "/images/cz-94/Carter-Hanley.jpeg", fighters: "Carter vs Hanley" },
-  { id: 9, image: "/images/cz-94/Phachansiri-Porter.jpeg", fighters: "Phachansiri vs Porter" },
-  { id: 8, image: "/images/cz-94/Marini-Gagnon.jpeg", fighters: "Marini vs Gagnon" },
-  { id: 6, image: "/images/cz-94/Gonzales-Balieiro.jpeg", fighters: "Gonzales vs Balieiro" },
-  { id: 5, image: "/images/cz-94/Nineve-Campbell.jpeg", fighters: "Nineve vs Campbell" },
-  { id: 4, image: "/images/cz-94/Carey-Batsinelas.jpeg", fighters: "Carey vs Batsinelas" },
-  { id: 3, image: "/images/cz-94/Olivero-Mosso.jpeg", fighters: "Olivero vs Mosso" },
-  { id: 2, image: "/images/cz-94/Vieira-Boucher.jpeg", fighters: "Vieira vs Boucher" },
-  { id: 1, image: "/images/cz-94/Chiasson-Thomas.jpeg", fighters: "Chiasson vs Thomas" },
-];
+// Official CZ94 fight card poster (full lineup in one image)
+const FIGHT_CARD_IMAGE = "/images/cz-94/cz94-fight-card.jpg";
+const BOUT_COUNT = 13;
 
 export default function FightCardPage() {
   useSEO(SEO_CONFIG.fightCard);
@@ -111,41 +95,21 @@ export default function FightCardPage() {
               CZ94 Official Lineup
             </p>
             <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-neutral-900 uppercase">
-              {MATCHUPS.length} Bouts Confirmed
+              {BOUT_COUNT} Bouts Confirmed
             </h2>
           </div>
 
-          {/* Matchups Grid - 2 columns on tablet, stacks on mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-12 max-w-[58rem] mx-auto">
-            {MATCHUPS.map((matchup, index) => {
-              const isOddCount = MATCHUPS.length % 2 === 1;
-              const isFirstOddRow = isOddCount && index === 0;
-              const effectiveIndex = isOddCount ? index - 1 : index;
-              return (
-                <div
-                  key={matchup.id}
-                  className={cn(
-                    "group relative bg-white p-2 rounded border-2 border-primary/80 hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl max-w-[420px] mx-auto",
-                    isFirstOddRow
-                      ? "md:col-span-2 md:mx-auto"
-                      : effectiveIndex % 2 === 0
-                        ? "md:mr-auto md:ml-0"
-                        : "md:ml-auto md:mr-0"
-                  )}
-                >
-                  {/* Matchup Image - natural aspect ratio */}
-                  <div className="overflow-hidden rounded-sm">
-                    <img
-                      src={matchup.image}
-                      alt={`${matchup.fighters} — Combat Zone 94 matchup`}
-                      className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
-                      loading={index < 4 ? "eager" : "lazy"}
-                      decoding="async"
-                    />
-                  </div>
-                </div>
-              );
-            })}
+          {/* Full fight card poster */}
+          <div className="max-w-[58rem] mx-auto bg-white p-2 rounded border-2 border-primary/80 shadow-md">
+            <img
+              src={FIGHT_CARD_IMAGE}
+              alt="Combat Zone 94 official fight card — full lineup of all 13 bouts"
+              width={1484}
+              height={1920}
+              className="w-full h-auto rounded-sm"
+              loading="eager"
+              decoding="async"
+            />
           </div>
 
           {/* Stay tuned message */}
