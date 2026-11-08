@@ -8,14 +8,27 @@ import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 const CHAMPIONS = [
   {
     id: 1,
-    name: "Luis Castro",
-    weightClass: "Bantamweight",
-    division: "Kickboxing",
+    name: "Dylan Marini",
+    weightClass: "Flyweight",
+    division: "Amateur Kickboxing",
     defenses: 0,
-    result: "UD",
-    image: "/images/cz-93/CZ93Website-2.jpg",
-    wonAt: "Combat Zone 93",
-    bio: "Luis Castro captured the CZ Bantamweight Kickboxing title at Combat Zone 93, defeating Aiden Bernier by unanimous decision in a beautiful performance.",
+    result: "SD",
+    record: "3-0",
+    image: "/images/cz-94/Marini-Champion.jpg",
+    wonAt: "Combat Zone 94",
+    bio: "Dylan Marini captured the vacant 125 lb Amateur Kickboxing belt in villainous fashion at Combat Zone 94, edging Mikey Gagnon by split decision in a heated matchup to move to 3-0.",
+  },
+  {
+    id: 2,
+    name: "Dan Nineve",
+    weightClass: "Welterweight",
+    division: "Amateur MMA",
+    defenses: 0,
+    result: "TKO",
+    record: "5-1",
+    image: "/images/cz-94/Nineve-Champion.jpg",
+    wonAt: "Combat Zone 94",
+    bio: "Dan Nineve captured the CZ 170 lb Amateur MMA title at Combat Zone 94, stopping Deanju Campbell by third-round TKO. Nineve dropped Campbell with a beautiful liver shot and finished him on the ground, improving to 5-1.",
   },
 ];
 
@@ -23,7 +36,7 @@ export default function ChampionsPage() {
   useSEO({
     title: "Current Champions | Combat Zone MMA",
     description:
-      "Meet the current Combat Zone champions. Luis Castro holds gold in Bantamweight Kickboxing after Combat Zone 93.",
+      "Meet the current Combat Zone champions. Dylan Marini and Dan Nineve captured amateur gold at Combat Zone 94.",
   });
 
   return (
@@ -66,7 +79,7 @@ export default function ChampionsPage() {
             </h1>
 
             <p className="text-lg md:text-xl text-neutral-400 leading-relaxed max-w-2xl mx-auto">
-              Fighters who touched gold at Combat Zone 93.
+              Fighters who touched gold at Combat Zone 94.
             </p>
           </div>
         </Container>
@@ -182,6 +195,14 @@ export default function ChampionsPage() {
                           </div>
                           <div className="text-xs uppercase tracking-widest text-neutral-500">
                             Title Win
+                          </div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-white mb-1">
+                            {champion.record}
+                          </div>
+                          <div className="text-xs uppercase tracking-widest text-neutral-500">
+                            Record
                           </div>
                         </div>
                         <div className="text-center">

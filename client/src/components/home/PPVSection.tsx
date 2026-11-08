@@ -8,6 +8,7 @@ import {
   PPV_LIVE_EVENT_VENUE,
   PPV_LIVE_WATCH_PATH,
   PPV_LIVE_COMING_SOON,
+  PPV_LIVE_WATCH_ENABLED,
   PPV_REPLAY_EVENT_NUMBER,
   PPV_REPLAY_EVENT_DATE,
   PPV_REPLAY_EVENT_VENUE,
@@ -126,12 +127,23 @@ export function PPVSection() {
                         </button>
                       </PPVPurchaseModal>
                     )}
-                    <Link href={PPV_LIVE_WATCH_PATH} className="block">
-                      <div className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white font-bold uppercase tracking-wider py-4 hover:bg-white hover:text-neutral-900 transition-colors cursor-pointer">
+                    {PPV_LIVE_WATCH_ENABLED ? (
+                      <Link href={PPV_LIVE_WATCH_PATH} className="block">
+                        <div className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white font-bold uppercase tracking-wider py-4 hover:bg-white hover:text-neutral-900 transition-colors cursor-pointer">
+                          <Radio size={18} />
+                          <span>Watch Live</span>
+                        </div>
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled
+                        className="w-full flex items-center justify-center gap-2 bg-transparent border-2 border-white/30 text-white/50 font-bold uppercase tracking-wider py-4 cursor-not-allowed"
+                      >
                         <Radio size={18} />
                         <span>Watch Live</span>
-                      </div>
-                    </Link>
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

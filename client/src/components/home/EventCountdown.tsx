@@ -1,13 +1,22 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Ticket, Radio, Play } from "lucide-react";
-import { PPV_LIVE_WATCH_PATH, PPV_LIVE_COMING_SOON } from "@/lib/constants";
+import { Ticket, Radio, Play, CalendarClock } from "lucide-react";
+import {
+  PPV_LIVE_WATCH_PATH,
+  PPV_LIVE_COMING_SOON,
+  PPV_LIVE_WATCH_ENABLED,
+  PPV_LIVE_EVENT_NUMBER,
+  PPV_LIVE_EVENT_DATE_ISO,
+  PPV_LIVE_EVENT_DATE,
+  PPV_LIVE_EVENT_TIME,
+  PPV_LIVE_EVENT_VENUE,
+} from "@/lib/constants";
 import { TicketOptionsModal } from "@/components/TicketOptionsModal";
 import { PPVPurchaseModal } from "@/components/PPVPurchaseModal";
 
-// November 7, 2026 at 5:00 PM EST
-const EVENT_DATE = new Date("2026-11-07T17:00:00-05:00");
+// Event start, or null while the date is still to be announced (see constants.ts)
+const EVENT_DATE = PPV_LIVE_EVENT_DATE_ISO ? new Date(PPV_LIVE_EVENT_DATE_ISO) : null;
 
 interface TimeLeft {
   days: number;
@@ -17,6 +26,10 @@ interface TimeLeft {
 }
 
 function calculateTimeLeft(): TimeLeft {
+  if (!EVENT_DATE) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  }
+
   const now = new Date();
   const difference = EVENT_DATE.getTime() - now.getTime();
 
@@ -38,6 +51,8 @@ export function EventCountdown() {
 
   useEffect(() => {
     setMounted(true);
+    if (!EVENT_DATE) return;
+
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -78,40 +93,61 @@ export function EventCountdown() {
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold font-[Chakra_Petch] text-white uppercase">
-            CZ<span className="text-primary">94</span> Countdown
+            CZ<span className="text-primary">{PPV_LIVE_EVENT_NUMBER}</span>{" "}
+            {EVENT_DATE ? "Countdown" : "Is Next"}
           </h2>
           <p className="text-neutral-500 text-sm mt-2">
-            November 7, 2026 • 5:00 PM EST • SNHU Arena
+            {EVENT_DATE
+              ? `${PPV_LIVE_EVENT_DATE} • ${PPV_LIVE_EVENT_TIME} • ${PPV_LIVE_EVENT_VENUE}`
+              : `Date To Be Announced • ${PPV_LIVE_EVENT_VENUE}`}
           </p>
         </div>
 
-        {/* Countdown blocks */}
-        <div className="flex justify-center items-center gap-1 sm:gap-2 md:gap-4 mb-8">
-          {timeBlocks.map((block, index) => (
-            <div key={block.label} className="flex items-center">
-              <div className="relative group">
-                {/* Glow effect */}
-                <div className="absolute -inset-1 bg-primary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity" />
+        {EVENT_DATE ? (
+          /* Countdown blocks */
+          <div className="flex justify-center items-center gap-1 sm:gap-2 md:gap-4 mb-8">
+            {timeBlocks.map((block, index) => (
+              <div key={block.label} className="flex items-center">
+                <div className="relative group">
+                  {/* Glow effect */}
+                  <div className="absolute -inset-1 bg-primary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                <div className="relative bg-neutral-900 border border-neutral-800 group-hover:border-primary/50 transition-colors px-3 sm:px-4 md:px-8 py-4 md:py-6 w-[68px] sm:w-[76px] md:w-[100px] flex flex-col items-center">
-                  <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black font-[Chakra_Petch] text-white tabular-nums text-center leading-none">
-                    {String(block.value).padStart(2, "0")}
+                  <div className="relative bg-neutral-900 border border-neutral-800 group-hover:border-primary/50 transition-colors px-3 sm:px-4 md:px-8 py-4 md:py-6 w-[68px] sm:w-[76px] md:w-[100px] flex flex-col items-center">
+                    <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black font-[Chakra_Petch] text-white tabular-nums text-center leading-none">
+                      {String(block.value).padStart(2, "0")}
+                    </div>
+                    <div className="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest text-neutral-500 mt-1 text-center">
+                      {block.label}
+                    </div>
                   </div>
-                  <div className="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest text-neutral-500 mt-1 text-center">
-                    {block.label}
+                </div>
+
+                {/* Separator */}
+                {index < timeBlocks.length - 1 && (
+                  <div className="text-xl sm:text-2xl md:text-4xl font-bold text-primary mx-0.5 sm:mx-1 md:mx-2 animate-pulse self-center">
+                    :
                   </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* Save the date — shown until the event date is announced */
+          <div className="flex justify-center mb-8">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-primary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative bg-neutral-900 border border-neutral-800 group-hover:border-primary/50 transition-colors px-8 md:px-12 py-6 md:py-8 flex flex-col items-center text-center">
+                <CalendarClock className="text-primary mb-3" size={32} />
+                <div className="text-2xl md:text-4xl font-black font-[Chakra_Petch] text-white uppercase leading-none">
+                  Save The Date
+                </div>
+                <div className="text-xs md:text-sm uppercase tracking-widest text-neutral-500 mt-3">
+                  Date &amp; fight card announcement coming soon
                 </div>
               </div>
-
-              {/* Separator */}
-              {index < timeBlocks.length - 1 && (
-                <div className="text-xl sm:text-2xl md:text-4xl font-bold text-primary mx-0.5 sm:mx-1 md:mx-2 animate-pulse self-center">
-                  :
-                </div>
-              )}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
@@ -146,16 +182,28 @@ export function EventCountdown() {
               </Button>
             </PPVPurchaseModal>
           )}
-          <Link href={PPV_LIVE_WATCH_PATH} className="w-full sm:w-auto">
+          {PPV_LIVE_WATCH_ENABLED ? (
+            <Link href={PPV_LIVE_WATCH_PATH} className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto bg-transparent border-2 border-neutral-500 text-neutral-300 hover:bg-neutral-300 hover:text-neutral-900 hover:border-neutral-300 font-bold uppercase tracking-wider h-12 md:h-14 px-8 md:px-10"
+              >
+                <Play className="mr-2" size={18} />
+                Watch Live
+              </Button>
+            </Link>
+          ) : (
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto bg-transparent border-2 border-neutral-500 text-neutral-300 hover:bg-neutral-300 hover:text-neutral-900 hover:border-neutral-300 font-bold uppercase tracking-wider h-12 md:h-14 px-8 md:px-10"
+              disabled
+              className="w-full sm:w-auto bg-transparent border-2 border-neutral-700 text-neutral-500 font-bold uppercase tracking-wider h-12 md:h-14 px-8 md:px-10 cursor-not-allowed disabled:opacity-100"
             >
               <Play className="mr-2" size={18} />
               Watch Live
             </Button>
-          </Link>
+          )}
         </div>
       </div>
     </section>

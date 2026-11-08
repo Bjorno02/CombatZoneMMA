@@ -5,12 +5,21 @@ import { Link } from "wouter";
 const CHAMPIONS = [
   {
     id: 1,
-    name: "Luis Castro",
-    weightClass: "Bantamweight",
+    name: "Dylan Marini",
+    weightClass: "Flyweight",
     defenses: 0,
-    image: "/images/cz-93/CZ93Website-2.jpg",
-    event: "Combat Zone 93",
-    discipline: "Kickboxing",
+    image: "/images/cz-94/Marini-Champion.jpg",
+    event: "Combat Zone 94",
+    discipline: "Amateur Kickboxing",
+  },
+  {
+    id: 2,
+    name: "Dan Nineve",
+    weightClass: "Welterweight",
+    defenses: 0,
+    image: "/images/cz-94/Nineve-Champion.jpg",
+    event: "Combat Zone 94",
+    discipline: "Amateur MMA",
   },
 ];
 
@@ -42,15 +51,15 @@ export function ChampionsSection() {
       <div className="max-w-[1280px] mx-auto px-8 md:px-12 lg:px-16 relative z-10">
         <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto scroll-reveal">
           <h2 className="text-4xl md:text-5xl font-bold text-white font-[Chakra_Petch] uppercase tracking-tight leading-none">
-            CZ 93 <span className="text-primary">Champions</span>
+            CZ 94 <span className="text-primary">Champions</span>
           </h2>
           <p className="text-neutral-300 mt-2 text-sm uppercase tracking-wider font-bold">
-            Championship Fight Winners from Combat Zone 93
+            Championship Fight Winners from Combat Zone 94
           </p>
           <div className="w-24 h-1 bg-primary mt-2 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:gap-8 max-w-md mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
           {CHAMPIONS.map((champion) => (
             <div
               key={champion.id}
@@ -95,7 +104,7 @@ export function ChampionsSection() {
                 <div className="mt-auto pt-4 border-t border-gray-100">
                   <p className="text-neutral-500 text-xs font-bold uppercase tracking-wide">
                     {champion.defenses === 0
-                      ? "Captured title at CZ93"
+                      ? "Captured title at CZ94"
                       : "Successfully defended title"}
                   </p>
                 </div>

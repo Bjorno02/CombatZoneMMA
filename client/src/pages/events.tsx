@@ -4,17 +4,29 @@ import { SectionHero } from "@/components/layout/SectionHero";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { TicketOptionsModal } from "@/components/TicketOptionsModal";
-import { Calendar, MapPin, Ticket, Clock } from "lucide-react";
+import { Calendar, MapPin, Ticket, Clock, CalendarClock } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO, SEO_CONFIG } from "@/hooks/useSEO";
 import { EventSchema } from "@/components/StructuredData";
+import {
+  PPV_LIVE_EVENT_NAME,
+  PPV_LIVE_EVENT_NUMBER,
+  PPV_LIVE_EVENT_DATE_ISO,
+  PPV_LIVE_EVENT_DATE,
+  PPV_LIVE_EVENT_TIME,
+  PPV_LIVE_EVENT_VENUE,
+  PPV_LIVE_EVENT_POSTER,
+} from "@/lib/constants";
 
-const EVENT_DATE = "2026-11-07T17:00:00-05:00";
+// Event start, or null while the date is still to be announced (see constants.ts)
+const EVENT_DATE = PPV_LIVE_EVENT_DATE_ISO;
 
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
+    if (!EVENT_DATE) return;
+
     const calculateTime = () => {
       const now = new Date().getTime();
       const target = new Date(EVENT_DATE).getTime();
@@ -41,21 +53,26 @@ function useCountdown() {
 export default function EventsPage() {
   useSEO(SEO_CONFIG.events);
   const { days, hours, minutes, seconds } = useCountdown();
+  const hasDate = EVENT_DATE !== null;
+  const dateLabel = hasDate ? PPV_LIVE_EVENT_DATE : "Date To Be Announced";
+
   return (
     <PageLayout>
-      {/* Structured Data */}
-      <EventSchema
-        name="Combat Zone 94"
-        description="New England's premier MMA event featuring top regional fighters competing at SNHU Arena."
-        startDate="2026-11-07T17:00:00-05:00"
-        venue={{
-          name: "SNHU Arena",
-          address: "555 Elm Street",
-          city: "Manchester",
-          state: "NH",
-        }}
-        imageUrl="https://combatzonemma.com/opengraph.jpg"
-      />
+      {/* Structured Data — schema.org Event requires a start date, so only emit once announced */}
+      {EVENT_DATE && (
+        <EventSchema
+          name={PPV_LIVE_EVENT_NAME}
+          description="New England's premier MMA event featuring top regional fighters competing at SNHU Arena."
+          startDate={EVENT_DATE}
+          venue={{
+            name: "SNHU Arena",
+            address: "555 Elm Street",
+            city: "Manchester",
+            state: "NH",
+          }}
+          imageUrl="https://combatzonemma.com/opengraph.jpg"
+        />
+      )}
       <SectionHero
         label="Live Events"
         title="UPCOMING EVENTS"
@@ -73,9 +90,11 @@ export default function EventsPage() {
                 Next Event
               </span>
               <span className="text-neutral-400 hidden sm:inline">|</span>
-              <span className="font-bold font-[Chakra_Petch] text-xl text-primary">CZ94</span>
+              <span className="font-bold font-[Chakra_Petch] text-xl text-primary">
+                CZ{PPV_LIVE_EVENT_NUMBER}
+              </span>
               <span className="text-neutral-400 hidden sm:inline">|</span>
-              <span className="text-neutral-600">November 7, 2026</span>
+              <span className="text-neutral-600">{dateLabel}</span>
             </div>
             <TicketOptionsModal>
               <Button className="bg-primary hover:bg-primary/90 text-white font-bold uppercase tracking-wider h-10 px-6 text-sm">
@@ -87,7 +106,7 @@ export default function EventsPage() {
         </Container>
       </section>
 
-      {/* Featured Event - CZ94 */}
+      {/* Featured Event */}
       <section className="py-16 md:py-24 bg-neutral-50 relative overflow-hidden">
         {/* Subtle background elements */}
         <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-primary/5 to-transparent" />
@@ -95,48 +114,59 @@ export default function EventsPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
         <Container className="relative z-10">
-          {/* Countdown */}
+          {/* Countdown (or Save the Date until the date is announced) */}
           <div className="flex flex-col items-center mb-8">
-            <span className="text-sm font-bold uppercase tracking-widest text-neutral-500 mb-3">
-              Event Starts In
-            </span>
-            <div className="flex items-center gap-2 md:gap-3">
-              <div className="text-center">
-                <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
-                  {days}
+            {hasDate ? (
+              <>
+                <span className="text-sm font-bold uppercase tracking-widest text-neutral-500 mb-3">
+                  Event Starts In
+                </span>
+                <div className="flex items-center gap-2 md:gap-3">
+                  <div className="text-center">
+                    <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
+                      {days}
+                    </div>
+                    <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
+                      Days
+                    </span>
+                  </div>
+                  <span className="text-neutral-300 text-2xl font-light">:</span>
+                  <div className="text-center">
+                    <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
+                      {hours}
+                    </div>
+                    <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
+                      Hours
+                    </span>
+                  </div>
+                  <span className="text-neutral-300 text-2xl font-light">:</span>
+                  <div className="text-center">
+                    <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
+                      {minutes}
+                    </div>
+                    <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
+                      Min
+                    </span>
+                  </div>
+                  <span className="text-neutral-300 text-2xl font-light">:</span>
+                  <div className="text-center">
+                    <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
+                      {seconds}
+                    </div>
+                    <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
+                      Sec
+                    </span>
+                  </div>
                 </div>
-                <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
-                  Days
+              </>
+            ) : (
+              <div className="inline-flex items-center gap-3 bg-neutral-900 text-white px-6 py-3">
+                <CalendarClock className="text-primary" size={20} />
+                <span className="text-sm font-bold uppercase tracking-widest">
+                  Date To Be Announced
                 </span>
               </div>
-              <span className="text-neutral-300 text-2xl font-light">:</span>
-              <div className="text-center">
-                <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
-                  {hours}
-                </div>
-                <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
-                  Hours
-                </span>
-              </div>
-              <span className="text-neutral-300 text-2xl font-light">:</span>
-              <div className="text-center">
-                <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
-                  {minutes}
-                </div>
-                <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
-                  Min
-                </span>
-              </div>
-              <span className="text-neutral-300 text-2xl font-light">:</span>
-              <div className="text-center">
-                <div className="bg-neutral-900 text-white font-bold font-[Chakra_Petch] text-2xl md:text-3xl px-4 py-2 min-w-[60px] md:min-w-[70px]">
-                  {seconds}
-                </div>
-                <span className="text-xs text-neutral-500 uppercase tracking-wider mt-1 block">
-                  Sec
-                </span>
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Section Header */}
@@ -148,15 +178,45 @@ export default function EventsPage() {
             <div className="h-px flex-1 max-w-24 bg-neutral-300" />
           </div>
 
-          {/* Central Poster Display */}
+          {/* Central Poster Display (Save the Date card until the official poster drops) */}
           <div className="flex justify-center mb-12 md:mb-16">
-            <div className="relative group max-w-3xl">
-              <img
-                src="/images/CZ94_Poster.jpeg"
-                alt="Combat Zone 94 Event Poster"
-                className="w-full h-auto object-contain shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]"
-                loading="eager"
-              />
+            <div className="relative group w-full max-w-3xl">
+              {PPV_LIVE_EVENT_POSTER ? (
+                <img
+                  src={PPV_LIVE_EVENT_POSTER}
+                  alt={`${PPV_LIVE_EVENT_NAME} Event Poster`}
+                  className="w-full h-auto object-contain shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]"
+                  loading="eager"
+                />
+              ) : (
+                <div className="relative bg-neutral-950 border border-neutral-800 overflow-hidden shadow-[0_25px_80px_-20px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.02]">
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,38,38,0.15),transparent_70%)]" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
+
+                  <div className="relative z-10 flex flex-col items-center text-center px-8 py-16 md:py-24">
+                    <div className="inline-flex items-center gap-2 mb-6">
+                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                      <span className="text-primary font-bold tracking-[0.25em] text-xs uppercase">
+                        Save The Date
+                      </span>
+                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                    </div>
+                    <div className="text-7xl md:text-9xl font-bold font-[Chakra_Petch] text-white leading-none mb-6">
+                      CZ<span className="text-primary">{PPV_LIVE_EVENT_NUMBER}</span>
+                    </div>
+                    <div className="text-neutral-400 uppercase tracking-[0.2em] text-sm md:text-base font-bold mb-2">
+                      {dateLabel}
+                    </div>
+                    <div className="text-neutral-500 uppercase tracking-wider text-xs md:text-sm mb-8">
+                      {PPV_LIVE_EVENT_VENUE} • Manchester, NH
+                    </div>
+                    <div className="inline-block border-2 border-white/40 px-6 py-3 text-white/80 text-xs md:text-sm font-bold uppercase tracking-[0.2em]">
+                      Fight Card To Be Announced
+                    </div>
+                  </div>
+                </div>
+              )}
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10" />
             </div>
@@ -171,7 +231,7 @@ export default function EventsPage() {
                   Next Live Event
                 </span>
                 <h2 className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900 mt-3">
-                  COMBAT ZONE <span className="text-primary">94</span>
+                  COMBAT ZONE <span className="text-primary">{PPV_LIVE_EVENT_NUMBER}</span>
                 </h2>
               </div>
 
@@ -182,8 +242,10 @@ export default function EventsPage() {
                     <Calendar className="text-primary" size={22} />
                   </div>
                   <div>
-                    <div className="font-bold text-neutral-900">November 7, 2026</div>
-                    <div className="text-sm text-neutral-500">Saturday Night</div>
+                    <div className="font-bold text-neutral-900">{dateLabel}</div>
+                    <div className="text-sm text-neutral-500">
+                      {hasDate ? "Saturday Night" : "Stay tuned"}
+                    </div>
                   </div>
                 </div>
 
@@ -192,7 +254,9 @@ export default function EventsPage() {
                     <Clock className="text-primary" size={22} />
                   </div>
                   <div>
-                    <div className="font-bold text-neutral-900">5:00 PM EST</div>
+                    <div className="font-bold text-neutral-900">
+                      {hasDate ? PPV_LIVE_EVENT_TIME : "TBA"}
+                    </div>
                     <div className="text-sm text-neutral-500">Start Time</div>
                   </div>
                 </div>
@@ -202,7 +266,7 @@ export default function EventsPage() {
                     <MapPin className="text-primary" size={22} />
                   </div>
                   <div>
-                    <div className="font-bold text-neutral-900">SNHU Arena</div>
+                    <div className="font-bold text-neutral-900">{PPV_LIVE_EVENT_VENUE}</div>
                     <div className="text-sm text-neutral-500">Manchester, NH</div>
                   </div>
                 </div>
@@ -248,26 +312,28 @@ export default function EventsPage() {
 
           {/* Events List */}
           <div className="space-y-4">
-            {/* CZ 94 - Next Event */}
+            {/* Next Event */}
             <div className="relative bg-white border border-neutral-200 overflow-hidden">
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary" />
               <div className="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 pl-8 md:pl-10">
                 <div className="flex items-center gap-6 md:gap-10 mb-4 md:mb-0">
                   <div>
                     <div className="text-4xl md:text-5xl font-bold font-[Chakra_Petch] text-neutral-900">
-                      CZ94
+                      CZ{PPV_LIVE_EVENT_NUMBER}
                     </div>
                   </div>
                   <div className="hidden md:block w-px h-12 bg-neutral-200" />
                   <div>
-                    <div className="font-bold text-neutral-900">November 7, 2026</div>
-                    <div className="text-sm text-neutral-500">Saturday</div>
+                    <div className="font-bold text-neutral-900">{dateLabel}</div>
+                    <div className="text-sm text-neutral-500">
+                      {hasDate ? "Saturday" : "Stay tuned"}
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 text-neutral-600">
                   <MapPin size={18} className="text-neutral-400" />
                   <div>
-                    <div className="font-medium">SNHU Arena</div>
+                    <div className="font-medium">{PPV_LIVE_EVENT_VENUE}</div>
                     <div className="text-sm text-neutral-500">Manchester, NH</div>
                   </div>
                 </div>
