@@ -13,6 +13,7 @@ import PastEventsPage from "@/pages/past-events";
 import AboutPage from "@/pages/about";
 import FightersPage from "@/pages/fighters";
 import ChampionsPage from "@/pages/champions";
+import BonusWinnersPage from "@/pages/bonus-winners";
 import FighterFormsPage from "@/pages/fighter-forms";
 import FighterApplicationPage from "@/pages/fighter-application";
 import MediaPage from "@/pages/media";
@@ -53,6 +54,7 @@ function Router() {
       <Route path="/fighters/forms" component={FighterFormsPage} />
       <Route path="/apply" component={FighterApplicationPage} />
       <Route path="/champions" component={ChampionsPage} />
+      <Route path="/bonus-winners" component={BonusWinnersPage} />
       <Route path="/media" component={MediaPage} />
       <Route path="/media/photos" component={PhotoArchivePage} />
       <Route path="/shop/kattarmania" component={KattarmaniaPage} />

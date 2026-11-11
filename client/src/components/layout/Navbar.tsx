@@ -141,6 +141,9 @@ export function Navbar() {
                     <ListItem href="/champions" title="Latest Champions">
                       Latest champions & title results
                     </ListItem>
+                    <ListItem href="/bonus-winners" title="Bonus Winners">
+                      Performance bonus winners
+                    </ListItem>
                     <ListItem href="/fighters/forms" title="Fighter Forms">
                       Fighter Documentation
                     </ListItem>
@@ -408,6 +411,9 @@ export function Navbar() {
                   <div className="pl-4 pt-2 pb-2 space-y-2">
                     <MobileLink href="/champions" onClick={() => setIsOpen(false)} isSubItem>
                       Latest Champions
+                    </MobileLink>
+                    <MobileLink href="/bonus-winners" onClick={() => setIsOpen(false)} isSubItem>
+                      Bonus Winners
                     </MobileLink>
                     <MobileLink href="/fighters/forms" onClick={() => setIsOpen(false)} isSubItem>
                       Fighter Forms
