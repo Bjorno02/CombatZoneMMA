@@ -102,7 +102,7 @@ export const SEO_CONFIG = {
   fightCard: {
     title: "Fight Card - CZ95",
     description:
-      "The official fight card for Combat Zone 95. Live at SNHU Arena. Date and matchups to be announced.",
+      "The official fight card for Combat Zone 95. Live at SNHU Arena on February 20, 2027.",
   },
   about: {
     title: "About Us",

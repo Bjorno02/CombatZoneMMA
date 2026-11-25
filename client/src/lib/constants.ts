@@ -9,17 +9,16 @@
 // Ticketing
 // ---------------------------------------------------------------------------
 
-// General Admission tickets — CZ 95 is not on Ticketmaster yet; this is still
-// the old CZ 94 event. Swap in the CZ 95 link (or set VITE_TICKETMASTER_URL)
-// when Ticketmaster publishes it, then flip TICKETS_ON_SALE to true.
+// General Admission tickets — Combat Zone 95 on Ticketmaster.
+// VITE_TICKETMASTER_URL, if set, overrides this link.
 export const TICKETMASTER_EVENT_URL =
-  import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/0100652F8EF184D8";
+  import.meta.env.VITE_TICKETMASTER_URL || "https://www.ticketmaster.com/event/01006574E5AA4703";
 
 // VIP packages are booked by email — see VIP_INQUIRY_EMAIL below.
 export const VIP_INQUIRY_EMAIL = "jmsnkattar@czmma.com";
 
 // Set to false to show the "on sale soon" state in the ticket options modal.
-export const TICKETS_ON_SALE = false;
+export const TICKETS_ON_SALE = true;
 
 // ---------------------------------------------------------------------------
 // Next live event (Combat Zone 95) — single source of truth
@@ -33,12 +32,11 @@ export const PPV_LIVE_EVENT_NUMBER = "95";
 
 // ISO start time used by the countdowns and schema.org structured data.
 // null = date not announced yet (the site shows a "Save the Date" state).
-// Example once known: "2027-02-20T17:00:00-05:00"
-export const PPV_LIVE_EVENT_DATE_ISO: string | null = null;
+export const PPV_LIVE_EVENT_DATE_ISO: string | null = "2027-02-20T17:00:00-05:00";
 
 // Human-readable date shown throughout the site. Keep in sync with the ISO
-// value above, e.g. "February 20, 2027".
-export const PPV_LIVE_EVENT_DATE = "Date TBA";
+// value above.
+export const PPV_LIVE_EVENT_DATE = "February 20, 2027";
 
 // Start time shown alongside the date once the date is announced.
 export const PPV_LIVE_EVENT_TIME = "5:00 PM ET";
@@ -47,8 +45,7 @@ export const PPV_LIVE_EVENT_VENUE = "SNHU Arena";
 
 // Path to the official event poster under client/public. null = not released
 // yet; the home page and events page render a "Save the Date" card instead.
-// Example once released: "/images/CZ95_Poster.jpeg"
-export const PPV_LIVE_EVENT_POSTER: string | null = null;
+export const PPV_LIVE_EVENT_POSTER: string | null = "/images/CZ95_Poster.jpeg";
 
 export const PPV_LIVE_TICKET_URL =
   import.meta.env.VITE_PPV_LIVE_TICKET_URL ||
